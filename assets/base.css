@@ -3595,3 +3595,203 @@ details-disclosure > details {
     transform: translateX(100%) scaleX(0);
   }
 }
+
+
+/* NEW CSS */
+
+@font-face {
+    font-family: 'Anton';
+    src: url('https://cdn.shopify.com/s/files/1/0764/6478/3497/files/Anton-Regular.woff2') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0764/6478/3497/files/Anton-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+@font-face {
+    font-family: 'Inter';
+    src: url('https://cdn.shopify.com/s/files/1/0764/6478/3497/files/Inter24pt-Thin.woff2') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0764/6478/3497/files/Inter24pt-Thin.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('https://cdn.shopify.com/s/files/1/0764/6478/3497/files/Inter24pt-ThinItalic.woff2') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0764/6478/3497/files/Inter24pt-ThinItalic.woff') format('woff');
+    font-weight: 100;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('https://cdn.shopify.com/s/files/1/0764/6478/3497/files/Inter24pt-ExtraLight.woff2') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0764/6478/3497/files/Inter24pt-ExtraLight.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('https://cdn.shopify.com/s/files/1/0764/6478/3497/files/Inter24pt-ExtraLightItalic.woff2') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0764/6478/3497/files/Inter24pt-ExtraLightItalic.woff') format('woff');
+    font-weight: 200;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('https://cdn.shopify.com/s/files/1/0764/6478/3497/files/Inter24pt-Light.woff2') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0764/6478/3497/files/Inter24pt-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('https://cdn.shopify.com/s/files/1/0764/6478/3497/files/Inter24pt-LightItalic.woff2') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0764/6478/3497/files/Inter24pt-LightItalic.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('https://cdn.shopify.com/s/files/1/0764/6478/3497/files/Inter24pt-Regular.woff2') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0764/6478/3497/files/Inter24pt-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('https://cdn.shopify.com/s/files/1/0764/6478/3497/files/Inter24pt-Italic.woff2') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0764/6478/3497/files/Inter24pt-Italic.woff') format('woff');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+
+@font-face {
+    font-family: 'Inter';
+    src: url('https://cdn.shopify.com/s/files/1/0764/6478/3497/files/Inter24pt-Medium.woff2') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0764/6478/3497/files/Inter24pt-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('https://cdn.shopify.com/s/files/1/0764/6478/3497/files/Inter24pt-MediumItalic.woff2') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0764/6478/3497/files/Inter24pt-MediumItalic.woff') format('woff');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('https://cdn.shopify.com/s/files/1/0764/6478/3497/files/Inter24pt-SemiBold.woff2') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0764/6478/3497/files/Inter24pt-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('https://cdn.shopify.com/s/files/1/0764/6478/3497/files/Inter24pt-SemiBoldItalic.woff2') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0764/6478/3497/files/Inter24pt-SemiBoldItalic.woff') format('woff');
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('https://cdn.shopify.com/s/files/1/0764/6478/3497/files/Inter24pt-Bold.woff2') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0764/6478/3497/files/Inter24pt-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('https://cdn.shopify.com/s/files/1/0764/6478/3497/files/Inter24pt-BoldItalic.woff2') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0764/6478/3497/files/Inter24pt-BoldItalic.woff') format('woff');
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('https://cdn.shopify.com/s/files/1/0764/6478/3497/files/Inter24pt-ExtraBold.woff2') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0764/6478/3497/files/Inter24pt-ExtraBold.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('https://cdn.shopify.com/s/files/1/0764/6478/3497/files/Inter24pt-ExtraBoldItalic.woff2') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0764/6478/3497/files/Inter24pt-ExtraBoldItalic.woff') format('woff');
+    font-weight: 800;
+    font-style: italic;
+    font-display: swap;
+}
+
+
+@font-face {
+    font-family: 'Inter';
+    src: url('https://cdn.shopify.com/s/files/1/0764/6478/3497/files/Inter24pt-Black.woff2') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0764/6478/3497/files/Inter24pt-Black.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('https://cdn.shopify.com/s/files/1/0764/6478/3497/files/Inter24pt-BlackItalic.woff2') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0764/6478/3497/files/Inter24pt-BlackItalic.woff') format('woff');
+    font-weight: 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+
+:root {
+  --font-body-family: 'Inter';
+  --font-body-weight: 400;
+  
+  --font-heading-family: 'Anton';
+  --font-heading-weight: 400;
+ 
+  --vh: 100%;
+}
+
+
+/* Announcement bar */
+
+.announcement-bar-section .announcement-bar .announcement-bar__message { font-size: 14px; font-style: normal;
+font-weight: 700; line-height: normal; text-transform: uppercase; padding: 11.5px 0; }
+
+/* & Announcement bar */
+
+
+
+

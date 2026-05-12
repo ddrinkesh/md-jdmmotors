@@ -1,0 +1,32 @@
+.part-finder { display: flex; flex-direction: column; gap: 20px; }
+
+.part-finder__title { margin: 0; font-size: 24px; font-weight: 700; line-height: 1.3; font-family: var(--font-heading-family); }
+.part-finder__title-main { color: rgb(var(--color-foreground)); }
+.part-finder__title-highlight { color: #E31E24; }
+
+.part-finder__form { display: flex; align-items: center; gap: 16px; }
+
+.part-finder__selects { display: flex; flex: 1; gap: 16px; }
+
+.part-finder__select-wrap { position: relative; flex: 1; }
+
+.part-finder__select { width: 100%; height: 54px; padding: 0 44px 0 20px; border: 1px solid #E0E0E0; border-radius: 40px; background: #fff; font-size: 15px; font-weight: 400; color: #555; appearance: none; -webkit-appearance: none; cursor: pointer; font-family: var(--font-body-family); transition: border-color 0.2s ease; }
+.part-finder__select:focus { outline: none; border-color: #E31E24; }
+.part-finder__select option[value=""] { color: #999; }
+
+.part-finder__caret { position: absolute; right: 18px; top: 50%; transform: translateY(-50%); pointer-events: none; display: flex; align-items: center; color: #888; }
+.part-finder__caret svg { width: 12px; height: auto; }
+
+.part-finder__btn { white-space: nowrap; flex-shrink: 0; }
+
+@media screen and (max-width: 989px) {
+  .part-finder__selects { gap: 12px; }
+  .part-finder__form { gap: 12px; }
+}
+
+@media screen and (max-width: 749px) {
+  .part-finder__form { flex-direction: column; align-items: stretch; gap: 12px; }
+  .part-finder__selects { flex-direction: column; }
+  .btns-wrapper { display: flex; }
+  .part-finder__btn { width: 100%; justify-content: center; }
+}

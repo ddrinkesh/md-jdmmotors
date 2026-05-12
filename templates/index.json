@@ -9,36 +9,71 @@
  */
 {
   "sections": {
-    "featured_collection": {
-      "type": "featured-collection",
+    "hero_banner_slider_NFybbK": {
+      "type": "hero-banner-slider",
+      "blocks": {
+        "slide_UWjjpG": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/banner-main_1.jpg",
+            "content_align": "left",
+            "subheading": "",
+            "heading_white": "PREMIUM JAPANESE ENGINES &",
+            "heading_red": "TRANSMISSIONS",
+            "description": "<p>High-quality, low-mileage units imported directly from Japan for unmatched performance and reliability.</p>",
+            "button_label": "EXPLORE NOW",
+            "button_link": "#",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "slide_UWjjpG"
+      ],
+      "name": "Hero Banner Slider",
       "settings": {
-        "collection": "all",
-        "products_to_show": 8,
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "columns_desktop": 4,
-        "enable_desktop_slider": false,
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "color_scheme": "scheme-1",
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "padding_top": 44,
-        "padding_bottom": 36
+        "color_scheme": "scheme-5525b01c-517a-48ec-879c-2d9012969840",
+        "banner_height_desktop": 700,
+        "banner_height_mobile": 500,
+        "overlay_opacity": 50,
+        "autoplay": false,
+        "autoplay_speed": 5000,
+        "slide_speed": 800,
+        "show_pagination": false,
+        "show_pagination_in": "both",
+        "pagination_type": "dot",
+        "navigation": false,
+        "show_navigation_in": "both",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "padding_top_mobi": 0,
+        "padding_bottom_mobi": 0
+      }
+    },
+    "part_finder_7RrqCM": {
+      "type": "part-finder",
+      "name": "Part Finder",
+      "settings": {
+        "color_scheme": "scheme-3",
+        "heading": "Part",
+        "heading_highlight": "Finder",
+        "label_brands": "Brands",
+        "label_model": "Model",
+        "label_year": "Year",
+        "button_label": "FIND",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "padding_top_mobi": 24,
+        "padding_bottom_mobi": 24
       }
     }
   },
   "order": [
-    "featured_collection"
+    "hero_banner_slider_NFybbK",
+    "part_finder_7RrqCM"
   ]
 }

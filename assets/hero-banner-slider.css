@@ -10,9 +10,11 @@
 .hero-slide-heading .heading-white { color: #ffffff; display: block; }
 .hero-slide-heading .heading-red { color: #e31e24; }
 .hero-slide-description { color: rgba(255, 255, 255, 0.85); font-size: 16px; line-height: 1.7; margin: 0 0 32px; max-width: 520px; }
-.hero-slide-btn { display: inline-block; background: #e31e24; color: #fff; padding: 14px 36px; border-radius: 50px; font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; border: 2px solid #e31e24; transition: background 0.3s, color 0.3s; }
-.hero-slide-btn:hover { background: transparent; color: #fff; }
-.hero-banner-slider-main .swiper-button-prev, .hero-banner-slider-main .swiper-button-next { position: static; margin: 0; width: auto; height: auto; color: #fff; }
+.hero-slide-description p { margin: 0; color: inherit; font-size: inherit; line-height: inherit; }
+.hero-banner-slider-main .btns-wrapper { display: inline-flex; }
+ 
+.hero-banner-slider-main .swiper-button-prev, 
+.hero-banner-slider-main .swiper-button-next { position: static; margin: 0; width: auto; height: auto; color: #fff; }
 .hero-banner-slider-main .swiper-button-prev::after, .hero-banner-slider-main .swiper-button-next::after { display: none; }
 .hero-banner-slider-main .nav-btns { position: absolute; top: 50%; transform: translateY(-50%); left: 0; width: 100%; display: flex; justify-content: space-between; padding: 0 24px; z-index: 10; pointer-events: none; }
 .hero-banner-slider-main .btn-arrow { width: 50px; height: 50px; background: rgba(255, 255, 255, 0.15); border: 2px solid rgba(255, 255, 255, 0.4); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; pointer-events: all; transition: background 0.3s, border-color 0.3s; }
@@ -26,7 +28,6 @@
 .hero-banner-slide .hero-slide-content { padding: 30px 20px; }
 .hero-slide-heading { font-size: 32px; margin-bottom: 14px; }
 .hero-slide-description { font-size: 14px; margin-bottom: 24px; }
-.hero-slide-btn { padding: 12px 26px; font-size: 12px; }
 .hero-banner-slider-main .btn-arrow { width: 38px; height: 38px; }
 .hero-banner-slider-main .btn-arrow svg { width: 16px; height: 16px; }
 }
