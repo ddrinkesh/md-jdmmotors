@@ -1,0 +1,406 @@
+{{ 'hero-banner-slider.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} {
+      margin-top: {{ section.settings.margin_top }}px;
+      margin-bottom: {{ section.settings.margin_bottom }}px;
+    }
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} {
+      margin-top: {{ section.settings.margin_top | times: 0.75 | round }}px;
+      margin-bottom: {{ section.settings.margin_bottom | times: 0.75 | round }}px;
+    }
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top_mobi }}px;
+      padding-bottom: {{ section.settings.padding_bottom_mobi }}px;
+    }
+  }
+  #shopify-section-{{ section.id }} .hero-banner-slide {
+    --slide-height: {{ section.settings.banner_height_desktop }}px;
+    --slide-height-mobi: {{ section.settings.banner_height_mobile }}px;
+    --overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+  }
+{%- endstyle -%}
+
+{%- capture slider_options -%}
+  "slidesPerView": 1,
+  "spaceBetween": 0,
+  "loop": true,
+  "speed": {{ section.settings.slide_speed }}
+  {% if section.settings.show_pagination %}
+  ,"pagination": {
+    "el": "#shopify-section-{{ section.id }} .swiper-pagination",
+    "clickable": true
+  }
+  {% endif %}
+  {% if section.settings.autoplay %}
+  ,"autoplay": {
+    "delay": {{ section.settings.autoplay_speed }},
+    "disableOnInteraction": false
+  }
+  {% endif %}
+  {% if section.settings.navigation %}
+  ,"navigation": {
+    "nextEl": "#shopify-section-{{ section.id }} .swiper-button-next",
+    "prevEl": "#shopify-section-{{ section.id }} .swiper-button-prev"
+  }
+  {% endif %}
+{%- endcapture -%}
+
+<div class="section-{{ section.id }} section-{{ section.id }}-padding color-{{ section.settings.color_scheme }} gradient section-main-box hero-banner-slider-main">
+  <div class="swiper-main-wrapper">
+    <div class="swiper hero-banner-swiper" data-slider-options='{ {{ slider_options | strip_newlines | strip }} }'>
+      <div class="swiper-wrapper">
+        {% for block in section.blocks %}
+          <div class="swiper-slide hero-banner-slide" {{ block.shopify_attributes }}>
+            {% if block.settings.image %}
+              {{- block.settings.image | image_url: width: 1920 | image_tag: class: 'hero-slide-bg', loading: 'lazy', alt: block.settings.image.alt | default: block.settings.heading_white -}}
+            {% endif %}
+
+            <div class="hero-slide-overlay"></div>
+
+            <div class="hero-slide-content" style="text-align: {{ block.settings.content_align }};">
+              {% if block.settings.subheading != blank %}
+                <p class="hero-slide-subheading">{{ block.settings.subheading }}</p>
+              {% endif %}
+
+              {% if block.settings.heading_white != blank or block.settings.heading_red != blank %}
+                <h2 class="hero-slide-heading">
+                  {% if block.settings.heading_white != blank %}<span class="heading-white">{{ block.settings.heading_white }}</span>{% endif %}
+                  {% if block.settings.heading_red != blank %}<span class="heading-red">{{ block.settings.heading_red }}</span>{% endif %}
+                </h2>
+              {% endif %}
+
+              {% if block.settings.description != blank %}
+                <p class="hero-slide-description">{{ block.settings.description }}</p>
+              {% endif %}
+
+              {% if block.settings.button_label != blank %}
+                <a href="{{ block.settings.button_link }}" class="hero-slide-btn">{{ block.settings.button_label }}</a>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    {% if section.settings.navigation %}
+      <div class="nav-btns {% if section.settings.show_navigation_in == 'desktop' %}small-hide{% endif %} {% if section.settings.show_navigation_in == 'mobile' %}medium-hide large-up-hide{% endif %}">
+        <div class="btn-arrow swiper-button-prev">{{ 'left-arrow.svg' | inline_asset_content }}</div>
+        <div class="btn-arrow swiper-button-next">{{ 'right-arrow.svg' | inline_asset_content }}</div>
+      </div>
+    {% endif %}
+
+    {% if section.settings.show_pagination %}
+      <div class="swiper-pagination {{ section.settings.pagination_type }} {% if section.settings.show_pagination_in == 'desktop' %}small-hide{% endif %} {% if section.settings.show_pagination_in == 'mobile' %}medium-hide large-up-hide{% endif %}"></div>
+    {% endif %}
+  </div>
+</div>
+
+<script src="{{ 'custom-swiper-init.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Hero Banner Slider",
+  "class": "hero-banner-slider-wrapper",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "background-1"
+    },
+    {
+      "type": "header",
+      "content": "Banner Settings"
+    },
+    {
+      "type": "range",
+      "id": "banner_height_desktop",
+      "min": 300,
+      "max": 900,
+      "step": 10,
+      "unit": "px",
+      "label": "Banner Height Desktop",
+      "default": 700
+    },
+    {
+      "type": "range",
+      "id": "banner_height_mobile",
+      "min": 200,
+      "max": 700,
+      "step": 10,
+      "unit": "px",
+      "label": "Banner Height Mobile",
+      "default": 500
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Overlay Opacity",
+      "default": 50
+    },
+    {
+      "type": "header",
+      "content": "Slider Options"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Enable Autoplay",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "min": 2000,
+      "max": 9000,
+      "step": 500,
+      "label": "Autoplay Speed (ms)",
+      "default": 5000
+    },
+    {
+      "type": "range",
+      "id": "slide_speed",
+      "min": 300,
+      "max": 2000,
+      "step": 100,
+      "label": "Transition Speed (ms)",
+      "default": 800
+    },
+    {
+      "type": "checkbox",
+      "id": "show_pagination",
+      "label": "Show Pagination",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "show_pagination_in",
+      "options": [
+        {
+          "value": "both",
+          "label": "Both"
+        },
+        {
+          "value": "desktop",
+          "label": "Desktop"
+        },
+        {
+          "value": "mobile",
+          "label": "Mobile"
+        }
+      ],
+      "default": "both",
+      "label": "Show pagination in"
+    },
+    {
+      "type": "select",
+      "id": "pagination_type",
+      "options": [
+        {
+          "value": "dot",
+          "label": "Dot"
+        },
+        {
+          "value": "border",
+          "label": "Dot border"
+        },
+        {
+          "value": "line",
+          "label": "Line"
+        },
+        {
+          "value": "number",
+          "label": "Number"
+        }
+      ],
+      "default": "dot",
+      "label": "Pagination type"
+    },
+    {
+      "type": "checkbox",
+      "id": "navigation",
+      "label": "Show Navigation",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "show_navigation_in",
+      "options": [
+        {
+          "value": "both",
+          "label": "Both"
+        },
+        {
+          "value": "desktop",
+          "label": "Desktop"
+        },
+        {
+          "value": "mobile",
+          "label": "Mobile"
+        }
+      ],
+      "default": "both",
+      "label": "Show navigation in"
+    },
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Section Settings For Mobile"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobi",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobi",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Background Image"
+        },
+        {
+          "type": "select",
+          "id": "content_align",
+          "label": "Content Alignment",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "text",
+          "id": "subheading",
+          "label": "Subheading",
+          "default": ""
+        },
+        {
+          "type": "text",
+          "id": "heading_white",
+          "label": "Heading (White)",
+          "default": "PREMIUM JAPANESE ENGINES &"
+        },
+        {
+          "type": "text",
+          "id": "heading_red",
+          "label": "Heading Highlight (Red)",
+          "default": "TRANSMISSIONS"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "High-quality, low-mileage units imported directly from Japan for unmatched performance and reliability."
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button Label",
+          "default": "EXPLORE NOW"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Banner Slider",
+      "blocks": [
+        {
+          "type": "slide"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

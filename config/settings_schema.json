@@ -18,11 +18,11 @@
       {
         "type": "range",
         "id": "logo_width",
-        "min": 50,
-        "max": 300,
-        "step": 10,
-        "default": 100,
-        "unit": "px",
+        "min": 120,
+        "max": 220,
+        "step": 1,
+        "default": 150,
+        "unit": "px", 
         "label": "t:settings_schema.logo.settings.logo_width.label"
       },
       {
@@ -54,9 +54,37 @@
           },
           {
             "type": "color",
+            "id": "title",
+            "label": "Title Color",
+            "default": "#121212"
+          },
+          {
+            "type": "color",
             "id": "text",
             "label": "t:settings_schema.colors.settings.text.label",
             "default": "#121212"
+          },
+          {
+            "type": "color",
+            "id": "shadow",
+            "label": "t:settings_schema.colors.settings.shadow.label",
+            "default": "#121212"
+          },
+          {
+            "type": "color",
+            "id": "link",
+            "label": "Link",
+            "default": "#121212"
+          },
+          {
+            "type": "color",
+            "id": "link_hover",
+            "label": "Link Hover",
+            "default": "#121212"
+          },
+           {
+            "type": "header",             
+            "content": "Buttions"             
           },
           {
             "type": "color",
@@ -78,8 +106,48 @@
           },
           {
             "type": "color",
-            "id": "shadow",
-            "label": "t:settings_schema.colors.settings.shadow.label",
+            "id": "button_hover_color",
+            "label": "Button Hover Color",
+            "default": "#ffffff"
+          },
+          {
+            "type": "color",
+            "id": "button_hover",
+            "label": "Button Hover background",
+            "default": "#121212"
+          },
+          {
+            "type": "header",             
+            "content": "Card"             
+          },
+          {
+            "type": "color",
+            "id": "card_bg",
+            "label": "Background",
+            "default": "#121212"
+          },
+          {
+            "type": "color",
+            "id": "card_title",
+            "label": "Title Color",
+            "default": "#121212"
+          },          
+          {
+            "type": "color",
+            "id": "card_text",
+            "label": "Text",
+            "default": "#121212"
+          },          
+          {
+            "type": "color",
+            "id": "card_link",
+            "label": "Link",
+            "default": "#121212"
+          },
+          {
+            "type": "color",
+            "id": "card_link_hover",
+            "label": "Link Hover",
             "default": "#121212"
           }
         ],
@@ -154,7 +222,7 @@
         "id": "page_width",
         "min": 1000,
         "max": 1600,
-        "step": 100,
+        "step": 10,
         "default": 1200,
         "unit": "px",
         "label": "t:settings_schema.layout.settings.page_width.label"
@@ -181,8 +249,8 @@
         "type": "range",
         "id": "spacing_grid_horizontal",
         "min": 4,
-        "max": 40,
-        "step": 4,
+        "max": 60,
+        "step": 1,
         "default": 8,
         "unit": "px",
         "label": "t:settings_schema.layout.settings.spacing_grid_horizontal.label"
@@ -191,8 +259,8 @@
         "type": "range",
         "id": "spacing_grid_vertical",
         "min": 4,
-        "max": 40,
-        "step": 4,
+        "max": 60,
+        "step": 1,
         "default": 8,
         "unit": "px",
         "label": "t:settings_schema.layout.settings.spacing_grid_vertical.label"
@@ -263,7 +331,7 @@
         "id": "buttons_radius",
         "min": 0,
         "max": 40,
-        "step": 2,
+        "step": 1,
         "unit": "px",
         "label": "t:settings_schema.global.settings.corner_radius.label",
         "default": 0
@@ -488,6 +556,36 @@
     "name": "t:settings_schema.cards.name",
     "settings": [
       {
+        "type": "text",
+        "id": "swatch",
+        "label": "Swatch For Option",
+        "info": "Input Option Name To Show Swatch Style",
+        "default": "Color"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_swatch",
+        "label": "Product Swatch?",
+        "default": true
+      },
+       {
+        "type": "select",
+        "id": "swatch_type",
+        "label": "Swatch Type",
+        "info": "'Advanced Color' use color name or image with PNG format. 'Metafields' use color codes or image with PNG format from metafields.",
+        "default": "metafields",
+        "options": [
+          {
+            "value": "variant_image",
+            "label": "Default"
+          },
+          {
+            "value": "metafields",
+            "label": "Metafields"
+          }
+        ]
+      },
+      {
         "type": "select",
         "id": "card_style",
         "options": [
@@ -568,7 +666,7 @@
         "id": "card_corner_radius",
         "min": 0,
         "max": 40,
-        "step": 2,
+        "step": 1,
         "unit": "px",
         "label": "t:settings_schema.global.settings.corner_radius.label",
         "default": 0
@@ -1449,7 +1547,124 @@
         "id": "cart_color_scheme",
         "label": "t:sections.all.colors.label",
         "default": "scheme-1"
+      },
+      {
+        "type": "text",
+        "id": "cart_Shiping_value",
+        "label": "Cart Shiping value",
+        "info": "Number only, e.g. 10000 for $100"
+      },
+      {
+        "type": "text",
+        "id": "cart_Shiping_text",
+        "label": "Cart Shiping Text",
+        "default": "Es fehlen noch XX,XX € für den kostenlosen Versand"
+      },
+      {
+        "type": "text",
+        "id": "cart_Shiping_text_sussess",
+        "label": "Cart Shiping Success",
+        "default": "You are eligible for international free shipping!"
       }
     ]
-  }
+  },
+  {
+    "name": "Adons Product",
+    "settings": [
+      {
+        "type": "text",
+        "id": "gift_pdp_heading",
+        "label": "gift product heading",
+      },
+      {
+        "type": "text",
+        "id": "gift_text",
+        "label": "gift product text",
+      },
+       {
+        "type": "product",
+        "id": "gift_product",
+        "label": "gift product",
+      }
+    ]
+  },
+  {
+    "name": "Upsell products",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Add Upsell product in cart drawer"
+      },
+      {
+        "type": "text",
+        "id": "Upsell_title",
+        "label": "Upsell Product Title"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_cart_recommadation_product",
+        "label": "Show cart recommadation product",
+        "default": true,
+        "info": "if you have checked this cart, the first product recommendation products are showing as upsell products."
+      },
+      {
+        "type": "product_list",
+        "id": "upsell_all_pro",
+        "label": "Select product",
+        "limit": 2
+      },
+      {
+        "type": "range",
+        "id": "space_slide",
+        "min": 1,
+        "max": 50,
+        "step": 1,
+        "label": "Space between two slide",
+        "default": 15
+      },   
+      {
+        "type": "checkbox",
+        "id": "auto_play",
+        "label": "Auto Play",
+        "default": false        
+      },    
+      {
+        "type": "text",
+        "id": "transition_speed",
+        "label": "Transition speed",
+        "default": "1500",
+        "info": "Enter slide speed time like 500, where 1000 = 1 second"
+      },       
+      {
+        "type": "checkbox",
+        "id": "touch_move",
+        "label": "Touch move",
+        "info": "It will enable slide change by touch in touch devices.",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Menu Drawer",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Menu Drawer"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_country_selector",
+        "default": true,
+        "label": "t:sections.header.settings.enable_country_selector.label",
+        "info": "t:sections.header.settings.enable_country_selector.info"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_language_selector",
+        "default": true,
+        "label": "t:sections.header.settings.enable_language_selector.label",
+        "info": "t:sections.header.settings.enable_language_selector.info"
+      },
+    ]
+  },
 ]

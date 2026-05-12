@@ -28,6 +28,7 @@
 
     {% render 'meta-tags' %}
 
+    <script src="{{ 'theme-vendors.js' | asset_url }}" defer="defer"></script> 
     <script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
@@ -91,11 +92,25 @@
         --color-badge-background: {{ scheme.settings.background.red }},{{ scheme.settings.background.green }},{{ scheme.settings.background.blue }};
         --color-badge-border: {{ scheme.settings.text.red }},{{ scheme.settings.text.green }},{{ scheme.settings.text.blue }};
         --payment-terms-background-color: rgb({{ scheme.settings.background.rgb }});
+
+        --color-title: {{ scheme.settings.title.red }},{{ scheme.settings.title.green }},{{ scheme.settings.title.blue }};
+      
+        --color-a-link: {{ scheme.settings.link.red }},{{ scheme.settings.link.green }},{{ scheme.settings.link.blue }}; 
+        --color-a-link-hover: {{ scheme.settings.link_hover.red }},{{ scheme.settings.link_hover.green }},{{ scheme.settings.link_hover.blue }}; 
+      
+        --color-card-box: {{ scheme.settings.card_bg.red }},{{ scheme.settings.card_bg.green }},{{ scheme.settings.card_bg.blue }};
+        --color-card-box-title: {{ scheme.settings.card_title.red }},{{ scheme.settings.card_title.green }},{{ scheme.settings.card_title.blue }};      
+        --color-card-box-text: {{ scheme.settings.card_text.red }},{{ scheme.settings.card_text.green }},{{ scheme.settings.card_text.blue }};      
+        --color-card-link: {{ scheme.settings.card_link.red }},{{ scheme.settings.card_link.green }},{{ scheme.settings.card_link.blue }}; 
+        --color-card-link-hover: {{ scheme.settings.card_link_hover.red }},{{ scheme.settings.card_link_hover.green }},{{ scheme.settings.card_link_hover.blue }}; 
+
+        --color-button-hover: {{ scheme.settings.button_hover.red }},{{ scheme.settings.button_hover.green }},{{ scheme.settings.button_hover.blue }}; 
+        --color-button-color-hover: {{ scheme.settings.button_hover_color.red }},{{ scheme.settings.button_hover_color.green }},{{ scheme.settings.button_hover_color.blue }};
       }
       {% endfor %}
 
       {{ scheme_classes | prepend: 'body' }} {
-        color: rgba(var(--color-foreground), 0.75);
+        color: rgba(var(--color-foreground), 1);
         background-color: rgb(var(--color-background));
       }
 
@@ -255,6 +270,7 @@
       }
     {% endstyle %}
 
+    {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}  
     {{ 'base.css' | asset_url | stylesheet_tag }}
     <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
 
