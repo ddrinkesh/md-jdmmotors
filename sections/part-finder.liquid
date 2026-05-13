@@ -26,16 +26,18 @@
 <div class="section-{{ section.id }} section-{{ section.id }}-padding color-{{ section.settings.color_scheme }} gradient section-main-box part-finder-section">
   <div class="part-finder page-width">
 
-    {%- if section.settings.heading != blank or section.settings.heading_highlight != blank -%}
-      <p class="part-finder__title">
-        {%- if section.settings.heading != blank -%}
-          <span class="part-finder__title-main">{{ section.settings.heading }}</span>
-        {%- endif -%}
-        {%- if section.settings.heading_highlight != blank -%}
-          <span class="part-finder__title-highlight">{{ section.settings.heading_highlight }}</span>
-        {%- endif -%}
-      </p>
-    {%- endif -%}
+    {% if section.settings.heading != blank or section.settings.heading_highlight != blank %}
+      <div class="sec-head text-align-{{ section.settings.text_align }} {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+        <h2 class="sec-title">
+          {%- if section.settings.heading != blank -%}
+            <span class="sec-title__main">{{ section.settings.heading }}</span>
+          {%- endif -%}
+          {%- if section.settings.heading_highlight != blank -%}
+            <span class="sec-title__highlight">{{ section.settings.heading_highlight }}</span>
+          {%- endif -%}
+        </h2>
+      </div>
+    {% endif %}
 
     <div class="part-finder__form">
       <div class="part-finder__selects">
@@ -100,6 +102,26 @@
       "id": "heading_highlight",
       "label": "Heading Highlight (Red)",
       "default": "Finder"
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "Text alignment",
+      "default": "left",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ]
     },
     {
       "type": "header",

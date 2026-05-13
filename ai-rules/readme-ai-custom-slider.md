@@ -201,4 +201,72 @@ Follow this structure:
 
 13. Shopify schema JSON must always be formatted as expanded multi-line JSON objects. Do not write schema settings, blocks, presets, or options as one-line objects.
 
+14. When creating section headings/titles for custom sections:
+
+* Always follow my predefined section heading structure.
+* Use dynamic alignment settings.
+* Keep Dawn animation compatibility.
+* Use conditional checks properly.
+* Reuse this exact structure unless I request a different layout.
+
+```liquid
+{% if section.settings.heading != blank or section.settings.sub_title != blank %}
+  <div class="sec-head text-align-{{ section.settings.text_align }} {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+
+    {% if section.settings.heading != blank %}
+      <h2 class="sec-title">{{ section.settings.heading }}</h2>
+    {% endif %}
+
+    {% if section.settings.sec_text != blank %}
+      <div class="sec-text">{{ section.settings.sec_text }}</div>
+    {% endif %}
+
+  </div>
+{% endif %}
+```
+
+* Use `inline_richtext` for headings/subheadings when appropriate.
+* Use `richtext` for description content (`sec_text`).
+* Always include matching schema settings.
+* Keep heading structure reusable and Dawn-compatible.
+* Ensure structure works properly for multiple section instances.
+
+Schema example:
+
+```json
+{
+  "type": "inline_richtext",
+  "id": "heading",
+  "label": "Heading",
+  "default": "Section heading"
+},
+{
+  "type": "richtext",
+  "id": "sec_text",
+  "label": "Content",
+  "default": "<p>Add section content here</p>"
+},
+{
+  "type": "select",
+  "id": "text_align",
+  "label": "Text alignment",
+  "default": "center",
+  "options": [
+    {
+      "value": "left",
+      "label": "Left"
+    },
+    {
+      "value": "center",
+      "label": "Center"
+    },
+    {
+      "value": "right",
+      "label": "Right"
+    }
+  ]
+}
+```
+
+
 When I say “custom section with slider”, automatically follow this format.

@@ -1,0 +1,271 @@
+{{ 'faq.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} {
+      margin-top: {{ section.settings.margin_top }}px;
+      margin-bottom: {{ section.settings.margin_bottom }}px;
+    }
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} {
+      margin-top: {{ section.settings.margin_top | times: 0.75 | round }}px;
+      margin-bottom: {{ section.settings.margin_bottom | times: 0.75 | round }}px;
+    }
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top_mobi }}px;
+      padding-bottom: {{ section.settings.padding_bottom_mobi }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="section-{{ section.id }} section-{{ section.id }}-padding section-{{ section.id }}-margin color-{{ section.settings.color_scheme }} gradient section-main-box faq-main">
+  <div class="page-width">
+    <div class="faq-inner faq-inner--{{ section.settings.layout }}">
+
+      {% if section.settings.heading != blank or section.settings.sec_text != blank %}
+        <div class="faq-head sec-head text-align-{{ section.settings.text_align }} {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+          {% if section.settings.heading != blank or section.settings.heading_highlight != blank %}
+            <h2 class="sec-title">
+              {%- if section.settings.heading != blank -%}
+                <span class="sec-title__main">{{ section.settings.heading }}</span>
+              {%- endif -%}
+              {%- if section.settings.heading_highlight != blank -%}
+                <span class="sec-title__highlight">{{ section.settings.heading_highlight }}</span>
+              {%- endif -%}
+            </h2>
+          {% endif %}
+          {% if section.settings.sec_text != blank %}
+            <div class="sec-text">{{ section.settings.sec_text }}</div>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      {% if section.blocks.size > 0 %}
+        <div class="faq-list">
+          {% for block in section.blocks %}
+            <details class="faq-item" {% if block.settings.open_by_default %}open{% endif %} {{ block.shopify_attributes }}>
+              <summary class="faq-item__summary">
+                <span class="faq-item__question">{{ block.settings.question }}</span>
+                <span class="faq-item__toggle" aria-hidden="true">
+                  {{ 'icon-caret.svg' | inline_asset_content }}
+                </span>
+              </summary>
+              <div class="faq-item__answer rte">
+                {{ block.settings.answer }}
+              </div>
+            </details>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "FAQ",
+  "tag": "section",
+  "class": "faq-wrapper",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "background-1"
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Frequently Asked"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading_highlight",
+      "label": "Heading Highlight (Red)",
+      "default": "Questions."
+    },
+    {
+      "type": "richtext",
+      "id": "sec_text",
+      "label": "Content"
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "Text alignment",
+      "default": "left",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "default": "two_column",
+      "options": [
+        {
+          "value": "two_column",
+          "label": "Two Column (Title Left, FAQs Right)"
+        },
+        {
+          "value": "stacked",
+          "label": "Stacked (Title Top, FAQs Below)"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Section Settings For Mobile"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobi",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobi",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "question",
+          "label": "Question",
+          "default": "How do I purchase a car?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>Please call us or send us a message and we will work that out directly with you. You may be able to reserve a vehicle this way, but it is on a first-come-first-serve basis.</p>"
+        },
+        {
+          "type": "checkbox",
+          "id": "open_by_default",
+          "label": "Open by default",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ",
+      "blocks": [
+        {
+          "type": "faq",
+          "settings": {
+            "question": "How do I purchase a car?",
+            "open_by_default": true
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "I can't find what I'm looking for."
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "What happens if I can't pay online?"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "How do I reserve something? How does it work?"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -59,6 +59,7 @@
         "color_scheme": "scheme-3",
         "heading": "Part",
         "heading_highlight": "Finder",
+        "text_align": "left",
         "label_brands": "Brands",
         "label_model": "Model",
         "label_year": "Year",
@@ -70,10 +71,264 @@
         "padding_top_mobi": 24,
         "padding_bottom_mobi": 24
       }
+    },
+    "brand_slider_FXf4tA": {
+      "type": "brand-slider",
+      "blocks": {
+        "brand_7iPin7": {
+          "type": "brand",
+          "settings": {
+            "image": "shopify://shop_images/brand-logo-1.png",
+            "link": ""
+          }
+        },
+        "brand_gkjDhD": {
+          "type": "brand",
+          "settings": {
+            "image": "shopify://shop_images/brand-logo-2.png",
+            "link": ""
+          }
+        },
+        "brand_EeQ9ck": {
+          "type": "brand",
+          "settings": {
+            "image": "shopify://shop_images/brand-logo-3.png",
+            "link": ""
+          }
+        },
+        "brand_3jpi9F": {
+          "type": "brand",
+          "settings": {
+            "image": "shopify://shop_images/brand-logo-4.png",
+            "link": ""
+          }
+        },
+        "brand_m8bLjN": {
+          "type": "brand",
+          "settings": {
+            "image": "shopify://shop_images/brand-logo-5.png",
+            "link": ""
+          }
+        },
+        "brand_4iDWgJ": {
+          "type": "brand",
+          "settings": {
+            "image": "shopify://shop_images/brand-logo-6.png",
+            "link": ""
+          }
+        },
+        "brand_qFrwDn": {
+          "type": "brand",
+          "settings": {
+            "image": "shopify://shop_images/brand-logo-7.png",
+            "link": ""
+          }
+        },
+        "brand_xnmJcJ": {
+          "type": "brand",
+          "settings": {
+            "image": "shopify://shop_images/brand-logo-8.png",
+            "link": ""
+          }
+        },
+        "brand_GwGiEJ": {
+          "type": "brand",
+          "settings": {
+            "image": "shopify://shop_images/brand-logo-9.png",
+            "link": ""
+          }
+        },
+        "brand_eraaT3": {
+          "type": "brand",
+          "settings": {
+            "image": "shopify://shop_images/brand-logo-10.png",
+            "link": ""
+          }
+        },
+        "brand_aLLdRp": {
+          "type": "brand",
+          "settings": {
+            "image": "shopify://shop_images/brand-logo-11.png",
+            "link": ""
+          }
+        },
+        "brand_GNRa9X": {
+          "type": "brand",
+          "settings": {
+            "image": "shopify://shop_images/brand-logo-12.png",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "brand_7iPin7",
+        "brand_gkjDhD",
+        "brand_EeQ9ck",
+        "brand_3jpi9F",
+        "brand_m8bLjN",
+        "brand_4iDWgJ",
+        "brand_qFrwDn",
+        "brand_xnmJcJ",
+        "brand_GwGiEJ",
+        "brand_eraaT3",
+        "brand_aLLdRp",
+        "brand_GNRa9X"
+      ],
+      "name": "Brand Slider",
+      "settings": {
+        "color_scheme": "",
+        "heading": "",
+        "sec_text": "",
+        "text_align": "left",
+        "slide_height_desktop": 120,
+        "slide_height_mobile": 100,
+        "slides_desktop": 6,
+        "enable_slider": true,
+        "auto_width": false,
+        "space_between_slide": 0,
+        "autoplay": false,
+        "autoplay_speed": 4000,
+        "slide_speed": 600,
+        "show_pagination": false,
+        "show_pagination_in": "both",
+        "pagination_type": "dot",
+        "navigation": false,
+        "show_navigation_in": "both",
+        "padding_top": 24,
+        "padding_bottom": 24,
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "padding_top_mobi": 16,
+        "padding_bottom_mobi": 16
+      }
+    },
+    "faq_FVTQbp": {
+      "type": "faq",
+      "blocks": {
+        "faq_9yRPVp": {
+          "type": "faq",
+          "settings": {
+            "question": "How do I purchase a car?",
+            "answer": "<p>Please call us or send us a message and we will work that out directly with you. You may be able to reserve a vehicle this way, but it is on a first-come-first-serve basis.</p>",
+            "open_by_default": true
+          }
+        },
+        "faq_8tqawr": {
+          "type": "faq",
+          "settings": {
+            "question": "I can't find what I'm looking for.",
+            "answer": "<p>Please call us or send us a message and we will work that out directly with you. You may be able to reserve a vehicle this way, but it is on a first-come-first-serve basis.</p>",
+            "open_by_default": false
+          }
+        },
+        "faq_4FLdNJ": {
+          "type": "faq",
+          "settings": {
+            "question": "What happens if I can't pay online?",
+            "answer": "<p>Please call us or send us a message and we will work that out directly with you. You may be able to reserve a vehicle this way, but it is on a first-come-first-serve basis.</p>",
+            "open_by_default": false
+          }
+        },
+        "faq_MmN8Fa": {
+          "type": "faq",
+          "settings": {
+            "question": "How do I reserve something? How does it work?",
+            "answer": "<p>Please call us or send us a message and we will work that out directly with you. You may be able to reserve a vehicle this way, but it is on a first-come-first-serve basis.</p>",
+            "open_by_default": false
+          }
+        }
+      },
+      "block_order": [
+        "faq_9yRPVp",
+        "faq_8tqawr",
+        "faq_4FLdNJ",
+        "faq_MmN8Fa"
+      ],
+      "name": "FAQ",
+      "settings": {
+        "color_scheme": "",
+        "heading": "Frequently Asked",
+        "heading_highlight": "Questions.",
+        "sec_text": "",
+        "text_align": "left",
+        "layout": "two_column",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "padding_top_mobi": 40,
+        "padding_bottom_mobi": 40
+      }
+    },
+    "contact_us_UEtMEL": {
+      "type": "contact-us",
+      "blocks": {
+        "info_GhbLhC": {
+          "type": "info",
+          "settings": {
+            "icon": "",
+            "icon_bg": "#FDECEC",
+            "label": "Email",
+            "value": "<p>mdjdmmotors@gmail.com</p>"
+          }
+        },
+        "info_Fp94wb": {
+          "type": "info",
+          "settings": {
+            "icon": "",
+            "icon_bg": "#FDECEC",
+            "label": "Phone",
+            "value": "<p>(301) 869-2400<br>(301) 793-2400</p>"
+          }
+        },
+        "info_KA9DiB": {
+          "type": "info",
+          "settings": {
+            "icon": "",
+            "icon_bg": "#FDECEC",
+            "label": "Address",
+            "value": "<p>5021 Herzel Place, Beltsville, MD 20705, USA</p>"
+          }
+        }
+      },
+      "block_order": [
+        "info_GhbLhC",
+        "info_Fp94wb",
+        "info_KA9DiB"
+      ],
+      "name": "Contact Us",
+      "settings": {
+        "color_scheme": "",
+        "info_heading": "Contact",
+        "info_heading_highlight": "us",
+        "info_text": "<p>Please fill out the form to get in touch with us. We look forward to hearing from you.</p>",
+        "text_align": "left",
+        "form_heading": "Send us a",
+        "form_heading_highlight": "message",
+        "label_name": "Full Name",
+        "placeholder_name": "Enter Full Name",
+        "label_email": "Email Address",
+        "placeholder_email": "Enter Email Address",
+        "label_phone": "Phone Number",
+        "placeholder_phone": "Enter Phone Number",
+        "label_message": "Message",
+        "placeholder_message": "Enter message",
+        "button_label": "SUBMIT",
+        "success_message": "Thanks for contacting us. We will get back to you soon.",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "padding_top_mobi": 40,
+        "padding_bottom_mobi": 40
+      }
     }
   },
   "order": [
     "hero_banner_slider_NFybbK",
-    "part_finder_7RrqCM"
+    "part_finder_7RrqCM",
+    "brand_slider_FXf4tA",
+    "faq_FVTQbp",
+    "contact_us_UEtMEL"
   ]
 }

@@ -162,7 +162,7 @@ button.shopify-payment-button__button--unbranded:after { border-radius: 6px; } *
 input:focus-visible,
 input:focus{background:transparent !important;}
 
-.sec-head { text-align:center; display: flex; flex-flow: column; width:100%; max-width: 705px; }
+.sec-head { text-align:center; display: flex; flex-flow: column; width:100%; }
 .sec-head.text-align-left { text-align:left; align-items: flex-start; }
 .sec-head.text-align-center { text-align:center; align-items: center; margin-left: auto; margin-right: auto;}
 .sec-head.text-align-right { text-align:right; align-items: flex-end; margin-left: auto; } 

@@ -1,0 +1,439 @@
+{{ 'contact-us.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} {
+      margin-top: {{ section.settings.margin_top }}px;
+      margin-bottom: {{ section.settings.margin_bottom }}px;
+    }
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} {
+      margin-top: {{ section.settings.margin_top | times: 0.75 | round }}px;
+      margin-bottom: {{ section.settings.margin_bottom | times: 0.75 | round }}px;
+    }
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top_mobi }}px;
+      padding-bottom: {{ section.settings.padding_bottom_mobi }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="section-{{ section.id }} section-{{ section.id }}-padding section-{{ section.id }}-margin color-{{ section.settings.color_scheme }} gradient section-main-box contact-us-main">
+  <div class="page-width">
+    <div class="contact-us-inner">
+
+      <div class="contact-us-info">
+        {% if section.settings.info_heading != blank or section.settings.info_heading_highlight != blank or section.settings.info_text != blank %}
+          <div class="sec-head text-align-{{ section.settings.text_align }} {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+            {% if section.settings.info_heading != blank or section.settings.info_heading_highlight != blank %}
+              <h2 class="sec-title">
+                {%- if section.settings.info_heading != blank -%}
+                  <span class="sec-title__main">{{ section.settings.info_heading }}</span>
+                {%- endif -%}
+                {%- if section.settings.info_heading_highlight != blank -%}
+                  <span class="sec-title__highlight">{{ section.settings.info_heading_highlight }}</span>
+                {%- endif -%}
+              </h2>
+            {% endif %}
+            {% if section.settings.info_text != blank %}
+              <div class="sec-text">{{ section.settings.info_text }}</div>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        {% if section.blocks.size > 0 %}
+          <div class="contact-us-info__list">
+            {% for block in section.blocks %}
+              {% if block.type == 'info' %}
+                <div class="contact-us-info__item" {{ block.shopify_attributes }}>
+                  {% if block.settings.icon != blank %}
+                    <span class="contact-us-info__icon" style="background: {{ block.settings.icon_bg }};">
+                      {{ block.settings.icon }}
+                    </span>
+                  {% endif %}
+                  <div class="contact-us-info__body">
+                    {% if block.settings.label != blank %}
+                      <p class="contact-us-info__label">{{ block.settings.label }}</p>
+                    {% endif %}
+                    {% if block.settings.value != blank %}
+                      <div class="contact-us-info__value">{{ block.settings.value }}</div>
+                    {% endif %}
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="contact-us-form">
+        {% if section.settings.form_heading != blank or section.settings.form_heading_highlight != blank %}
+          <div class="sec-head text-align-left {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+            <h2 class="sec-title">
+              {%- if section.settings.form_heading != blank -%}
+                <span class="sec-title__main">{{ section.settings.form_heading }}</span>
+              {%- endif -%}
+              {%- if section.settings.form_heading_highlight != blank -%}
+                <span class="sec-title__highlight">{{ section.settings.form_heading_highlight }}</span>
+              {%- endif -%}
+            </h2>
+          </div>
+        {% endif %}
+
+        {% form 'contact', class: 'contact-us-form__form', novalidate: 'novalidate' %}
+          {% if form.posted_successfully? %}
+            <p class="contact-us-form__success">{{ section.settings.success_message | default: 'Thanks for contacting us. We will get back to you soon.' }}</p>
+          {% endif %}
+
+          {% if form.errors %}
+            <div class="contact-us-form__errors">
+              <h3>{{ 'templates.contact.form.error_heading' | t }}</h3>
+              <ul>
+                {% for field in form.errors %}
+                  <li>{{ form.errors.messages[field] }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+
+          <div class="contact-us-form__row">
+            <div class="contact-us-form__field">
+              <label for="ContactForm-name-{{ section.id }}" class="contact-us-form__label">
+                {{ section.settings.label_name }}<span class="contact-us-form__required">*</span>
+              </label>
+              <input
+                type="text"
+                id="ContactForm-name-{{ section.id }}"
+                name="contact[{{ 'templates.contact.form.name' | t }}]"
+                value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+                class="contact-us-form__input"
+                placeholder="{{ section.settings.placeholder_name }}"
+                autocomplete="name"
+                required
+              >
+            </div>
+            <div class="contact-us-form__field">
+              <label for="ContactForm-email-{{ section.id }}" class="contact-us-form__label">
+                {{ section.settings.label_email }}<span class="contact-us-form__required">*</span>
+              </label>
+              <input
+                type="email"
+                id="ContactForm-email-{{ section.id }}"
+                name="contact[email]"
+                value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                class="contact-us-form__input"
+                placeholder="{{ section.settings.placeholder_email }}"
+                autocomplete="email"
+                aria-required="true"
+                required
+              >
+            </div>
+          </div>
+
+          <div class="contact-us-form__field">
+            <label for="ContactForm-phone-{{ section.id }}" class="contact-us-form__label">
+              {{ section.settings.label_phone }}
+            </label>
+            <input
+              type="tel"
+              id="ContactForm-phone-{{ section.id }}"
+              name="contact[{{ 'templates.contact.form.phone' | t }}]"
+              value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}"
+              class="contact-us-form__input"
+              placeholder="{{ section.settings.placeholder_phone }}"
+              autocomplete="tel"
+              pattern="[0-9\-\+\s\(\)]*"
+            >
+          </div>
+
+          <div class="contact-us-form__field">
+            <label for="ContactForm-body-{{ section.id }}" class="contact-us-form__label">
+              {{ section.settings.label_message }}
+            </label>
+            <textarea
+              rows="6"
+              id="ContactForm-body-{{ section.id }}"
+              name="contact[{{ 'templates.contact.form.comment' | t }}]"
+              class="contact-us-form__input contact-us-form__textarea"
+              placeholder="{{ section.settings.placeholder_message }}"
+            >{% if form.body %}{{ form.body }}{% endif %}</textarea>
+          </div>
+
+          <div class="btns-wrapper">
+            <button type="submit" class="button button--primary contact-us-form__submit">
+              {{ section.settings.button_label | escape }}
+            </button>
+          </div>
+        {% endform %}
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Contact Us",
+  "tag": "section",
+  "class": "contact-us-wrapper",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "background-1"
+    },
+    {
+      "type": "header",
+      "content": "Contact Info (Left)"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "info_heading",
+      "label": "Heading",
+      "default": "Contact"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "info_heading_highlight",
+      "label": "Heading Highlight (Red)",
+      "default": "us"
+    },
+    {
+      "type": "richtext",
+      "id": "info_text",
+      "label": "Description",
+      "default": "<p>Please fill out the form to get in touch with us. We look forward to hearing from you.</p>"
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "Text alignment",
+      "default": "left",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Form (Right)"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "form_heading",
+      "label": "Form Heading",
+      "default": "Send us a"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "form_heading_highlight",
+      "label": "Form Heading Highlight (Red)",
+      "default": "message"
+    },
+    {
+      "type": "text",
+      "id": "label_name",
+      "label": "Name Label",
+      "default": "Full Name"
+    },
+    {
+      "type": "text",
+      "id": "placeholder_name",
+      "label": "Name Placeholder",
+      "default": "Enter Full Name"
+    },
+    {
+      "type": "text",
+      "id": "label_email",
+      "label": "Email Label",
+      "default": "Email Address"
+    },
+    {
+      "type": "text",
+      "id": "placeholder_email",
+      "label": "Email Placeholder",
+      "default": "Enter Email Address"
+    },
+    {
+      "type": "text",
+      "id": "label_phone",
+      "label": "Phone Label",
+      "default": "Phone Number"
+    },
+    {
+      "type": "text",
+      "id": "placeholder_phone",
+      "label": "Phone Placeholder",
+      "default": "Enter Phone Number"
+    },
+    {
+      "type": "text",
+      "id": "label_message",
+      "label": "Message Label",
+      "default": "Message"
+    },
+    {
+      "type": "text",
+      "id": "placeholder_message",
+      "label": "Message Placeholder",
+      "default": "Enter message"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Submit Button Label",
+      "default": "SUBMIT"
+    },
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "Success Message",
+      "default": "Thanks for contacting us. We will get back to you soon."
+    },
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Section Settings For Mobile"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobi",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobi",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "info",
+      "name": "Info Item",
+      "settings": [
+        {
+          "type": "html",
+          "id": "icon",
+          "label": "Icon (SVG / HTML)",
+          "info": "Paste inline SVG or any HTML for the icon."
+        },
+        {
+          "type": "color",
+          "id": "icon_bg",
+          "label": "Icon background",
+          "default": "#FDECEC"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Email"
+        },
+        {
+          "type": "richtext",
+          "id": "value",
+          "label": "Value",
+          "default": "<p>example@email.com</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact Us",
+      "blocks": [
+        {
+          "type": "info",
+          "settings": {
+            "label": "Email",
+            "value": "<p>mdjdmmotors@gmail.com</p>"
+          }
+        },
+        {
+          "type": "info",
+          "settings": {
+            "label": "Phone",
+            "value": "<p>(301) 869-2400<br>(301) 793-2400</p>"
+          }
+        },
+        {
+          "type": "info",
+          "settings": {
+            "label": "Address",
+            "value": "<p>5021 Herzel Place, Beltsville, MD 20705, USA</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
