@@ -40,6 +40,9 @@
       assign ratio = 1
     endif
   -%}
+
+  {{ 'card-product.css' | asset_url | stylesheet_tag }}
+
   <div class="card-wrapper product-card-wrapper underline-links-hover">
     <div
       class="

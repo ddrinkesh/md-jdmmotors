@@ -8,10 +8,17 @@ body { letter-spacing:0; }
 body.overflow-hidden-mobile { overflow:hidden; }
 img { max-width:100%; }
 
+a,
+.rte a,
+a.link { color:rgb(var(--color-a-link)); }
 
-a,.rte a { color:rgb(var(--color-a-link)); }
-a:hover,.rte a:hover { color:rgb(var(--color-a-link-hover)); }
-a, button, .button, svg  { transition: all 0.2s ease; }
+a:hover,
+.rte a:hover,
+a.link:hover { color:rgb(var(--color-a-link-hover)); }
+
+a, 
+button, 
+.button, svg  { transition: all 0.2s ease; }
 
 .rte ul,
 .rte ol {
@@ -24,10 +31,10 @@ summary * { transition: all 0.2s ease; }
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 { font-weight:700; letter-spacing: 0px; font-family:var(--font-heading-family); color: rgb(var(--color-title)); }
 h5, h6, .h5, .h6 { font-weight:500; }
 
-.h1, h1 { font-size: 50px; font-style: normal; font-weight: 300; line-height: 50px; }
-.h2, h2 { font-size: 32px; font-style: normal; font-weight: 300; line-height: 32px;  }
-.h3, h3 { font-size:28px; font-style: normal; font-weight: 300; line-height: 1; }
-.h4, h4 { font-size: 24px; font-style: normal; font-weight: 300; line-height: normal; }
+.h1, h1 { font-size: 60px; font-style: normal; font-weight: 400; line-height: 80px; text-transform: uppercase; }
+.h2, h2 { font-size: 36px; font-style: normal; font-weight: 400; line-height: normal; }
+.h3, h3 { font-size: 28px; font-style: normal; font-weight: 400; line-height: 1; }
+.h4, h4 { font-size: 24px; font-style: normal; font-weight: 400; line-height: normal; }
 .h5, h5 { font-size: 1.4rem; font-style: normal; font-weight: 400; line-height: normal; text-transform: uppercase; letter-spacing: 0.06em; }
 .h6, h6 { font-size:15px; font-weight: 400; line-height: 18px; letter-spacing: 0; font-family:var(--font-body-family);}
 
@@ -168,6 +175,8 @@ input:focus{background:transparent !important;}
 .sec-head.text-align-right { text-align:right; align-items: flex-end; margin-left: auto; } 
 
 .sec-head .sec-title { margin:0; color: rgb(var(--color-title)); }
+.sec-head .sec-title strong { font-weight: 400; color: #CD1719; }
+
 .sec-head .sec-text,
 .sec-head .sec-text p,
 .sec-head .sec-text > *{ font-size: 16px; letter-spacing: 0; font-style: normal; font-weight: 400; line-height: normal; }

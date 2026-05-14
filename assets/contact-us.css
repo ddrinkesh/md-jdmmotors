@@ -1,7 +1,7 @@
 .contact-us-main { background: #fff; }
 .contact-us-main .contact-us-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
 .contact-us-main .sec-head { margin: 0 0 20px; }
-.contact-us-main .sec-title { margin: 0; font-size: 32px; line-height: 1.15; font-family: var(--font-heading-family); }
+.contact-us-main .sec-title { margin: 0; }
 .contact-us-main .sec-title__main { color: rgb(var(--color-foreground)); }
 .contact-us-main .sec-title__highlight { color: #E31E24; margin-left: 8px; }
 .contact-us-main .sec-text { margin-top: 8px; color: rgba(var(--color-foreground), 0.75); max-width: 480px; }

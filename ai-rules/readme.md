@@ -129,5 +129,71 @@ Examples:
 * Always think about better content editing experience inside Shopify customizer.
 
 
+18. When writing CSS for custom Shopify sections:
+
+* Always follow my CSS formatting structure and coding style.
+* Keep CSS clean, readable, grouped, and properly nested by section wrapper.
+* Use section wrapper based scoping to avoid global conflicts.
+* Maintain consistent spacing and selector hierarchy.
+* Write CSS in professional production-level format.
+
+Important CSS structure rules:
+
+* Start with main section wrapper.
+* Group related elements together.
+* Keep child selectors properly structured.
+* Use readable spacing between CSS groups.
+* Use combined selectors carefully and cleanly.
+* Keep Dawn-compatible styling practices.
+* Avoid unnecessary deep nesting.
+* Avoid random unordered CSS.
+* Maintain scalable CSS architecture.
+
+Preferred CSS style example:
+
+```css
+.featured-collection-wrapper { overflow: hidden; }
+.featured-collection-wrapper .swiper-slide { height:auto; }
+
+.featured-collection-wrapper .page-width.full-width { max-width: 100%; padding:0; }
+
+.featured-collection-wrapper .with-feature-image .swiper { overflow: hidden; }
+
+.featured-collection-wrapper .sec-head { align-items:center; margin-bottom: 40px; }
+.featured-collection-wrapper .sec-head.text-align-left { justify-content: space-between; }
+.featured-collection-wrapper .sec-head.text-align-center { justify-content: center; }
+.featured-collection-wrapper .sec-head.text-align-right { justify-content: flex-end; }
+
+.featured-collection-wrapper .section-body-area.with-feature-image { display:flex; gap:30px; }
+
+.featured-collection-wrapper .section-body-area .feature-image { display:flex; position:relative; width:44%; max-width:620px; flex-shrink:0; border-radius:0; overflow:hidden; }
+
+.featured-collection-wrapper .section-body-area.with-feature-image .collection-box { width:calc(56% - 30px); flex-grow:1; }
+
+.featured-collection-wrapper .section-body-area .feature-image .shop-bullate.edge-right .shop-product { transform: translateX(-75%); }
+.featured-collection-wrapper .section-body-area .feature-image .shop-bullate.edge-bottom .shop-product { top: auto; bottom: 25px; }
+
+.featured-collection-wrapper .section-body-area .feature-image .shop-product .pdp-image { flex-shrink: 0; display: flex; height: 100%; }
+.featured-collection-wrapper .section-body-area .feature-image .shop-product .pdp-title { font-size: 14px; letter-spacing: 0; line-height: 1.3; font-weight: 400; text-decoration: none; }
+.featured-collection-wrapper .section-body-area .feature-image .shop-product .pdp-title:after { content:"";width: 100%; height: 100%; display: block; position: absolute; top: 0; left: 0; }
+ 
+.featured-collection-wrapper .section-body-area.with-feature-image .collection-box { width:calc(56% - 30px); flex-grow:1; }
+.featured-collection-wrapper .section-body-area .pro-list-box { width:100%; position:relative; }
+
+.featured-collection-wrapper .section-body-area.with-feature-image .pro-list-box .swiper-pagination { margin:0; position:absolute; bottom:-32px; }
+.featured-collection-wrapper .section-body-area.with-feature-image:has(.swiper-pagination) { margin-bottom:32px; }
+```
+
+Additional instructions:
+
+* Keep CSS compact and organized.
+* Do not create messy multiline property spacing.
+* Follow my exact selector hierarchy style.
+* Use wrapper-first architecture.
+* Keep responsive CSS properly grouped.
+* Always think like a senior Shopify front-end developer while structuring CSS.
+* Maintain consistency across all sections.
+
+
 My goal:
 I want to build high-quality, scalable Shopify themes using Dawn, create custom sections, fix issues quickly, and use AI as my development assistant.

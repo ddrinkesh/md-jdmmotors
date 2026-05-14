@@ -3,9 +3,9 @@
 .faq-main .faq-inner--two_column { grid-template-columns: minmax(280px, 1fr) 2fr; }
 .faq-main .faq-inner--stacked { grid-template-columns: 1fr; gap: 32px; }
 .faq-main .faq-head { margin: 0; }
-.faq-main .sec-title { margin: 0; font-size: 36px; line-height: 1.15; font-family: var(--font-heading-family); }
+.faq-main .sec-title {   }
 .faq-main .sec-title__main { color: rgb(var(--color-foreground)); }
-.faq-main .sec-title__highlight { color: #E31E24; margin-left: 8px; font-style: italic; }
+.faq-main .sec-title__highlight { color: #E31E24; margin-left: 8px; }
 .faq-main .sec-text { margin-top: 12px; color: rgba(var(--color-foreground), 0.75); }
 
 .faq-main .faq-list { display: flex; flex-direction: column; }
