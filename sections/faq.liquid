@@ -29,15 +29,8 @@
 
       {% if section.settings.heading != blank or section.settings.sec_text != blank %}
         <div class="faq-head sec-head text-align-{{ section.settings.text_align }} {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-          {% if section.settings.heading != blank or section.settings.heading_highlight != blank %}
-            <h2 class="sec-title">
-              {%- if section.settings.heading != blank -%}
-                <span class="sec-title__main">{{ section.settings.heading }}</span>
-              {%- endif -%}
-              {%- if section.settings.heading_highlight != blank -%}
-                <span class="sec-title__highlight">{{ section.settings.heading_highlight }}</span>
-              {%- endif -%}
-            </h2>
+          {% if section.settings.heading != blank %}
+            <h2 class="sec-title">{{ section.settings.heading }}</h2>
           {% endif %}
           {% if section.settings.sec_text != blank %}
             <div class="sec-text">{{ section.settings.sec_text }}</div>
@@ -55,8 +48,10 @@
                   {{ 'icon-caret.svg' | inline_asset_content }}
                 </span>
               </summary>
-              <div class="faq-item__answer rte">
-                {{ block.settings.answer }}
+              <div class="faq-item__answer">
+                <div class="faq-item__answer-inner rte">
+                  {{ block.settings.answer }}
+                </div>
               </div>
             </details>
           {% endfor %}
@@ -66,6 +61,114 @@
     </div>
   </div>
 </div>
+
+<script>
+  (function () {
+    const section = document.getElementById('shopify-section-{{ section.id }}');
+    if (!section) return;
+
+    const faq = section.querySelector('.faq-main');
+    if (!faq || faq.dataset.faqAccordionInit === 'true') return;
+
+    faq.dataset.faqAccordionInit = 'true';
+
+    const items = Array.from(faq.querySelectorAll('.faq-item'));
+    if (!items.length) return;
+
+    const getAnswer = (item) => item.querySelector('.faq-item__answer');
+
+    function setInitialState() {
+      let firstOpenItem = null;
+
+      items.forEach((item) => {
+        const answer = getAnswer(item);
+        if (!answer) return;
+
+        if (item.hasAttribute('open') && !firstOpenItem) {
+          firstOpenItem = item;
+          item.classList.add('is-open');
+          answer.style.height = 'auto';
+          answer.style.opacity = '1';
+          return;
+        }
+
+        item.classList.remove('is-open');
+
+        if (item.hasAttribute('open')) {
+          item.removeAttribute('open');
+        }
+
+        answer.style.height = '0px';
+        answer.style.opacity = '0';
+      });
+    }
+
+    function openItem(item) {
+      const answer = getAnswer(item);
+      if (!answer || item.hasAttribute('open')) return;
+
+      item.setAttribute('open', '');
+      item.classList.add('is-open');
+      answer.style.height = '0px';
+      answer.style.opacity = '0';
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          answer.style.height = `${answer.scrollHeight}px`;
+          answer.style.opacity = '1';
+        });
+      });
+
+      answer.addEventListener('transitionend', function onTransitionEnd(event) {
+        if (event.propertyName !== 'height') return;
+        answer.style.height = 'auto';
+        answer.removeEventListener('transitionend', onTransitionEnd);
+      });
+    }
+
+    function closeItem(item) {
+      const answer = getAnswer(item);
+      if (!answer || !item.hasAttribute('open')) return;
+
+      item.classList.remove('is-open');
+      answer.style.height = `${answer.scrollHeight}px`;
+      answer.style.opacity = '1';
+
+      requestAnimationFrame(() => {
+        answer.style.height = '0px';
+        answer.style.opacity = '0';
+      });
+
+      answer.addEventListener('transitionend', function onTransitionEnd(event) {
+        if (event.propertyName !== 'height') return;
+        item.removeAttribute('open');
+        answer.removeEventListener('transitionend', onTransitionEnd);
+      });
+    }
+
+    items.forEach((item) => {
+      const summary = item.querySelector('.faq-item__summary');
+      if (!summary) return;
+
+      summary.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        if (item.hasAttribute('open')) {
+          closeItem(item);
+          return;
+        }
+
+        items.forEach((otherItem) => {
+          if (otherItem !== item) closeItem(otherItem);
+        });
+
+        openItem(item);
+      });
+    });
+
+    setInitialState();
+  })();
+</script>
 
 {% schema %}
 {
@@ -87,14 +190,9 @@
       "type": "inline_richtext",
       "id": "heading",
       "label": "Heading",
-      "default": "Frequently Asked"
-    },
-    {
-      "type": "inline_richtext",
-      "id": "heading_highlight",
-      "label": "Heading Highlight (Red)",
-      "default": "Questions."
-    },
+      "default": "Frequently Asked",
+      "info": "Highlighted text should be added in bold format, and the bold text will appear in red color."
+    },     
     {
       "type": "richtext",
       "id": "sec_text",

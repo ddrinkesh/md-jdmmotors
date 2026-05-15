@@ -1,1 +1,66 @@
-{"name":"t:sections.footer.name","type":"footer","sections":{"footer":{"type":"footer","settings":{"color_scheme":"scheme-1","newsletter_enable":true,"newsletter_heading":"Subscribe to our emails","enable_follow_on_shop":true,"show_social":true,"enable_country_selector":true,"enable_language_selector":true,"payment_enable":true,"show_policy":true,"margin_top":0,"padding_top":36,"padding_bottom":36}}},"order":["footer"]}
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "brand_footer": {
+          "type": "brand",
+          "settings": {
+            "description": "<p>High-quality, low-mileage units imported directly from Japan for unmatched performance and reliability.</p>",
+            "google_map_embed": "<iframe src=\"https://www.google.com/maps?q=5021%20Herzel%20Place%2C%20Beltsville%2C%20MD%2020705%2C%20USA&amp;output=embed\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\" title=\"Store location\"></iframe>"
+          }
+        },
+        "quick_links_footer": {
+          "type": "menu",
+          "settings": {
+            "heading": "Quick Links",
+            "fallback_links": "quick_links"
+          }
+        },
+        "policies_footer": {
+          "type": "menu",
+          "settings": {
+            "heading": "Policies",
+            "fallback_links": "policies"
+          }
+        },
+        "categories_footer": {
+          "type": "menu",
+          "settings": {
+            "heading": "Categories",
+            "fallback_links": "categories"
+          }
+        },
+        "contact_footer": {
+          "type": "contact",
+          "settings": {
+            "heading": "Get in Touch",
+            "phone": "(301) 869-2400",
+            "email": "mdjdmmotors@gmail.com"
+          }
+        }
+      },
+      "block_order": [
+        "brand_footer",
+        "quick_links_footer",
+        "policies_footer",
+        "categories_footer",
+        "contact_footer"
+      ],
+      "settings": {
+        "color_scheme": "scheme-4",
+        "brand_tags": "Honda, Mazda, Mitsubishi, Nissan, Subaru, Toyota, Acura, Infiniti, Lexus, Scion, Hyundai, Kia, CHEVROLET",
+        "copyright_text": "© 2026 Powered by Drive Marketing. All Rights Reserved.",
+        "payment_enable": true,
+        "margin_top": 0,
+        "padding_top": 50,
+        "padding_bottom": 28
+      }
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

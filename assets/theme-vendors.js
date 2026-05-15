@@ -4,132 +4,159 @@
 /****** Swiper slide show ******/
    
 window.SlideshowObjs = window.SlideshowObjs || [];
-    function initSlideshow(section) {
-        section = (typeof section === typeof undefined || section == 'undefined') ? document : section;
-        var swiperItems = section.querySelectorAll('.swiper');
-        swiperItems.forEach(function(swiperItem, index) {
-            if (swiperItem.classList.contains('product-media-gallery'))
-                return false;
-            var _this = swiperItem,
-                sliderOptions = _this.getAttribute('data-slider-options'),
-                isNumberNavigation = _this.getAttribute('data-swiper-number-navigation');
-            var isNumberPaginationProgress = _this.getAttribute('data-swiper-number-pagination-progress') || false;
-            if (typeof(sliderOptions) !== 'undefined' && sliderOptions !== null ) {
-                sliderOptions =JSON.parse(sliderOptions);
-                if (sliderOptions.hasOwnProperty('effect')) {
-                    if (sliderOptions.effect == 'creative') {
-                        sliderOptions['creativeEffect'] = {
-                            prev: {
-                                translate: [0, 0, -400],
-                            },
-                            next: {
-                                translate: ["100%", 0, 0],
-                            }
-                        };
-                    }
-                    
-                    if (sliderOptions.effect == 'fade') {
-                        sliderOptions['fadeEffect'] = {
-                            crossFade: true,
-                        };
-                    }
-                }
+function initSlideshow(section) {
+    section = section && section.querySelectorAll ? section : document;
 
-                /* If user have provided "data-thumb-direction" attribute then below code will execute */
-                if( sliderOptions['thumbs'] != '' && sliderOptions['thumbs'] != undefined ) {
-                    var mdThumbDirection = _this.getAttribute( 'data-thumb-direction' );
-                    sliderBreakPoint = _this.getAttribute( 'data-thumb-breakpoint' ) !== 'undefined' ? _this.getAttribute( 'data-thumb-breakpoint' ) : sliderBreakPoint;
+    var swiperItems = section.querySelectorAll('.swiper[data-slider-options]');
+    swiperItems.forEach(function(swiperItem) {
+        if (swiperItem.classList.contains('product-media-gallery')) return;
+        if (swiperItem.getAttribute('data-swiper-initialized') === 'true' || swiperItem.swiper) return;
 
+        var _this = swiperItem,
+            sliderOptions = _this.getAttribute('data-slider-options'),
+            isNumberNavigation = _this.getAttribute('data-swiper-number-navigation'),
+            isNumberPaginationProgress = _this.getAttribute('data-swiper-number-pagination-progress') || false,
+            sliderWrapper = _this.parentNode || document;
 
-                    
-                    if( mdThumbDirection != '' && mdThumbDirection != undefined ) {
-                        var thumbDirection   = ( sliderOptions['thumbs']['swiper']['direction'] != '' && sliderOptions['thumbs']['swiper']['direction'] != undefined ) ? sliderOptions['thumbs']['swiper']['direction'] : mdThumbDirection;
-                        sliderOptions['thumbs']['swiper']['on'] = {
-                            init: function() {
-                                if( getWindowWidth() <= sliderBreakPoint ) {
-                                    this.changeDirection( mdThumbDirection );
-                                } else {
-                                    this.changeDirection( thumbDirection );
-                                }
-                                this.update();
-                            },
-                            resize: function () {
-                                if( getWindowWidth() <= sliderBreakPoint ) {
-                                    this.changeDirection( mdThumbDirection );
-                                } else {
-                                    this.changeDirection( thumbDirection );
-                                }
-                                this.update();
-                            }
-                        };
-                    }
-                }
-                sliderOptions['on'] = {
-                    init: function () {
-                        var length = this.loopedSlides ? this.slides.length - 2 : this.slides.length;
-                        /* For Number Navigation - On Swiper Initialize - Add Navigation Number */
-                        if (isNumberNavigation == '1') {
-                            _this.find('.swiper-button-next').textContent( '02' );
-                            _this.find('.swiper-button-prev').textContent( '0' + length );
-                        }
-                        /* End */
-                        /* Number pagination progress */
-                        if (isNumberPaginationProgress) {
-                            _this.parentNode.find('.number-next').textContent('0' + length);
-                            _this.parentNode.find('.number-prev').textContent('01');
-                            _this.parentNode.find('.swiper-pagination-progress')[0].style.setProperty('--swiper-progress', (100 / length).toFixed(2) + '%');
-                        }
-                        /* End */
+        if (!sliderOptions) return;
+
+        try {
+            sliderOptions = JSON.parse(sliderOptions);
+        } catch (error) {
+            console.warn('Swiper slider options are invalid:', error, _this);
+            return;
+        }
+
+        if (sliderOptions.hasOwnProperty('effect')) {
+            if (sliderOptions.effect == 'creative') {
+                sliderOptions['creativeEffect'] = {
+                    prev: {
+                        translate: [0, 0, -400],
                     },
-                    slideChange: function(swiper) {
-                        var length = this.loopedSlides ? this.slides.length - 2 : this.slides.length,
-                            active = (this.realIndex) + 1,
-                            next = active + 1,
-                            prev = active - 1; 
-                        if ( active == 1 ) { 
-                            prev = length; 
-                        }
-                        if ( active == length ) { 
-                            next = 1;
-                        }
-                        /* For Number Navigation - On Swiper Slide Change - Change Navigation Number */
-                        if (isNumberNavigation == '1') {
-                            _this.find('.swiper-button-next').textContent( next < 10 ? '0' + next : next ); 
-                            _this.find('.swiper-button-prev').textContent( prev < 10 ? '0' + prev : prev ); 
-                        }
-                        /* End */
-                        /* Number pagination progress */
-                        if (isNumberPaginationProgress) {
-                            _this.parentNode.find('.number-prev').each(function () {
-                                $(this).textContent(active < 10 ? '0' + active : active);
-                            });
-                            _this.parentNode.find('.swiper-pagination-progress')[0].style.setProperty('--swiper-progress', ((100 / length) * active).toFixed(2) + '%');
-                        }
-                        /* End */
-                        if (swiper.$el.hasClass('product-image-main')) {
-                            const currSlide = swiper.slides[swiper.activeIndex];
-                            const mediaType = currSlide.dataset.mediaType || false;
-                            const mediaHost = currSlide.dataset.mediaHost || false;
-
-                            // Pause all videos
-                            if (typeof window.currPlayingVid != typeof undefined && window.currPlayingVid != 'undefined' && window.currPlayingVid.plyrInstance.playing) {
-                                window.currPlayingVid.plyrInstance.pause();
-                            }
-
-                            if (mediaType == 'model') {
-                                swiper.allowTouchMove = false;
-                            } else {
-                                swiper.allowTouchMove = true;
-                            }
-                        }
+                    next: {
+                        translate: ["100%", 0, 0],
                     }
                 };
-                swiperItem.sliderOptions = sliderOptions;
-                var swiperObj = new Swiper(swiperItem, sliderOptions);
-                window.SlideshowObjs.push(swiperItem);
             }
-        });
-    }
+
+            if (sliderOptions.effect == 'fade') {
+                sliderOptions['fadeEffect'] = {
+                    crossFade: true,
+                };
+            }
+        }
+
+        /* If user have provided "data-thumb-direction" attribute then below code will execute */
+        if (sliderOptions['thumbs'] != '' && sliderOptions['thumbs'] != undefined && sliderOptions['thumbs']['swiper']) {
+            var mdThumbDirection = _this.getAttribute('data-thumb-direction');
+            var sliderBreakPoint = parseInt(_this.getAttribute('data-thumb-breakpoint') || 767, 10);
+
+            if (mdThumbDirection != '' && mdThumbDirection != undefined) {
+                var thumbDirection = (sliderOptions['thumbs']['swiper']['direction'] != '' && sliderOptions['thumbs']['swiper']['direction'] != undefined) ? sliderOptions['thumbs']['swiper']['direction'] : mdThumbDirection;
+                var updateThumbDirection = function(swiper) {
+                    if (window.innerWidth <= sliderBreakPoint) {
+                        swiper.changeDirection(mdThumbDirection);
+                    } else {
+                        swiper.changeDirection(thumbDirection);
+                    }
+                    swiper.update();
+                };
+
+                sliderOptions['thumbs']['swiper']['on'] = {
+                    init: function() {
+                        updateThumbDirection(this);
+                    },
+                    resize: function() {
+                        updateThumbDirection(this);
+                    }
+                };
+            }
+        }
+
+        sliderOptions['on'] = {
+            init: function() {
+                var length = this.loopedSlides ? this.slides.length - (this.loopedSlides * 2) : this.slides.length;
+
+                /* For Number Navigation - On Swiper Initialize - Add Navigation Number */
+                if (isNumberNavigation == '1') {
+                    var nextButton = _this.querySelector('.swiper-button-next');
+                    var prevButton = _this.querySelector('.swiper-button-prev');
+
+                    if (nextButton) nextButton.textContent = '02';
+                    if (prevButton) prevButton.textContent = length < 10 ? '0' + length : length;
+                }
+                /* End */
+
+                /* Number pagination progress */
+                if (isNumberPaginationProgress) {
+                    var numberNext = sliderWrapper.querySelector('.number-next');
+                    var numberPrev = sliderWrapper.querySelector('.number-prev');
+                    var progress = sliderWrapper.querySelector('.swiper-pagination-progress');
+
+                    if (numberNext) numberNext.textContent = length < 10 ? '0' + length : length;
+                    if (numberPrev) numberPrev.textContent = '01';
+                    if (progress) progress.style.setProperty('--swiper-progress', (100 / length).toFixed(2) + '%');
+                }
+                /* End */
+            },
+            slideChange: function(swiper) {
+                var length = this.loopedSlides ? this.slides.length - (this.loopedSlides * 2) : this.slides.length,
+                    active = (this.realIndex) + 1,
+                    next = active + 1,
+                    prev = active - 1;
+
+                if (active == 1) {
+                    prev = length;
+                }
+                if (active == length) {
+                    next = 1;
+                }
+
+                /* For Number Navigation - On Swiper Slide Change - Change Navigation Number */
+                if (isNumberNavigation == '1') {
+                    var nextButton = _this.querySelector('.swiper-button-next');
+                    var prevButton = _this.querySelector('.swiper-button-prev');
+
+                    if (nextButton) nextButton.textContent = next < 10 ? '0' + next : next;
+                    if (prevButton) prevButton.textContent = prev < 10 ? '0' + prev : prev;
+                }
+                /* End */
+
+                /* Number pagination progress */
+                if (isNumberPaginationProgress) {
+                    sliderWrapper.querySelectorAll('.number-prev').forEach(function(numberPrev) {
+                        numberPrev.textContent = active < 10 ? '0' + active : active;
+                    });
+
+                    var progress = sliderWrapper.querySelector('.swiper-pagination-progress');
+                    if (progress) progress.style.setProperty('--swiper-progress', ((100 / length) * active).toFixed(2) + '%');
+                }
+                /* End */
+
+                if (swiper.$el.hasClass('product-image-main')) {
+                    var currSlide = swiper.slides[swiper.activeIndex];
+                    var mediaType = currSlide.dataset.mediaType || false;
+
+                    // Pause all videos
+                    if (typeof window.currPlayingVid != typeof undefined && window.currPlayingVid != 'undefined' && window.currPlayingVid.plyrInstance.playing) {
+                        window.currPlayingVid.plyrInstance.pause();
+                    }
+
+                    if (mediaType == 'model') {
+                        swiper.allowTouchMove = false;
+                    } else {
+                        swiper.allowTouchMove = true;
+                    }
+                }
+            }
+        };
+
+        swiperItem.sliderOptions = sliderOptions;
+        var swiperObj = new Swiper(swiperItem, sliderOptions);
+        swiperItem.setAttribute('data-swiper-initialized', 'true');
+        window.SlideshowObjs.push(swiperItem);
+    });
+}
 
    let product_media_sklider = '';
 function pdpslider() {
@@ -155,7 +182,7 @@ initSlideshow();
 })();
 
 document.addEventListener('shopify:section:load', function (event){
- initSlideshow();
+ initSlideshow(event.target);
   // pdpslider();
   });
 
@@ -183,7 +210,6 @@ document.addEventListener('shopify:section:load', function (event){
 //   });
 // });
 // Header MegaMenu SHOW AND HIDE end
-
 
 
 

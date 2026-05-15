@@ -289,7 +289,25 @@
                 </quantity-popover>
               {% endif %}
             {%- endif -%}
+
+
+            <div class="pro-other-info">
+              <div class="info-box time-duration">
+                 {{ 'calender.svg' | inline_asset_content }}
+                 2006-2010
+              </div>
+
+              <div class="info-box miles-info">
+                  {{ 'miles.svg' | inline_asset_content }}
+                  53,000 Miles
+              </div>
+                
+            </div>
+
+            <a href="{{ card_product.url }}" class="pro-view-more">View item {{ 'arrow-right.svg' | inline_asset_content }}</a>
+              
           </div>
+
         </div>
         {% assign product_form_id = 'quick-add-' | append: section_id | append: card_product.id %}
         {% if quick_add == 'standard' %}

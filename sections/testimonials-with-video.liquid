@@ -1,0 +1,460 @@
+{{ 'testimonials-with-video.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    margin-top: {{ section.settings.margin_top | times: 0.75 | round: 0 }}px;
+    margin-bottom: {{ section.settings.margin_bottom | times: 0.75 | round: 0 }}px;
+  }
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top_mobi }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobi }}px;
+  }
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} {
+      margin-top: {{ section.settings.margin_top }}px;
+      margin-bottom: {{ section.settings.margin_bottom }}px;
+    }
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- capture slider_options -%}
+  "slidesPerView":"3",
+  "spaceBetween": 20,
+  "loop": false,
+  {% if section.settings.show_pagination %}
+    "pagination":{
+        "el":"#shopify-section-{{ section.id }} .swiper-pagination",
+        "clickable":true
+    },
+  {% endif %}
+  {%- if section.settings.navigation -%}
+    "navigation":{
+        "nextEl":"#shopify-section-{{ section.id }} .swiper-button-next",
+        "prevEl":"#shopify-section-{{ section.id }} .swiper-button-prev"
+    },
+  {%- endif -%}
+  "breakpoints": { 
+    "0": { "slidesPerView": "auto",  "spaceBetween":16 },
+    "640": { "slidesPerView": 2,  "spaceBetween":17 },
+    "990": { "slidesPerView": 4,  "spaceBetween":17 },
+    "1400": { "slidesPerView": 4,  "spaceBetween": {{ section.settings.space_between_slide }} }
+   } 
+{%- endcapture -%}
+
+<div class="section-{{ section.id }} section-{{ section.id }}-padding section-{{ section.id }}-margin color-{{ section.settings.color_scheme }} gradient section-main-box">
+  <div class="page-width">
+    {% if section.settings.heading != blank or section.settings.text != blank %}
+      <div class="sec-head {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+        {% if section.settings.heading != blank %}
+          <h2 class="sec-title">{{ section.settings.heading }}</h2>
+        {% endif %}
+        {% if section.settings.text != blank %}
+          <div class="sec-text">{{ section.settings.text }}</div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="videos-list {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+      <div class="swiper-main-wrapper">
+        <div class="swiper" data-slider-options='{ {{ slider_options }} }'>
+          <div class="swiper-wrapper">
+            {%- for block in section.blocks -%}
+              <div
+                class="swiper-slide {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                {% if settings.animations_reveal_on_scroll %}
+                  style="--animation-order: {{ forloop.index }};"
+                {% endif %}
+              >
+                {%- case block.type -%}
+                  {%- when 'video' -%}
+                    <div class="testimonial-card" {{ block.shopify_attributes }}>
+                      <div class="box-item">
+                        {% if block.settings.video != blank %}
+                          <div class="video-box">
+                            <button class="vid-btn" type="button" aria-label="Play video">{{ 'play-btn.svg' | inline_asset_content }} {{ 'icon-pause.svg' | inline_asset_content }}</button>
+                            {{
+                              block.settings.video
+                              | video_tag: image_size: '1100x', autoplay: false, loop: true, controls: false, muted: false
+                            }}
+                          </div>
+                        {% endif %}
+                      </div>
+
+                      <div class="testimonial-content">
+                        {%- assign rating = block.settings.rating | plus: 0 -%}
+                        {%- if rating > 0 -%}
+                          <div class="testimonial-rating" aria-label="Rated {{ rating }} out of 5">
+                            {%- for i in (1..5) -%}
+                              <span class="star {% if i <= rating %}star--filled{% endif %}">{{ 'icon-star.svg' | inline_asset_content }}</span>
+                            {%- endfor -%}
+                          </div>
+                        {%- endif -%}
+
+                        {%- if block.settings.review_text != blank -%}
+                          <div class="testimonial-text">{{ block.settings.review_text }}</div>
+                        {%- endif -%}
+
+                        {%- if block.settings.author_name != blank -%}
+                          <div class="testimonial-author">
+                            <span class="author-name">- {{ block.settings.author_name | escape }}</span>
+                            {%- if block.settings.show_verified -%}
+                              <span class="author-verified" aria-label="Verified">{{ 'icon-verified.svg' | inline_asset_content }}</span>
+                            {%- endif -%}
+                          </div>
+                        {%- endif -%}
+                      </div>
+                    </div>
+                {%- endcase -%}
+              </div>
+            {%- endfor -%}
+          </div>
+        </div>
+        {% if section.settings.navigation %}
+          <div
+            class="
+              nav-btns
+              {% if section.settings.show_navigation_in == 'desktop' %}small-hide{% endif %}
+              {% if section.settings.show_navigation_in == 'mobile' %}medium-hide large-up-hide{% endif %}
+            "
+          >
+            <div class="btn-arrow swiper-button-prev">{{ 'left-arrow.svg' | inline_asset_content }}</div>
+            <div class="btn-arrow swiper-button-next">{{ 'right-arrow.svg' | inline_asset_content }}</div>
+          </div>
+        {% endif %}
+
+        {% if section.settings.show_pagination %}
+          <div
+            class="
+              swiper-pagination {{ section.settings.pagination_type }}
+              {% if section.settings.show_pagination_in == 'desktop' %}small-hide{% endif %}
+              {% if section.settings.show_pagination_in == 'mobile' %}medium-hide large-up-hide{% endif %}
+            "
+          ></div>
+        {% endif %}
+      </div>
+    </div>
+
+    {%- if section.settings.button_label != blank -%}
+            <div class="btns-wrapper">
+                {%- if section.settings.button_label != blank -%}
+                <a
+                    {% if section.settings.button_link == blank %}
+                    role="link"
+                    aria-disabled="true"
+                    {% else %}
+                    href="{{ section.settings.button_link }}"
+                    {% endif %}
+                    class="more-btn button{% if section.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
+                    {{ section.shopify_attributes }}
+                >
+                    {{ section.settings.button_label | escape }}
+                </a>
+                {%- endif -%}
+            </div>
+        {%- endif -%}
+
+  </div>
+</div>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener('click', function(e) {
+      // 1. Check for the button
+      const btn = e.target.closest('.vid-btn');
+
+      if (btn) {
+        e.preventDefault();
+
+        const currentWrapper = btn.closest('.testimonials-with-video-wrapper');
+        if (!currentWrapper) return;
+
+        const currentBox = btn.closest('.box-item');
+        const currentVideo = currentBox.querySelector('video');
+
+        // CHECK: Is this specific video already playing?
+        const isAlreadyPlaying = currentBox.classList.contains('playing');
+
+        if (isAlreadyPlaying) {
+          // --- CASE A: PAUSE IT ---
+          if (currentVideo) currentVideo.pause();
+          currentBox.classList.remove('playing');
+        } else {
+          // --- CASE B: PLAY IT (and stop others) ---
+          
+          // 1. Stop all other videos in this specific wrapper
+          const sectionBoxes = currentWrapper.querySelectorAll('.box-item');
+          sectionBoxes.forEach(box => {
+            if (box !== currentBox) {
+              const video = box.querySelector('video');
+              if (video) video.pause();
+              box.classList.remove('playing');
+            }
+          });
+
+          // 2. Play the current video
+          if (currentVideo) {
+            currentVideo.play();
+            currentBox.classList.add('playing');
+          }
+        }
+      }
+    });
+  });
+</script>
+
+
+{% schema %}
+{
+  "name": "Testimonials with video",
+  "class": "testimonials-with-video-wrapper",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "background-1"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "info": "Highlighted text should be added in bold format, and the bold text will appear in red color."
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text"
+    },
+    {
+        "type": "text",
+        "id": "button_label",
+        "label": "Label",
+        "info": "Leave blank to hide"
+    },
+    {
+        "type": "url",
+        "id": "button_link",
+        "label": "Link"
+    },
+    {
+        "type": "checkbox",
+        "id": "button_style_secondary",
+        "default": false,
+        "label": "Outline style"
+    },
+    {
+      "type": "header",
+      "content": "Slider Options"
+    },
+    {
+      "type": "range",
+      "id": "space_between_slide",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Space Between Slide",
+      "default": 40
+    },
+    {
+      "type": "checkbox",
+      "id": "show_pagination",
+      "default": false,
+      "label": "Show pagination"
+    },
+    {
+      "type": "select",
+      "id": "show_pagination_in",
+      "options": [
+        {
+          "value": "both",
+          "label": "Both"
+        },
+        {
+          "value": "desktop",
+          "label": "Desktop"
+        },
+        {
+          "value": "mobile",
+          "label": "Mobile"
+        }
+      ],
+      "default": "both",
+      "label": "Show pagination in"
+    },
+    {
+      "type": "select",
+      "id": "pagination_type",
+      "options": [
+        {
+          "value": "dot",
+          "label": "Dot"
+        },
+        {
+          "value": "border",
+          "label": "Dot border"
+        },
+        {
+          "value": "line",
+          "label": "Line"
+        },
+        {
+          "value": "number",
+          "label": "Numer"
+        }
+      ],
+      "default": "dot",
+      "label": "Pagination type"
+    },
+    {
+      "type": "checkbox",
+      "id": "navigation",
+      "label": "Show navigation",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "show_navigation_in",
+      "options": [
+        {
+          "value": "both",
+          "label": "Both"
+        },
+        {
+          "value": "desktop",
+          "label": "Desktop"
+        },
+        {
+          "value": "mobile",
+          "label": "Mobile"
+        }
+      ],
+      "default": "both",
+      "label": "Show navigation in"
+    },
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": -150,
+      "max": 150,
+      "step": 3,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": -150,
+      "max": 150,
+      "step": 3,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Section Settings For Mobile"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobi",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobi",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 25
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Video",
+      "type": "video",
+      "settings": [
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video"
+        },
+        {
+          "type": "header",
+          "content": "Review"
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "min": 0,
+          "max": 5,
+          "step": 1,
+          "label": "Star rating",
+          "default": 5
+        },
+        {
+          "type": "richtext",
+          "id": "review_text",
+          "label": "Review text",
+          "default": "<p>\"I've been using this for a couple of weeks now and it honestly exceeded my expectations.\"</p>"
+        },
+        {
+          "type": "text",
+          "id": "author_name",
+          "label": "Author name",
+          "default": "Unknown User"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_verified",
+          "label": "Show verified badge",
+          "default": true
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials with video"
+    }
+  ]
+}
+{% endschema %}

@@ -28,17 +28,10 @@
     <div class="contact-us-inner">
 
       <div class="contact-us-info">
-        {% if section.settings.info_heading != blank or section.settings.info_heading_highlight != blank or section.settings.info_text != blank %}
+        {% if section.settings.info_heading != blank or section.settings.info_text != blank %}
           <div class="sec-head text-align-{{ section.settings.text_align }} {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-            {% if section.settings.info_heading != blank or section.settings.info_heading_highlight != blank %}
-              <h2 class="sec-title">
-                {%- if section.settings.info_heading != blank -%}
-                  <span class="sec-title__main">{{ section.settings.info_heading }}</span>
-                {%- endif -%}
-                {%- if section.settings.info_heading_highlight != blank -%}
-                  <span class="sec-title__highlight">{{ section.settings.info_heading_highlight }}</span>
-                {%- endif -%}
-              </h2>
+            {% if section.settings.info_heading != blank %}
+              <h2 class="sec-title">{{ section.settings.info_heading }}</h2>
             {% endif %}
             {% if section.settings.info_text != blank %}
               <div class="sec-text">{{ section.settings.info_text }}</div>
@@ -72,16 +65,9 @@
       </div>
 
       <div class="contact-us-form">
-        {% if section.settings.form_heading != blank or section.settings.form_heading_highlight != blank %}
+        {% if section.settings.form_heading != blank %}
           <div class="sec-head text-align-left {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-            <h2 class="sec-title">
-              {%- if section.settings.form_heading != blank -%}
-                <span class="sec-title__main">{{ section.settings.form_heading }}</span>
-              {%- endif -%}
-              {%- if section.settings.form_heading_highlight != blank -%}
-                <span class="sec-title__highlight">{{ section.settings.form_heading_highlight }}</span>
-              {%- endif -%}
-            </h2>
+            <h2 class="sec-title">{{ section.settings.form_heading }}</h2>
           </div>
         {% endif %}
 
@@ -186,7 +172,7 @@
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "Color scheme",
-      "default": "background-1"
+      "default": "scheme-3"
     },
     {
       "type": "header",
@@ -196,13 +182,8 @@
       "type": "inline_richtext",
       "id": "info_heading",
       "label": "Heading",
-      "default": "Contact"
-    },
-    {
-      "type": "inline_richtext",
-      "id": "info_heading_highlight",
-      "label": "Heading Highlight (Red)",
-      "default": "us"
+      "default": "Contact <strong>us</strong>",
+      "info": "Highlighted text should be added in bold format, and the bold text will appear in red color."
     },
     {
       "type": "richtext",
@@ -238,13 +219,8 @@
       "type": "inline_richtext",
       "id": "form_heading",
       "label": "Form Heading",
-      "default": "Send us a"
-    },
-    {
-      "type": "inline_richtext",
-      "id": "form_heading_highlight",
-      "label": "Form Heading Highlight (Red)",
-      "default": "message"
+      "default": "Send us a <strong>message</strong>",
+      "info": "Highlighted text should be added in bold format, and the bold text will appear in red color."
     },
     {
       "type": "text",

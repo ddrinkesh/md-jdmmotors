@@ -316,7 +316,7 @@
               "
             >
               <div class="swiper-main-wrapper {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-                <div class="swiper swiper-container" data-slider-options="{ {{ slider_options }} }">
+                <div class="swiper swiper-container" data-slider-options='{ {{ slider_options | strip_newlines | strip }} }'>
                   <div class="swiper-wrapper">
                     {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
                       <div
@@ -437,7 +437,8 @@
       "type": "inline_richtext",
       "id": "title",
       "default": "t:sections.featured-collection.settings.title.default",
-      "label": "t:sections.featured-collection.settings.title.label"
+      "label": "t:sections.featured-collection.settings.title.label",
+      "info": "Highlighted text should be added in bold format, and the bold text will appear in red color."
     },
     {
       "type": "select",

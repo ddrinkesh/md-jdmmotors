@@ -1,6 +1,11 @@
 (function () {
   function initSwipers() {
     document.querySelectorAll('.swiper[data-slider-options]:not([data-swiper-initialized])').forEach(function (el) {
+      if (el.swiper) {
+        el.setAttribute('data-swiper-initialized', 'true');
+        return;
+      }
+
       try {
         var options = JSON.parse(el.dataset.sliderOptions);
         new Swiper(el, options);
