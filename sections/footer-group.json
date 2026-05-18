@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "name": "t:sections.footer.name",
   "type": "footer",
@@ -8,6 +17,7 @@
         "brand_footer": {
           "type": "brand",
           "settings": {
+            "logo": "shopify://shop_images/logo_d0ed54c7-400b-40ed-8b38-51529ac7c950.png",
             "description": "<p>High-quality, low-mileage units imported directly from Japan for unmatched performance and reliability.</p>",
             "google_map_embed": "<iframe src=\"https://www.google.com/maps?q=5021%20Herzel%20Place%2C%20Beltsville%2C%20MD%2020705%2C%20USA&amp;output=embed\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\" title=\"Store location\"></iframe>"
           }
@@ -16,6 +26,7 @@
           "type": "menu",
           "settings": {
             "heading": "Quick Links",
+            "menu": "quick-links",
             "fallback_links": "quick_links"
           }
         },
@@ -23,6 +34,7 @@
           "type": "menu",
           "settings": {
             "heading": "Policies",
+            "menu": "policies",
             "fallback_links": "policies"
           }
         },
@@ -30,6 +42,7 @@
           "type": "menu",
           "settings": {
             "heading": "Categories",
+            "menu": "categories",
             "fallback_links": "categories"
           }
         },
