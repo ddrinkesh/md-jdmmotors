@@ -608,7 +608,7 @@ class ModalDialog extends HTMLElement {
     });
     if (this.classList.contains('media-modal')) {
       this.addEventListener('pointerup', (event) => {
-        if (event.pointerType === 'mouse' && !event.target.closest('deferred-media, product-model')) this.hide();
+        // if (event.pointerType === 'mouse' && !event.target.closest('deferred-media, product-model')) this.hide();
       });
     } else {
       this.addEventListener('click', (event) => {
@@ -631,6 +631,27 @@ class ModalDialog extends HTMLElement {
     this.setAttribute('open', '');
     if (popup) popup.loadContent();
     trapFocus(this, this.querySelector('[role="dialog"]'));
+    const  product_modal_sliderOptions = this.getAttribute('data-slider-options'),
+      product_modal_slideroptionConfig =JSON.parse(product_modal_sliderOptions);
+      if(product_modal_slideroptionConfig && !product_modal_swiper ){
+        product_modal_swiper = new Swiper(".swiper-product-modal", product_modal_slideroptionConfig);
+      }
+      const product_modal_sliderOptions_active = this.querySelector("[data-media-id='"+this.openedBy.getAttribute("data-media-id")+"']");
+     if (product_modal_swiper && product_modal_sliderOptions_active){
+        product_modal_swiper.slideTo(product_modal_sliderOptions_active.getAttribute('data-slide-index'),1000,false);
+      }
+
+      if(!product_modal_sliderOptions){
+        const getsliderjson = this.querySelector('.product-image-main [data-main-pdp-swiper]');
+              
+
+                const sliderOptions = getsliderjson.getAttribute('data-slider-options');
+
+                if (sliderOptions){
+                    const sliderConfig = JSON.parse(sliderOptions);
+                    this.quickSwiper = new Swiper(getsliderjson, sliderConfig); 
+                }
+      }
     window.pauseAllMedia();
   }
 
@@ -642,6 +663,7 @@ class ModalDialog extends HTMLElement {
     window.pauseAllMedia();
   }
 }
+var product_modal_swiper = null;
 customElements.define('modal-dialog', ModalDialog);
 
 class BulkModal extends HTMLElement {
@@ -1159,6 +1181,11 @@ class ProductRecommendations extends HTMLElement {
 
         if (recommendations?.innerHTML.trim().length) {
           this.innerHTML = recommendations.innerHTML;
+          const sliderOptions = this.getAttribute('data-slider-options');
+            if (sliderOptions){
+               const slideroptionConfig = JSON.parse(sliderOptions),
+               recommedndationSlider = new Swiper(".recom-swiper", slideroptionConfig);
+            } 
         }
 
         if (!this.querySelector('slideshow-component') && this.classList.contains('complementary-products')) {

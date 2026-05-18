@@ -5,3 +5,17 @@
 .related-products__heading {
   margin: 0 0 3rem;
 }
+
+
+.related-products .swiper-slide { height: auto; }
+.related-products .swiper { padding-right: 6px; }
+
+.related-products .btns-wrapper {margin-top: 40px;text-align: center;}
+
+.related-products .sec-head { flex-direction: row; justify-content: space-between; align-items: center; } 
+.related-products .btns-wrapper.small-hide { margin: 0; } 
+.related-products .btns-wrapper .more-btn { font-weight: 700; line-height: normal;text-decoration-style: solid; text-decoration-skip-ink: auto; text-decoration-thickness: auto; text-underline-offset: auto; text-underline-position: from-font; text-transform: uppercase; }
+
+@media screen and (max-width: 750px) {
+  .related-products .btns-wrapper {margin-top: 30px;}
+}

@@ -1,0 +1,195 @@
+{{ 'inner-banner.css' | asset_url | stylesheet_tag }}
+{% unless section.settings.apply_overlay == 'none' %}
+<style>
+  {% if section.settings.apply_overlay == 'desktop' %}
+    @media screen and (min-width: 750px){
+  .inner-banner-wrapper .section-wrapper .banner-media:before {
+    opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
+    background:{{section.settings.background}};
+  }
+}
+{% elsif section.settings.apply_overlay == 'mobile' %}
+  @media screen and (max-width: 749px){
+  .inner-banner-wrapper .section-wrapper .banner-media:before {
+    opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
+    background:{{section.settings.background}};
+  }
+  }
+{% else %}
+  .inner-banner-wrapper .section-wrapper .banner-media:before {
+    opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
+    background:{{section.settings.background}};
+  }
+{%endif %}
+</style>
+{% endunless %}
+
+
+
+<div class="section-wrapper section-{{ section.id }}-bg-box color-{{ section.settings.color_scheme }} gradient">  
+
+   <div class="banner-media">
+    {%if section.settings.image != blank %}
+     {% if section.settings.mob_image != blank %}
+        <img src="{{ section.settings.image | image_url: nil }}"  alt="{{ section.settings.image.alt }}" width="{{ section.settings.image.width }}" height="{{ section.settings.image.height }}" loading="lazy" class="desk-img small-hide"/>
+        <img src="{{ section.settings.mob_image | image_url: nil }}" alt="{{ section.settings.image.alt }}" width="{{ section.settings.mob_image.width }}" height="{{ section.settings.mob_image.height }}" loading="lazy" class="mobi-img medium-hide large-up-hide"/>
+     {% else %}
+        <img src="{{ section.settings.image | image_url: nil }}" alt="{{ section.settings.image.alt }}" width="{{ section.settings.image.width }}" height="{{ section.settings.image.height }}" loading="lazy" />
+     {% endif %}    
+    {% endif %} 
+   </div>  
+   <div class="banner-content">
+      <div class="page-width">
+        {% if section.settings.heading != blank or section.settings.text != blank %}
+          <div class="banner-container sec-head">
+          {% if section.settings.heading != blank %}
+            <h1 class="sec-title">
+                {{ section.settings.heading }}
+            </h1>   
+          {% endif %}
+          
+          {% if section.settings.breadcrumb != blank %}  
+           <div class="breadcrumbs-wrapper">{% render 'breadcrumbs' %}</div>
+          {% endif %}  
+
+          {% if section.settings.text != blank %}  
+           <div class="content sub-title">{{ section.settings.text }}</div>
+          {% endif %}  
+
+          {%- if section.settings.button_label != blank -%}
+           <div class="btns-wrapper"> 
+              <a
+                {% if section.settings.button_link == blank %}
+                  role="link" aria-disabled="true"
+                {% else %}
+                  href="{{ section.settings.button_link }}"
+                {% endif %}
+                class="more-btn button{% if section.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
+                {{ section.shopify_attributes }}
+              >
+                {{ section.settings.button_label | escape }}
+              </a>
+           </div>
+          {%- endif -%}
+          </div>
+        {% endif %}
+      </div>
+   </div> 
+</div>
+
+{% schema %}
+{
+  "name": "Inner Bannner",
+  "class": "inner-banner-wrapper",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Desktop Image",
+      "info": "If you do not select mobile images, the desktop image will show on mobile view."
+    },
+    {
+      "type": "image_picker",
+      "id": "mob_image",
+      "label": "Mobile Image"
+    },
+    {
+      "type": "select",
+      "id": "apply_overlay",
+      "label": "Apply Overlay",
+      "options": [
+        {
+          "value": "both",
+          "label": "Both"
+        },
+        {
+          "value": "desktop",
+          "label": "Desktop"
+        },
+        {
+          "value": "mobile",
+          "label": "Mobile"
+        },
+        {
+          "value": "none",
+          "label": "None"
+        }
+      ],
+      "default":"none"
+    },
+    {
+      "type": "color_background",
+      "id": "background",
+      "label": "Background",
+      "default":"#000000",
+      "visible_if": "{{ section.settings.apply_overlay != 'none' }}"
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "unit": "%",
+      "label": "Image Overlay Opacity",
+      "default": 0,
+      "visible_if": "{{ section.settings.apply_overlay != 'none' }}"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "Title",
+      "label": "Heading"
+    },
+    {
+        "type": "checkbox",
+        "id": "breadcrumb",
+        "label": "Show Breadcrumbs",
+        "default":true
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "t:sections.image-with-text.blocks.text.settings.text.label"
+    },
+    {
+      "type": "text",
+      "id": "button_label",       
+      "label": "t:sections.image-with-text.blocks.button.settings.button_label.label",
+      "info": "t:sections.image-with-text.blocks.button.settings.button_label.info"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "t:sections.image-with-text.blocks.button.settings.button_link.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "button_style_secondary",
+      "default": false,
+      "label": "t:sections.image-with-text.blocks.button.settings.outline_button.label"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    /*{
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "text Color"
+    },*/
+  ],   
+  "presets": [
+    {
+      "name": "Inner Banner"
+    }
+  ]
+}
+{% endschema %}

@@ -9,9 +9,39 @@
   {% render 'product-media-modal' %}
 {% endcomment %}
 
-<product-modal id="ProductModal-{{ section.id }}" class="product-media-modal media-modal">
+{%- capture sliderOptions -%}
+   
+			   "slidesPerView": 3,
+               "spaceBetween": 0,
+               "loop": false,
+               "direction":"horizontal",
+               "navigation":{
+               "nextEl":"#ProductModal-{{ section.id }} .swiper-button-next",
+               "prevEl":"#ProductModal-{{ section.id }} .swiper-button-prev"
+               },
+               "keyboard":{
+               "enabled":true,
+               "onlyInViewport":true
+               },
+                "pagination": {
+                  "el": ".swiper-pagination",
+                  "clickable": true
+                },
+               "effect":"slide",
+               "speed":500,
+               "breakpoints": { 
+               "275": { "slidesPerView": 1, "spaceBetween": 0 },
+               "575": { "slidesPerView": 1, "spaceBetween": 0 },
+               "576": { "slidesPerView": 1, "spaceBetween": 0 },
+               "1199": { "slidesPerView": 1,  "spaceBetween": 0 },
+               "1200": { "slidesPerView": 1,  "spaceBetween": 0 }
+               } 
+ {%- endcapture -%}
+
+
+<product-modal id="ProductModal-{{ section.id }}" class="product-media-modal media-modal" data-slider-options='{ {{ sliderOptions }} }'>
   <div
-    class="product-media-modal__dialog color-{{ section.settings.color_scheme }} gradient"
+    class="product-media-modal__dialog color-{{ section.settings.color_scheme }} gradient swiper-main-wrapper"
     role="dialog"
     aria-label="{{ 'products.modal.label' | t }}"
     aria-modal="true"
@@ -27,11 +57,13 @@
     </button>
 
     <div
-      class="product-media-modal__content color-{{ section.settings.color_scheme }} gradient"
+      class="color-{{ section.settings.color_scheme }} gradient swiper swiper-product-media-model swiper-product-modal"
       role="document"
       aria-label="{{ 'products.modal.label' | t }}"
       tabindex="0"
     >
+      <div class="swiper-wrapper">
+        {% comment %}
       {%- liquid
         if product.selected_or_first_available_variant.featured_media != null
           assign media = product.selected_or_first_available_variant.featured_media
@@ -40,6 +72,7 @@
       -%}
 
       {%- for media in product.media -%}
+        <div class="swiper-slide">
         {%- liquid
           if section.settings.hide_variants and variant_images contains media.src or variant_images contains media.id
             assign variant_image = true
@@ -51,7 +84,30 @@
             render 'product-media', media: media, loop: section.settings.enable_video_looping, variant_image: variant_image
           endunless
         -%}
+        </div>
       {%- endfor -%}
+      {% endcomment %}
+            {%- for media in product.media -%}
+              {%- liquid
+                if section.settings.hide_variants and variant_images contains media.src or variant_images contains media.id
+                  assign variant_image = true
+                else
+                  assign variant_image = false
+                endif
+            -%}
+                
+                   <div class="swiper-slide" data-slide-index="{{ forloop.index0 }}" data-media-id = "{{ media.id }}">
+                     {%- render 'product-media', media: media, loop: section.settings.enable_video_looping, variant_image: variant_image -%}
+                   </div>
+               
+              
+            {%- endfor -%}
+      </div>
+      <div class="swiper-pagination dot"></div>
     </div>
+    <div class="nav-btns swiper-arrow-box">
+        <div class="swiper-arrow btn-arrow swiper-button-prev">{{ 'left-arrow.svg' | inline_asset_content }}</div>        
+        <div class="swiper-arrow btn-arrow swiper-button-next">{{ 'right-arrow.svg' | inline_asset_content }}</div>
+      </div>
   </div>
 </product-modal>
