@@ -41,7 +41,7 @@ line-height: 130%; max-width: 280px; margin-top: 17px; }
 
 @media screen and (max-width: 749px) {
 .testimonials-with-video-wrapper .sec-head { margin-bottom: 30px; }
-.testimonials-with-video-wrapper .videos-list { margin-right:-20px; width: auto; }
+.testimonials-with-video-wrapper .videos-list { margin-right:-25px; width: auto; }
 .testimonials-with-video-wrapper .videos-list .swiper-slide { width:260px; }
 .testimonials-with-video-wrapper .videos-list .box-item:before { padding-bottom:124.840764331%; }
 .testimonials-with-video-wrapper .testimonial-content { padding: 14px 6px 0; gap: 8px; }

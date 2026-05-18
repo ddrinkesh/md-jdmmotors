@@ -3788,10 +3788,77 @@ details-disclosure > details {
 /* Announcement bar */
 
 .announcement-bar-section .announcement-bar .announcement-bar__message { font-size: 14px; font-style: normal;
-font-weight: 700; line-height: normal; text-transform: uppercase; padding: 11.5px 0; }
+font-weight: 700; line-height: normal; text-transform: uppercase; padding: 11.5px 0; min-height: auto; }
+
+@media screen and (max-width: 749px) {
+
+  .announcement-bar-section .announcement-bar .announcement-bar__message { font-size: 11px; padding: 9.5px 0; }
+
+}
+
 
 /* & Announcement bar */
 
 
+/* Header */
 
+ body.transparent-header .header-wrapper { margin-bottom:-100%; background: transparent;transition: all .5s ease; }
+ 
+.site-header-wrapper .header--middle-left { grid-template-columns: 1fr 2fr 1fr; }
+.site-header-wrapper .header--middle-left .header__inline-menu { margin: 0 auto; }
+
+.site-header-wrapper .header__heading-link { padding: 0; margin: 0; }
+
+.section-header.scrolled-past-header .header-wrapper,
+.section-header:has(.header__menu-item:hover) .header-wrapper{ background-color:#261C1C; transition: all .5s ease; }
+.section-header .header-wrapper:has(header-menu details[open]) { background-color:#261C1C; transition: all .5s ease; }
+
+.site-header-wrapper .header__inline-menu .list-menu li .header__menu-item { font-size: 16px; font-style: normal; font-weight: 500; line-height: normal; padding-left:27px; padding-right:27px; }
+.site-header-wrapper .header__inline-menu .list-menu li .header__menu-item .icon-caret { right: 0; }
+.site-header-wrapper .header__inline-menu .list-menu li summary.list-menu__item { padding-right: 16px; }
+
+
+.site-header-wrapper .header { padding-top: 24px; padding-bottom: 24px; }
+ 
+.site-header-wrapper .header__icons { gap:15px; padding:0; align-items:center; }
+.site-header-wrapper .header__icons a { text-decoration:none; }
+
+/* .site-header-wrapper .header .header__heading-link { padding: 0; padding-left: 7.5px; } */
+
+.site-header-wrapper .header__icons .header__icon,
+.site-header-wrapper .header__icons .header__icon .svg-wrapper { width:auto; height: inherit; }
+.site-header-wrapper .header__icons .header__icon .svg-wrapper svg { height: 20px; width:auto; transition: all 0.2s ease; }
+
+.site-header-wrapper .header__icons .header__icon.header__icon--cart { width:auto; position:relative; margin:0; }
+.site-header-wrapper .header__icons .header__icon.header__icon--cart .svg-wrapper {  margin-right:0; }
+.site-header-wrapper .header__icons .header__icon.header__icon--cart .svg-wrapper svg { height: 20px; width:auto;  }
+
+.site-header-wrapper .header__icons .header__icon.header__icon--cart .main-cart-price { line-height:1; }  
+.site-header-wrapper .header__icons .header__icon.header__icon--cart .main-cart-price .price { font-size:12px; font-weight:300; letter-spacing: 0px; color: #F8F8F8; line-height:14px;  text-decoration:none; white-space: nowrap; }
+
+.site-header-wrapper .header__icons .header__icon--cart .cart-count-bubble { font-size: 12px; font-weight: 900; letter-spacing: 0px; color: #000000; height: 15px; background: #FFDD00; left: inherit; margin: 0; width: auto; min-width: 15px; text-align: center; line-height: 1; padding: 1px 3px 0; position: absolute; top: 10px; border-radius: 30px; left: -1px; }
+
+
+.site-header-wrapper .header-search-wrapper { position: relative; }
+.site-header-wrapper .header-search-wrapper .search__input { border: none; border-radius: 8px; background: rgba(255, 255, 255, 0.30); backdrop-filter: blur(10.5px); width: 100%; max-width: 238px; height: 40px; padding: 3px 40px 3px 11px; color: #ffffff; }
+.site-header-wrapper .header-search-wrapper .field__label { color: #FFF; font-size: 15px; font-style: normal;
+font-weight: 400; line-height: normal; top: 10px; left: 11px; text-transform: none; }
+
+.site-header-wrapper .header-search-wrapper .search__button { height: 40px; width: 40px; top: 0; right: 0;  }
+
+
+@media screen and (max-width: 989px){
+
+  .site-header-wrapper .header { padding: 12px 20px; }
+  .site-header-wrapper .header--middle-left { grid-template-columns: auto 2fr 1fr; }
+
+
+}
+
+@media screen and (max-width: 749px){
+
+ 
+
+}
+/* & Header */
 

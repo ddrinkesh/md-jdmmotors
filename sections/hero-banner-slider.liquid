@@ -67,35 +67,36 @@
             <div class="hero-slide-overlay"></div>
 
             <div class="hero-slide-content" style="text-align: {{ block.settings.content_align }};">
-              {%- if block.settings.subheading != blank -%}
-                <p class="hero-slide-subheading">{{ block.settings.subheading }}</p>
-              {%- endif -%}
+              <div class="page-width">
+                <div class="content-box">
+                    {%- if block.settings.subheading != blank -%}
+                      <p class="hero-slide-subheading">{{ block.settings.subheading }}</p>
+                    {%- endif -%}
 
-              {%- if block.settings.heading_white != blank or block.settings.heading_red != blank -%}
-                <h2 class="hero-slide-heading">
-                  {%- if block.settings.heading_white != blank -%}<span class="heading-white">{{ block.settings.heading_white }}</span>{%- endif -%}
-                  {%- if block.settings.heading_red != blank -%}<span class="heading-red">{{ block.settings.heading_red }}</span>{%- endif -%}
-                </h2>
-              {%- endif -%}
+                    {% if block.settings.heading != blank %}
+                      <h2 class="hero-slide-heading">{{ block.settings.heading }}</h2>
+                    {%- endif -%}                  
 
-              {%- if block.settings.description != blank -%}
-                <div class="hero-slide-description">{{ block.settings.description }}</div>
-              {%- endif -%}
+                    {%- if block.settings.description != blank -%}
+                      <div class="hero-slide-description">{{ block.settings.description }}</div>
+                    {%- endif -%}
 
-              {%- if block.settings.button_label != blank -%}
-                <div class="btns-wrapper">
-                  <a
-                    {% if block.settings.button_link == blank %}
-                      role="link" aria-disabled="true"
-                    {% else %}
-                      href="{{ block.settings.button_link }}"
-                    {% endif %}
-                    class="button{% if block.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
-                  >
-                    {{- block.settings.button_label | escape -}}
-                  </a>
-                </div>
-              {%- endif -%}
+                    {%- if block.settings.button_label != blank -%}
+                      <div class="btns-wrapper">
+                        <a
+                          {% if block.settings.button_link == blank %}
+                            role="link" aria-disabled="true"
+                          {% else %}
+                            href="{{ block.settings.button_link }}"
+                          {% endif %}
+                          class="button{% if block.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
+                        >
+                          {{- block.settings.button_label | escape -}}
+                        </a>
+                      </div>
+                    {%- endif -%}
+                </div> 
+              </div>
             </div>
           </div>
         {% endfor %}
@@ -369,20 +370,14 @@
         {
           "type": "inline_richtext",
           "id": "subheading",
-          "label": "Subheading"
+          "label": "Subheading"          
         },
         {
           "type": "inline_richtext",
-          "id": "heading_white",
-          "label": "Heading (White)",
-          "default": "PREMIUM JAPANESE ENGINES &"
-        },
-        {
-          "type": "inline_richtext",
-          "id": "heading_red",
-          "label": "Heading Highlight (Red)",
-          "default": "TRANSMISSIONS"
-        },
+          "id": "heading",
+          "label": "Heading",          
+          "info": "Highlighted text should be added in bold format, and the bold text will appear in red color."
+        },        
         {
           "type": "richtext",
           "id": "description",

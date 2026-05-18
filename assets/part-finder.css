@@ -1,6 +1,6 @@
 .part-finder { display: flex; flex-direction: row; align-items: center; gap: 14px; flex-flow: column; }
 .part-finder .sec-head { margin: 0; flex-shrink: 0; }
-.part-finder .sec-title { margin: 0; font-size: 26px; font-weight: 700; line-height: 1.2; font-family: var(--font-heading-family); white-space: nowrap; }
+.part-finder .sec-title { margin: 0; font-size: 26px; line-height: 1.2; font-family: var(--font-heading-family); white-space: nowrap; }
 .part-finder .sec-title__main { color: rgb(var(--color-foreground)); }
 .part-finder .sec-title__highlight { color: #E31E24; margin-left: 6px; }
 .part-finder__form { display: flex; align-items: center; gap: 16px; flex: 1; width: 100%; } 
@@ -21,10 +21,13 @@
 
 @media screen and (max-width: 749px) {
   .part-finder { flex-direction: column; align-items: stretch; gap: 20px; }
-  .part-finder .sec-title { white-space: normal; font-size: 22px; }
+ 
   .part-finder.page-width .sec-head.text-align-left { text-align: left; }
   .part-finder__form { flex-direction: column; align-items: stretch; gap: 12px; }
   .part-finder__selects { flex-direction: column; }
   .btns-wrapper { display: flex; }
+
+  .part-finder__select { height: 44px; }
+
   .part-finder__btn { width: 100%; justify-content: center; }
 }

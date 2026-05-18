@@ -2,6 +2,7 @@
 .brand-slider-main .sec-head { margin-bottom: 24px; }
 .brand-slider-wrap { position: relative; }
 .brand-slider-swiper { width: 100%;   }
+.brand-slider-swiper .swiper-wrapper { align-items: center; transition-timing-function: linear !important; }
 
 .brand-slider-main .swiper {  overflow: visible; }
 
@@ -27,4 +28,3 @@ a.brand-slide__link:hover { opacity: 0.75; }
   .brand-slide__link { padding: 12px 16px; }
   .brand-slider-items { grid-template-columns: repeat(2, 1fr); }
 }
- 

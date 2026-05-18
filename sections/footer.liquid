@@ -58,38 +58,42 @@
 
           {% when 'menu' %}
             <div class="footer-block footer-menu" {{ block.shopify_attributes }}>
-              {% if block.settings.heading != blank %}
-                <h2 class="footer-title">{{ block.settings.heading }}</h2>
-              {% endif %}
-              {% if block.settings.menu != blank and block.settings.menu.links.size > 0 %}
-                <ul class="footer-menu__list list-unstyled">
-                  {% for link in block.settings.menu.links %}
-                    <li><a href="{{ link.url }}" class="footer-link{% if link.active %} footer-link--active{% endif %}">{{ link.title | escape }}</a></li>
-                  {% endfor %}
-                </ul>
-              {% elsif block.settings.fallback_links == 'quick_links' %}
-                <ul class="footer-menu__list list-unstyled">
-                  <li><a href="{{ routes.root_url }}" class="footer-link">Home</a></li>
-                  <li><a href="{{ routes.all_products_collection_url }}" class="footer-link">Shop</a></li>
-                  <li><a href="/pages/about-us" class="footer-link">About Us</a></li>
-                  <li><a href="/pages/contact" class="footer-link">Contact</a></li>
-                </ul>
-              {% elsif block.settings.fallback_links == 'policies' %}
-                <ul class="footer-menu__list list-unstyled">
-                  <li><a href="/policies/terms-of-service" class="footer-link">Terms & Conditions</a></li>
-                  <li><a href="/policies/privacy-policy" class="footer-link">Privacy Policy</a></li>
-                  <li><a href="/policies/shipping-policy" class="footer-link">Shipping Policy</a></li>
-                  <li><a href="/policies/refund-policy" class="footer-link">Return Policy</a></li>
-                </ul>
-              {% elsif block.settings.fallback_links == 'categories' %}
-                <ul class="footer-menu__list list-unstyled">
-                  <li><a href="{{ routes.all_products_collection_url }}" class="footer-link">Engines</a></li>
-                  <li><a href="{{ routes.all_products_collection_url }}" class="footer-link">Transmissions</a></li>
-                  <li><a href="{{ routes.all_products_collection_url }}" class="footer-link">Accessories</a></li>
-                  <li><a href="{{ routes.all_products_collection_url }}" class="footer-link">Front Clips</a></li>
-                  <li><a href="{{ routes.all_products_collection_url }}" class="footer-link">Cars</a></li>
-                </ul>
-              {% endif %}
+              <details class="footer-menu__accordion" open>
+                <summary class="footer-title footer-menu__summary">
+                  <span>{{ block.settings.heading | default: 'Footer menu' }}</span>
+                  <span class="footer-menu__icon" aria-hidden="true"></span>
+                </summary>
+
+                {% if block.settings.menu != blank and block.settings.menu.links.size > 0 %}
+                  <ul class="footer-menu__list list-unstyled">
+                    {% for link in block.settings.menu.links %}
+                      <li><a href="{{ link.url }}" class="footer-link{% if link.active %} footer-link--active{% endif %}">{{ link.title | escape }}</a></li>
+                    {% endfor %}
+                  </ul>
+                {% elsif block.settings.fallback_links == 'quick_links' %}
+                  <ul class="footer-menu__list list-unstyled">
+                    <li><a href="{{ routes.root_url }}" class="footer-link">Home</a></li>
+                    <li><a href="{{ routes.all_products_collection_url }}" class="footer-link">Shop</a></li>
+                    <li><a href="/pages/about-us" class="footer-link">About Us</a></li>
+                    <li><a href="/pages/contact" class="footer-link">Contact</a></li>
+                  </ul>
+                {% elsif block.settings.fallback_links == 'policies' %}
+                  <ul class="footer-menu__list list-unstyled">
+                    <li><a href="/policies/terms-of-service" class="footer-link">Terms & Conditions</a></li>
+                    <li><a href="/policies/privacy-policy" class="footer-link">Privacy Policy</a></li>
+                    <li><a href="/policies/shipping-policy" class="footer-link">Shipping Policy</a></li>
+                    <li><a href="/policies/refund-policy" class="footer-link">Return Policy</a></li>
+                  </ul>
+                {% elsif block.settings.fallback_links == 'categories' %}
+                  <ul class="footer-menu__list list-unstyled">
+                    <li><a href="{{ routes.all_products_collection_url }}" class="footer-link">Engines</a></li>
+                    <li><a href="{{ routes.all_products_collection_url }}" class="footer-link">Transmissions</a></li>
+                    <li><a href="{{ routes.all_products_collection_url }}" class="footer-link">Accessories</a></li>
+                    <li><a href="{{ routes.all_products_collection_url }}" class="footer-link">Front Clips</a></li>
+                    <li><a href="{{ routes.all_products_collection_url }}" class="footer-link">Cars</a></li>
+                  </ul>
+                {% endif %}
+              </details>
             </div>
 
           {% when 'contact' %}
@@ -151,6 +155,110 @@
     </div>
   </div>
 </footer>
+
+<script>
+  (() => {
+    const footer = document.currentScript.previousElementSibling;
+    if (!footer || footer.dataset.footerAccordionReady === 'true') return;
+
+    footer.dataset.footerAccordionReady = 'true';
+
+    const mediaQuery = window.matchMedia('(max-width: 749px)');
+    const accordions = Array.from(footer.querySelectorAll('.footer-menu__accordion'));
+
+    const syncAccordions = () => {
+      accordions.forEach((details) => {
+        const summary = details.querySelector('.footer-menu__summary');
+        const list = details.querySelector('.footer-menu__list');
+        if (!summary || !list) return;
+
+        if (mediaQuery.matches) {
+          details.open = false;
+          summary.setAttribute('role', 'button');
+          summary.removeAttribute('tabindex');
+          summary.setAttribute('aria-expanded', 'false');
+          list.style.maxHeight = '0px';
+        } else {
+          details.open = true;
+          summary.removeAttribute('role');
+          summary.setAttribute('tabindex', '-1');
+          summary.setAttribute('aria-expanded', 'true');
+          list.style.maxHeight = '';
+        }
+      });
+    };
+
+    const openAccordion = (details) => {
+      const summary = details.querySelector('.footer-menu__summary');
+      const list = details.querySelector('.footer-menu__list');
+      if (!summary || !list) return;
+
+      details.open = true;
+      summary.setAttribute('aria-expanded', 'true');
+      list.style.maxHeight = '0px';
+      requestAnimationFrame(() => {
+        list.style.maxHeight = `${list.scrollHeight}px`;
+      });
+    };
+
+    const closeAccordion = (details) => {
+      const summary = details.querySelector('.footer-menu__summary');
+      const list = details.querySelector('.footer-menu__list');
+      if (!summary || !list) return;
+
+      summary.setAttribute('aria-expanded', 'false');
+      list.style.maxHeight = `${list.scrollHeight}px`;
+      requestAnimationFrame(() => {
+        list.style.maxHeight = '0px';
+      });
+
+      list.addEventListener(
+        'transitionend',
+        () => {
+          if (mediaQuery.matches && summary.getAttribute('aria-expanded') === 'false') {
+            details.open = false;
+          }
+        },
+        { once: true }
+      );
+    };
+
+    accordions.forEach((details) => {
+      const summary = details.querySelector('.footer-menu__summary');
+      const list = details.querySelector('.footer-menu__list');
+      if (!summary || !list) return;
+
+      summary.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        if (!mediaQuery.matches) {
+          details.open = true;
+          summary.setAttribute('aria-expanded', 'true');
+          return;
+        }
+
+        if (summary.getAttribute('aria-expanded') === 'true') {
+          closeAccordion(details);
+        } else {
+          openAccordion(details);
+        }
+      });
+
+      list.addEventListener('transitionend', () => {
+        if (mediaQuery.matches && details.open && summary.getAttribute('aria-expanded') === 'true') {
+          list.style.maxHeight = `${list.scrollHeight}px`;
+        }
+      });
+    });
+
+    syncAccordions();
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener('change', syncAccordions);
+    } else {
+      mediaQuery.addListener(syncAccordions);
+    }
+  })();
+</script>
 
 {% schema %}
 {
