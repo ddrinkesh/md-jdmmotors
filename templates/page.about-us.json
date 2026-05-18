@@ -1,0 +1,72 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "inner_banner_Fkxnjh": {
+      "type": "inner-banner",
+      "name": "Inner Banner",
+      "settings": {
+        "image": "shopify://shop_images/banner-main_1.jpg",
+        "apply_overlay": "none",
+        "background": "#000000",
+        "image_overlay_opacity": 0,
+        "heading": "About Us",
+        "breadcrumb": true,
+        "text": "",
+        "button_label": "",
+        "button_link": "",
+        "button_style_secondary": false,
+        "color_scheme": "scheme-4"
+      }
+    },
+    "custom_image_with_text_KnBc7N": {
+      "type": "custom-image-with-text",
+      "name": "Image With Text List",
+      "settings": {
+        "color_scheme": "",
+        "image": "shopify://shop_images/image_1.png",
+        "layout": "image_first",
+        "mobile_layout": "image_first",
+        "hide_img_on_mobile": false,
+        "heading": "About <strong>Us</strong>",
+        "show_h1": false,
+        "heading_size": "h2",
+        "text": "<p>We are a <strong>physical store</strong> located in <strong>Beltsville, Maryland!</strong></p><p>We specialize in JDM parts, engines, transmissions, Rhd Car, accessories, and more.</p><p>We do installation, we got 3 lifts to better serve our customers by installing the engines & Transmissions by our certified mechanics.</p><p>What is JDM you ask? JDM stands for Japanese Domestic Market. What it refers to are cars and parts that were produced for that market and not any other. Please feel free to send us a message regarding anything you see on the site and we'll be happy to discuss the item with you. Any cars you see can only be purchased this way, and it's first come first serve!</p>",
+        "info_text": "- MD JDM Motors Team",
+        "button_label": "",
+        "button_link": "",
+        "button_style_secondary": false,
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_style_secondary_2": false,
+        "content_alignment": "center",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "padding_top_mobi": 40,
+        "padding_bottom_mobi": 40
+      }
+    }
+  },
+  "order": [
+    "main",
+    "inner_banner_Fkxnjh",
+    "custom_image_with_text_KnBc7N"
+  ]
+}
