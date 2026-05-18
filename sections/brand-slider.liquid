@@ -31,19 +31,22 @@
   "slidesPerView": 2,
   "spaceBetween": {{ section.settings.space_between_slide }},
   "loop": true,
-  "speed": {{ section.settings.slide_speed }},
+  "speed": {{ section.settings.autoplay_speed }},
+  "allowTouchMove": false,
+
+  {% if section.settings.autoplay %}
+  "autoplay": {
+    "delay": 0,
+    "disableOnInteraction": false,
+    "pauseOnMouseEnter": false,
+    "reverseDirection": false
+  },
+  {% endif %}
 
   {% if section.settings.show_pagination %}
   "pagination": {
     "el": "#shopify-section-{{ section.id }} .swiper-pagination",
     "clickable": true
-  },
-  {% endif %}
-
-  {% if section.settings.autoplay %}
-  "autoplay": {
-    "delay": {{ section.settings.autoplay_speed }},
-    "disableOnInteraction": false
   },
   {% endif %}
 
@@ -261,7 +264,7 @@
       "type": "checkbox",
       "id": "autoplay",
       "default": true,
-      "label": "Enable Autoplay"
+      "label": "Enable marquee animation"
     },
     {
       "type": "range",
@@ -269,17 +272,9 @@
       "min": 2000,
       "max": 9000,
       "step": 500,
-      "label": "Autoplay Speed (ms)",
+      "label": "Marquee speed (ms)",
+      "info": "Higher values move the logos slower.",
       "default": 4000
-    },
-    {
-      "type": "range",
-      "id": "slide_speed",
-      "min": 300,
-      "max": 2000,
-      "step": 100,
-      "label": "Transition Speed (ms)",
-      "default": 600
     },
     {
       "type": "checkbox",

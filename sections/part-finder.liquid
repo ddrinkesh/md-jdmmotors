@@ -28,14 +28,11 @@
 
     {% if section.settings.heading != blank or section.settings.heading_highlight != blank %}
       <div class="sec-head text-align-{{ section.settings.text_align }} {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-        <h2 class="sec-title">
-          {%- if section.settings.heading != blank -%}
-            <span class="sec-title__main">{{ section.settings.heading }}</span>
-          {%- endif -%}
-          {%- if section.settings.heading_highlight != blank -%}
-            <span class="sec-title__highlight">{{ section.settings.heading_highlight }}</span>
-          {%- endif -%}
-        </h2>
+        
+        {% if section.settings.heading != blank %}
+          <h2 class="sec-title">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+
       </div>
     {% endif %}
 
@@ -90,19 +87,13 @@
     {
       "type": "header",
       "content": "Heading"
-    },
+    },    
     {
       "type": "inline_richtext",
       "id": "heading",
-      "label": "Heading",
-      "default": "Part"
-    },
-    {
-      "type": "inline_richtext",
-      "id": "heading_highlight",
-      "label": "Heading Highlight (Red)",
-      "default": "Finder"
-    },
+      "label": "Heading",          
+      "info": "Highlighted text should be added in bold format, and the bold text will appear in red color."
+    },  
     {
       "type": "select",
       "id": "text_align",
@@ -160,7 +151,7 @@
       "id": "padding_top",
       "min": 0,
       "max": 100,
-      "step": 4,
+      "step": 2,
       "unit": "px",
       "label": "Padding Top",
       "default": 36
@@ -170,7 +161,7 @@
       "id": "padding_bottom",
       "min": 0,
       "max": 100,
-      "step": 4,
+      "step": 2,
       "unit": "px",
       "label": "Padding Bottom",
       "default": 36
@@ -180,7 +171,7 @@
       "id": "margin_top",
       "min": 0,
       "max": 100,
-      "step": 4,
+      "step": 2,
       "unit": "px",
       "label": "Margin Top",
       "default": 0
@@ -190,7 +181,7 @@
       "id": "margin_bottom",
       "min": 0,
       "max": 100,
-      "step": 4,
+      "step": 2,
       "unit": "px",
       "label": "Margin Bottom",
       "default": 0
