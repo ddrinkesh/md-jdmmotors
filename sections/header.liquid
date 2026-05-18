@@ -247,7 +247,12 @@
           </localization-form>
         {%- endif -%}
       </div>
-      {% render 'header-search', input_id: 'Search-In-Modal' %}
+
+
+      {% render 'header-search', input_id: 'Search-In-Modal', class:'large-up-hide medium-hide' %}
+      <div class="small-hide header-search-wrapper">
+        {% render 'search-box'%}
+      </div>  
 
       {%- if shop.customer_accounts_enabled -%}
         <a
@@ -286,11 +291,7 @@
       {%- endfor -%}
 
       <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
-        {% if cart == empty %}
-          <span class="svg-wrapper">{{ 'icon-cart-empty.svg' | inline_asset_content }}</span>
-        {% else %}
-          <span class="svg-wrapper">{{ 'icon-cart.svg' | inline_asset_content }}</span>
-        {% endif %}
+        <span class="svg-wrapper">{{ 'icon-cart.svg' | inline_asset_content }}</span>
         <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
         {%- if cart != empty -%}
           <div class="cart-count-bubble">
@@ -469,7 +470,7 @@
 {% schema %}
 {
   "name": "t:sections.header.name",
-  "class": "section-header",
+  "class": "section-header site-header-wrapper",
   "max_blocks": 3,
   "settings": [
     {

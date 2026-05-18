@@ -28,12 +28,11 @@
 
 @media screen and (max-width: 989px) {
 .faq-main .faq-inner { gap: 40px; }
-.faq-main .sec-title { font-size: 30px; }
+ 
 }
 
 @media screen and (max-width: 749px) {
-.faq-main .faq-inner { grid-template-columns: 1fr; gap: 24px; }
-.faq-main .sec-title { font-size: 26px; }
+.faq-main .faq-inner { grid-template-columns: 1fr; gap: 24px; } 
 .faq-main .faq-item { padding: 18px 0; }
 .faq-main .faq-item__question { font-size: 16px; }
 .faq-main .faq-item__toggle { width: 26px; height: 26px; }
