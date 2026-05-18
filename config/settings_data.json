@@ -43,7 +43,7 @@
     "inputs_shadow_horizontal_offset": 0,
     "inputs_shadow_vertical_offset": 4,
     "inputs_shadow_blur": 5,
-    "card_style": "standard",
+    "card_style": "card",
     "card_image_padding": 0,
     "card_text_alignment": "left",
     "card_color_scheme": "scheme-2",
@@ -148,55 +148,126 @@
         "settings": {
           "background": "#ffffff",
           "background_gradient": "",
-          "text": "#121212",
+          "title": "#121212",
+          "text": "#414754",
+          "shadow": "#121212",
+          "link": "#121212",
+          "link_hover": "#121212",
           "button": "#121212",
           "button_label": "#ffffff",
           "secondary_button_label": "#121212",
-          "shadow": "#121212"
+          "button_hover_color": "#ffffff",
+          "button_hover": "#121212",
+          "card_bg": "#121212",
+          "card_title": "#121212",
+          "card_text": "#121212",
+          "card_link": "#121212",
+          "card_link_hover": "#121212"
         }
       },
       "scheme-2": {
         "settings": {
-          "background": "#f3f3f3",
+          "background": "#d9d9d9",
           "background_gradient": "",
-          "text": "#121212",
-          "button": "#121212",
-          "button_label": "#f3f3f3",
+          "title": "#000000",
+          "text": "#000000",
+          "shadow": "#121212",
+          "link": "#121212",
+          "link_hover": "#121212",
+          "button": "#cd1719",
+          "button_label": "#ffffff",
           "secondary_button_label": "#121212",
-          "shadow": "#121212"
+          "button_hover_color": "#ffffff",
+          "button_hover": "#000000",
+          "card_bg": "#121212",
+          "card_title": "#121212",
+          "card_text": "#121212",
+          "card_link": "#121212",
+          "card_link_hover": "#121212"
         }
       },
       "scheme-3": {
         "settings": {
-          "background": "#242833",
+          "background": "#f7f7f7",
           "background_gradient": "",
-          "text": "#ffffff",
-          "button": "#ffffff",
-          "button_label": "#000000",
+          "title": "#121212",
+          "text": "#000000",
+          "shadow": "#121212",
+          "link": "#121212",
+          "link_hover": "#cd1719",
+          "button": "#cd1719",
+          "button_label": "#ffffff",
           "secondary_button_label": "#ffffff",
-          "shadow": "#121212"
+          "button_hover_color": "#ffffff",
+          "button_hover": "#000000",
+          "card_bg": "#f7f7f7",
+          "card_title": "#121212",
+          "card_text": "#121212",
+          "card_link": "#121212",
+          "card_link_hover": "#121212"
         }
       },
       "scheme-4": {
         "settings": {
-          "background": "#121212",
+          "background": "#261c1c",
           "background_gradient": "",
+          "title": "#ffffff",
           "text": "#ffffff",
+          "shadow": "#121212",
+          "link": "#ffffff",
+          "link_hover": "#cd1719",
           "button": "#ffffff",
           "button_label": "#121212",
           "secondary_button_label": "#ffffff",
-          "shadow": "#121212"
+          "button_hover_color": "#ffffff",
+          "button_hover": "#121212",
+          "card_bg": "#121212",
+          "card_title": "#121212",
+          "card_text": "#121212",
+          "card_link": "#121212",
+          "card_link_hover": "#121212"
         }
       },
       "scheme-5": {
         "settings": {
           "background": "#334fb4",
           "background_gradient": "",
+          "title": "#121212",
           "text": "#ffffff",
+          "shadow": "#121212",
+          "link": "#121212",
+          "link_hover": "#121212",
           "button": "#ffffff",
           "button_label": "#334fb4",
           "secondary_button_label": "#ffffff",
-          "shadow": "#121212"
+          "button_hover_color": "#ffffff",
+          "button_hover": "#121212",
+          "card_bg": "#121212",
+          "card_title": "#121212",
+          "card_text": "#121212",
+          "card_link": "#121212",
+          "card_link_hover": "#121212"
+        }
+      },
+      "scheme-5525b01c-517a-48ec-879c-2d9012969840": {
+        "settings": {
+          "background": "rgba(0,0,0,0)",
+          "background_gradient": "",
+          "title": "#121212",
+          "text": "#121212",
+          "shadow": "#121212",
+          "link": "#121212",
+          "link_hover": "#121212",
+          "button": "#cd1719",
+          "button_label": "#ffffff",
+          "secondary_button_label": "#cd1719",
+          "button_hover_color": "#cd1719",
+          "button_hover": "#ffffff",
+          "card_bg": "#121212",
+          "card_title": "#121212",
+          "card_text": "#121212",
+          "card_link": "#121212",
+          "card_link_hover": "#121212"
         }
       }
     }
