@@ -29,7 +29,9 @@
 <div class="section-wrapper section-{{ section.id }}-bg-box color-{{ section.settings.color_scheme }} gradient">  
 
    <div class="banner-media">
-    {%if section.settings.image != blank %}
+    {% if template contains 'collection' and collection.image != blank %}
+      <img src="{{ collection.image | image_url: nil }}" alt="{{ collection.image.alt }}" width="{{ collection.image.width }}" height="{{ collection.image.height }}" loading="lazy" />
+    {% elsif section.settings.image != blank %}
      {% if section.settings.mob_image != blank %}
         <img src="{{ section.settings.image | image_url: nil }}"  alt="{{ section.settings.image.alt }}" width="{{ section.settings.image.width }}" height="{{ section.settings.image.height }}" loading="lazy" class="desk-img small-hide"/>
         <img src="{{ section.settings.mob_image | image_url: nil }}" alt="{{ section.settings.image.alt }}" width="{{ section.settings.mob_image.width }}" height="{{ section.settings.mob_image.height }}" loading="lazy" class="mobi-img medium-hide large-up-hide"/>

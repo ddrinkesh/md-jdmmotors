@@ -11,7 +11,76 @@ class FacetFiltersForm extends HTMLElement {
     facetForm.addEventListener('input', this.debouncedOnSubmit.bind(this));
 
     const facetWrapper = this.querySelector('#FacetsWrapperDesktop');
-    if (facetWrapper) facetWrapper.addEventListener('keyup', onKeyUpEscape);
+    if (facetWrapper) {
+      this.keepVerticalFacetsOpen();
+      facetWrapper.addEventListener('click', this.onVerticalFacetSummaryClick.bind(this));
+      facetWrapper.addEventListener('keyup', this.onVerticalFacetKeyUp.bind(this));
+    }
+
+    const mobileFacetWrapper = this.querySelector('#FacetsWrapperMobile');
+    if (mobileFacetWrapper) {
+      this.keepMobileFacetsOpen();
+      mobileFacetWrapper.addEventListener('click', this.onMobileFacetSummaryClick.bind(this), true);
+      mobileFacetWrapper.addEventListener('keyup', this.onMobileFacetKeyUp.bind(this));
+      this.closest('menu-drawer')
+        ?.querySelector('.mobile-facets__disclosure > summary')
+        ?.addEventListener('click', () => setTimeout(() => this.keepMobileFacetsOpen()));
+    }
+  }
+
+  keepVerticalFacetsOpen() {
+    this.querySelectorAll('.facets__disclosure-vertical').forEach((details) => {
+      details.setAttribute('open', '');
+      const summary = details.querySelector('.facets__summary');
+      if (summary) summary.setAttribute('aria-expanded', 'true');
+    });
+  }
+
+  onVerticalFacetSummaryClick(event) {
+    const summary = event.target.closest('.facets__disclosure-vertical > .facets__summary');
+    if (!summary) return;
+
+    event.preventDefault();
+    summary.closest('.facets__disclosure-vertical').setAttribute('open', '');
+    summary.setAttribute('aria-expanded', 'true');
+  }
+
+  onVerticalFacetKeyUp(event) {
+    const verticalFacet = event.target.closest('.facets__disclosure-vertical');
+
+    if (event.code.toUpperCase() === 'ESCAPE' && verticalFacet) {
+      const summary = verticalFacet.querySelector('.facets__summary');
+      if (summary) summary.setAttribute('aria-expanded', 'true');
+      this.keepVerticalFacetsOpen();
+      return;
+    }
+
+    onKeyUpEscape(event);
+  }
+
+  keepMobileFacetsOpen() {
+    this.querySelectorAll('.mobile-facets__details').forEach((details) => {
+      details.setAttribute('open', '');
+      details.classList.remove('menu-opening');
+      const summary = details.querySelector('.mobile-facets__summary');
+      if (summary) summary.setAttribute('aria-expanded', 'true');
+    });
+  }
+
+  onMobileFacetSummaryClick(event) {
+    const summary = event.target.closest('.mobile-facets__details > .mobile-facets__summary');
+    if (!summary) return;
+
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    summary.closest('.mobile-facets__details').setAttribute('open', '');
+    summary.setAttribute('aria-expanded', 'true');
+  }
+
+  onMobileFacetKeyUp(event) {
+    if (event.code.toUpperCase() !== 'ESCAPE' || !event.target.closest('.mobile-facets__details')) return;
+
+    this.keepMobileFacetsOpen();
   }
 
   static setListeners() {
@@ -155,6 +224,10 @@ class FacetFiltersForm extends HTMLElement {
 
     FacetFiltersForm.renderActiveFacets(parsedHTML);
     FacetFiltersForm.renderAdditionalElements(parsedHTML);
+    document.querySelectorAll('facet-filters-form').forEach((form) => {
+      form.keepVerticalFacetsOpen();
+      form.keepMobileFacetsOpen();
+    });
 
     if (countsToRender) {
       const closestJSFilterID = event.target.closest('.js-filter').id;
@@ -165,7 +238,7 @@ class FacetFiltersForm extends HTMLElement {
 
         const newFacetDetailsElement = document.getElementById(closestJSFilterID);
         const newElementSelector = newFacetDetailsElement.classList.contains('mobile-facets__details')
-          ? `.mobile-facets__close-button`
+          ? `.mobile-facets__summary`
           : `.facets__summary`;
         const newElementToActivate = newFacetDetailsElement.querySelector(newElementSelector);
 

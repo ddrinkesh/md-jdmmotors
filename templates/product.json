@@ -193,11 +193,131 @@
         "padding_top_mobi": 25,
         "padding_bottom_mobi": 25
       }
+    },
+    "faq_9FB3yp": {
+      "type": "faq",
+      "blocks": {
+        "faq_qUFabJ": {
+          "type": "faq",
+          "settings": {
+            "question": "How do I purchase a car?",
+            "answer": "<p>Please call us or send us a message and we will work that out directly with you. You may be able to reserve a vehicle this way, but it is on a first-come-first-serve basis.</p>",
+            "open_by_default": true
+          }
+        },
+        "faq_zTUeQb": {
+          "type": "faq",
+          "settings": {
+            "question": "I can't find what I'm looking for.",
+            "answer": "<p>Please call us or send us a message and we will work that out directly with you. You may be able to reserve a vehicle this way, but it is on a first-come-first-serve basis.</p>",
+            "open_by_default": false
+          }
+        },
+        "faq_VFdHyg": {
+          "type": "faq",
+          "settings": {
+            "question": "What happens if I can't pay online?",
+            "answer": "<p>Please call us or send us a message and we will work that out directly with you. You may be able to reserve a vehicle this way, but it is on a first-come-first-serve basis.</p>",
+            "open_by_default": false
+          }
+        },
+        "faq_ebtURh": {
+          "type": "faq",
+          "settings": {
+            "question": "How do I reserve something? How does it work?",
+            "answer": "<p>Please call us or send us a message and we will work that out directly with you. You may be able to reserve a vehicle this way, but it is on a first-come-first-serve basis.</p>",
+            "open_by_default": false
+          }
+        }
+      },
+      "block_order": [
+        "faq_qUFabJ",
+        "faq_zTUeQb",
+        "faq_VFdHyg",
+        "faq_ebtURh"
+      ],
+      "name": "FAQ",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "heading": "Frequently Asked<strong> Questions.</strong>",
+        "sec_text": "",
+        "text_align": "left",
+        "layout": "two_column",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "padding_top_mobi": 40,
+        "padding_bottom_mobi": 40
+      }
+    },
+    "contact_us_6Lrz9w": {
+      "type": "contact-us",
+      "blocks": {
+        "info_A3fNhG": {
+          "type": "info",
+          "settings": {
+            "icon": "<svg width=\"30\" height=\"22\" viewbox=\"0 0 30 22\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M29.7357 1.50709L20.6374 10.5469L29.7357 19.5867C29.9002 19.2429 30 18.8629 30 18.457V2.63672C30 2.23084 29.9002 1.85086 29.7357 1.50709ZM27.3633 0H2.63672C2.23084 0 1.85086 0.0997853 1.50709 0.264258L13.1358 11.8344C14.164 12.8626 15.836 12.8626 16.8642 11.8344L28.4929 0.264258C28.1491 0.0997853 27.7692 0 27.3633 0ZM0.264258 1.50709C0.0997852 1.85086 0 2.23084 0 2.63672V18.457C0 18.8629 0.0997852 19.243 0.264258 19.5867L9.36264 10.5469L0.264258 1.50709Z\" fill=\"#CD1719\"></path>\n<path d=\"M19.3943 11.7896L18.1068 13.077C16.3936 14.7903 13.6059 14.7903 11.8926 13.077L10.6052 11.7896L1.50684 20.8293C1.85061 20.9938 2.23059 21.0936 2.63646 21.0936H27.363C27.7689 21.0936 28.1489 20.9938 28.4927 20.8293L19.3943 11.7896Z\" fill=\"#CD1719\"></path>\n</svg>",
+            "icon_bg": "#fdecec",
+            "label": "Email",
+            "value": "<p>mdjdmmotors@gmail.com</p>"
+          }
+        },
+        "info_YQXYxP": {
+          "type": "info",
+          "settings": {
+            "icon": "<svg width=\"30\" height=\"30\" viewbox=\"0 0 30 30\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M29.152 22.017L24.9654 17.8304C23.4702 16.3352 20.9283 16.9333 20.3302 18.877C19.8817 20.2228 18.3865 20.9704 17.0408 20.6713C14.0504 19.9237 10.0133 16.0361 9.26568 12.8962C8.81712 11.5504 9.71424 10.0552 11.0599 9.60673C13.0037 9.00864 13.6018 6.46679 12.1066 4.97158L7.91999 0.784986C6.72382 -0.261662 4.92957 -0.261662 3.88292 0.784986L1.04202 3.62589C-1.79888 6.61631 1.34107 14.5409 8.36856 21.5684C15.396 28.5959 23.3207 31.8854 26.3111 28.8949L29.152 26.054C30.1987 24.8579 30.1987 23.0636 29.152 22.017Z\" fill=\"#CD1719\"></path>\n</svg>",
+            "icon_bg": "#fdecec",
+            "label": "Phone",
+            "value": "<p>(301) 869-2400<br/>(301) 793-2400</p>"
+          }
+        },
+        "info_EQjhX8": {
+          "type": "info",
+          "settings": {
+            "icon": "<svg width=\"27\" height=\"30\" viewbox=\"0 0 27 30\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M13.1836 0C7.91221 0 3.51562 4.24629 3.51562 9.66797C3.51562 11.7306 4.13543 13.5698 5.32494 15.2933L12.4437 26.4015C12.7891 26.9415 13.5788 26.9405 13.9235 26.4015L21.0731 15.2555C22.237 13.6102 22.8516 11.6781 22.8516 9.66797C22.8516 4.33705 18.5145 0 13.1836 0ZM13.1836 14.0625C10.7606 14.0625 8.78906 12.091 8.78906 9.66797C8.78906 7.24494 10.7606 5.27344 13.1836 5.27344C15.6066 5.27344 17.5781 7.24494 17.5781 9.66797C17.5781 12.091 15.6066 14.0625 13.1836 14.0625Z\" fill=\"#CD1719\"></path>\n<path d=\"M20.0545 20.1968L15.6289 27.1159C14.4833 28.902 11.8775 28.8961 10.7374 27.1176L6.30457 20.1986C2.40434 21.1004 0 22.7523 0 24.7264C0 28.1519 6.79266 29.9998 13.1836 29.9998C19.5745 29.9998 26.3672 28.1519 26.3672 24.7264C26.3672 22.7509 23.9595 21.0981 20.0545 20.1968Z\" fill=\"#CD1719\"></path>\n</svg>",
+            "icon_bg": "#fdecec",
+            "label": "Address",
+            "value": "<p>5021 Herzel Place, Beltsville, MD 20705, USA</p>"
+          }
+        }
+      },
+      "block_order": [
+        "info_A3fNhG",
+        "info_YQXYxP",
+        "info_EQjhX8"
+      ],
+      "name": "Contact Us",
+      "settings": {
+        "color_scheme": "scheme-3",
+        "info_heading": "Contact <strong>us</strong>",
+        "info_text": "<p>Please fill out the form to get in touch with us. We look forward to hearing from you.</p>",
+        "text_align": "left",
+        "form_heading": "Send us a <strong>message</strong>",
+        "label_name": "Full Name",
+        "placeholder_name": "Enter Full Name",
+        "label_email": "Email Address",
+        "placeholder_email": "Enter Email Address",
+        "label_phone": "Phone Number",
+        "placeholder_phone": "Enter Phone Number",
+        "label_message": "Message",
+        "placeholder_message": "Enter message",
+        "button_label": "SUBMIT",
+        "success_message": "Thanks for contacting us. We will get back to you soon.",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "padding_top_mobi": 40,
+        "padding_bottom_mobi": 0
+      }
     }
   },
   "order": [
     "breadcrumbs_977RYb",
     "main",
-    "related-products"
+    "related-products",
+    "faq_9FB3yp",
+    "contact_us_6Lrz9w"
   ]
 }

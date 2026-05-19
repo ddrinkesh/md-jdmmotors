@@ -15,6 +15,7 @@
 .inner-banner-wrapper .breadcrumbs-wrapper { margin-top: 15px; }
 
 .inner-banner-wrapper .breadcrumbs__list .breadcrumbs__item { font-size: 18px; line-height: 22px;font-weight: 400; }
+.inner-banner-wrapper .breadcrumbs__list .breadcrumbs__item * { color: rgba(var(--color-foreground),1) !important; }
 
 
 @media screen and (max-width: 749px){
