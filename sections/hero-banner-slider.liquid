@@ -54,7 +54,7 @@
 {%- endcapture -%}
 
 <div class="section-{{ section.id }} section-{{ section.id }}-padding color-{{ section.settings.color_scheme }} gradient section-main-box hero-banner-slider-main">
-  <div class="swiper-main-wrapper">
+  <div class="swiper-main-wrapper {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
     <div class="swiper hero-banner-swiper" data-slider-options='{ {{ slider_options | strip_newlines | strip }} }'>
       <div class="swiper-wrapper">
         {% for block in section.blocks %}

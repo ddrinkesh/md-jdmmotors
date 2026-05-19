@@ -39,7 +39,7 @@
       {% endif %}
 
       {% if section.blocks.size > 0 %}
-        <div class="faq-list">
+        <div class="faq-list {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
           {% for block in section.blocks %}
             <details class="faq-item" {% if block.settings.open_by_default %}open{% endif %} {{ block.shopify_attributes }}>
               <summary class="faq-item__summary">

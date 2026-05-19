@@ -162,7 +162,7 @@
               settings.logo
               | image_url: width: 600
               | image_tag:
-                class: 'header__heading-logo motion-reduce',
+                class: 'header__heading-logo motion-reduce logo--light',
                 widths: widths,
                 height: logo_height,
                 width: settings.logo_width,
@@ -170,6 +170,21 @@
                 sizes: sizes,
                 preload: true
             }}
+
+            {% if settings.logo_dark != blank %}
+              {{
+                settings.logo_dark
+                | image_url: width: 600
+                | image_tag:
+                  class: 'header__heading-logo motion-reduce logo--dark',
+                  widths: widths,
+                  height: logo_height,
+                  width: settings.logo_width,
+                  alt: logo_alt,
+                  sizes: sizes,
+                  preload: true
+              }}
+            {% endif %}
           </div>
         {%- else -%}
           <span class="h2">{{ shop.name }}</span>
