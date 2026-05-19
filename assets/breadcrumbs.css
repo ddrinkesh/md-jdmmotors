@@ -7,6 +7,8 @@
 .breadcrumbs__list .breadcrumbs__item a:hover { opacity: .7; }
 
 .breadcrumbs__list .breadcrumbs__item .current_page { font-weight: 600; }
+.breadcrumbs__list .breadcrumbs__item:first-child .breadcrumbs__link { color: #414754; }
+.breadcrumbs__list .breadcrumbs__item .breadcrumbs__link { color: #121212; }
 
 @media screen and (max-width: 749px){
   .breadcrumbs__list .breadcrumbs__item { font-size: 15px; line-height: 1.2; }
