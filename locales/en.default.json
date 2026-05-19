@@ -188,10 +188,10 @@
       "filter_and_operator_subtitle": "Match all",
       "apply": "Apply",
       "clear": "Clear",
-      "clear_all": "Remove all",
+      "clear_all": "Clear All",
       "from": "From",
       "filter_and_sort": "Filter and sort",
-      "filter_by_label": "Filter:",
+      "filter_by_label": "Filters",
       "filter_button": "Filter",
       "filters_selected": {
         "one": "{{ count }} selected",
@@ -206,8 +206,8 @@
         "other": "{{ product_count }} of {{ count }} products"
       },
       "product_count_simple": {
-        "one": "{{ count }} product",
-        "other": "{{ count }} products"
+        "one": "Showing {{ count }} Result",
+        "other": "Showing {{ count }} Results"
       },
       "reset": "Reset",
       "sort_button": "Sort",
