@@ -46,9 +46,9 @@
           {%- endif -%}
 
           {%- if block.settings.link != blank -%}
-            <a href="{{ block.settings.link }}" class="{{ card_class }}" {{ block.shopify_attributes }} aria-label="{{ block.settings.title | default: 'Category' | strip_html | escape }}">
+            <a href="{{ block.settings.link }} {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}" class="{{ card_class }}" style="--animation-order: {{ forloop.index }};" {{ block.shopify_attributes }} aria-label="{{ block.settings.title | default: 'Category' | strip_html | escape }}">
           {%- else -%}
-            <div class="{{ card_class }}" {{ block.shopify_attributes }}>
+            <div class="{{ card_class }} {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}" style="--animation-order: {{ forloop.index }};" {{ block.shopify_attributes }}>
           {%- endif -%}
 
             <div class="shop-cat-card__media">

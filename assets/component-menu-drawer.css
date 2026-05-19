@@ -99,10 +99,15 @@ details[open].menu-opening > .menu-drawer__submenu {
 }
 
 .menu-drawer__menu-item {
-  padding: 1.1rem 3rem;
+  padding: 1.6rem 3rem;
   text-decoration: none;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
 }
+
+.menu-drawer__menu-item:not(:last-child) { 
+  border-bottom: 1px solid rgba(var(--color-foreground), 0.1);
+}
+
 
 .menu-drawer summary.menu-drawer__menu-item {
   padding-right: 5.2rem;

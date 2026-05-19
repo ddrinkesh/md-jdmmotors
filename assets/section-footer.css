@@ -1,5 +1,4 @@
 .footer { border: 0; background: rgb(var(--color-background)); color: rgba(var(--color-foreground),1); line-height: 1; }
-.footer .page-width { max-width: 1440px; padding-left: 80px; padding-right: 80px; }
 
 .footer-main { display: flex; gap: 55px; align-items: start; }
 .footer-block { min-width: 0; }
