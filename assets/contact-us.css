@@ -15,6 +15,7 @@
 .contact-us-main .contact-us-info__label { margin: 0; font-size: 20px; line-height: 1.3; font-family: var(--font-heading-family); color: #292929; }
 .contact-us-main .contact-us-info__value { font-size: 16px; color: #414754; line-height: 1.5; }
 .contact-us-main .contact-us-info__value p { margin: 0; }
+.contact-us-main .contact-us-info__value p a { text-decoration: none; }
 
 .contact-us-main .contact-us-form { background: #fff; }
 .contact-us-main .contact-us-form .sec-title { color: #121212; }
