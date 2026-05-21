@@ -1,0 +1,124 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "inner_banner_brands": {
+      "type": "inner-banner",
+      "name": "Inner Banner",
+      "settings": {
+        "image": "shopify://shop_images/banner-main_1.jpg",
+        "apply_overlay": "none",
+        "background": "#000000",
+        "image_overlay_opacity": 0,
+        "heading": "Brands",
+        "breadcrumb": true,
+        "text": "",
+        "button_label": "",
+        "button_link": "",
+        "button_style_secondary": false,
+        "color_scheme": "scheme-4"
+      }
+    },
+    "brands_main_collection": {
+      "type": "brands-main-collection",
+      "blocks": {
+        "category_honda_engines": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/engine-1.jpg",
+            "title": "Engines",
+            "link": "/pages/honda-engines",
+            "show_in_sidebar": true,
+            "show_tile": true,
+            "featured_tile": true
+          }
+        },
+        "category_honda_transmissions": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/transmission-1.jpg",
+            "title": "Transmissions",
+            "link": "/pages/honda-transmissions",
+            "show_in_sidebar": true,
+            "show_tile": true,
+            "featured_tile": false
+          }
+        },
+        "category_honda_accessories": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/tire-1.jpg",
+            "title": "Accessories",
+            "link": "/pages/honda-accessories",
+            "show_in_sidebar": true,
+            "show_tile": true,
+            "featured_tile": false
+          }
+        },
+        "category_honda_front_clips": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/frontclips-1.jpg",
+            "title": "Front Clips",
+            "link": "/pages/honda-front-clips",
+            "show_in_sidebar": true,
+            "show_tile": true,
+            "featured_tile": false
+          }
+        },
+        "category_honda_cars": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/cars-1.jpg",
+            "title": "Cars",
+            "link": "/pages/honda-cars",
+            "show_in_sidebar": true,
+            "show_tile": true,
+            "featured_tile": false
+          }
+        }
+      },
+      "block_order": [
+        "category_honda_engines",
+        "category_honda_transmissions",
+        "category_honda_accessories",
+        "category_honda_front_clips",
+        "category_honda_cars"
+      ],
+      "name": "Brands Main Collection",
+      "settings": {
+        "color_scheme": "background-1",
+        "heading": "",
+        "sec_text": "",
+        "text_align": "center",
+        "sidebar_heading": "Brands",
+        "padding_top": 60,
+        "padding_bottom": 80,
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "padding_top_mobi": 40,
+        "padding_bottom_mobi": 40
+      }
+    }
+  },
+  "order": [
+    "main",
+    "inner_banner_brands",
+    "brands_main_collection"
+  ]
+}
