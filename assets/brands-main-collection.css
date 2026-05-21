@@ -3,8 +3,8 @@
 .brands-main-collection-main .sec-title { margin: 0; line-height: 1.1; text-transform: none; }
 .brands-main-collection-main .sec-title span, .brands-main-collection-main .sec-title strong { color: #cd1719; }
 .brands-main-collection-main .sec-text { margin-top: 10px; }
-.brands-main-collection-main .brands-main-collection-layout { display: grid; grid-template-columns: 385px 1fr; gap: 16px; align-items: flex-start; }
-.brands-main-collection-main .brands-main-collection-sidebar { padding: 28px 22px; background: #ffffff; border-radius: 4px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.08); }
+.brands-main-collection-main .brands-main-collection-layout { display: grid; grid-template-columns: 320px 1fr; gap: 40px; align-items: flex-start; }
+.brands-main-collection-main .brands-main-collection-sidebar {  }
 .brands-main-collection-main .brands-main-collection-sidebar__title { margin: 0 0 24px; padding-bottom: 18px; border-bottom: 1px solid #e6e6e6; font-size: 18px; line-height: 1.2; font-weight: 500; color: #1f1f1f; }
 .brands-main-collection-main .brands-main-collection-menu { display: flex; flex-direction: column; gap: 14px; }
 .brands-main-collection-main .brands-main-collection-menu__item { overflow: hidden; border: 1px solid #dfdfdf; border-radius: 6px; background: #ffffff; }
