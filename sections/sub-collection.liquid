@@ -1,4 +1,4 @@
-{{ 'brands-main-collection.css' | asset_url | stylesheet_tag }}
+{{ 'sub-collection.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
   @media screen and (min-width: 750px) {
@@ -17,14 +17,22 @@
       padding-bottom: {{ section.settings.padding_bottom_mobi }}px;
     }
   }
-
 {%- endstyle -%}
 
 {%- liquid
+  assign sub_collection_metafield = collection.metafields.custom.sub_collections
+  assign sub_collections = sub_collection_metafield.value
   assign sidebar_menu = section.settings.sidebar_menu
+  assign image_ratio = '75%'
+
+  if section.settings.image_ratio == 'portrait'
+    assign image_ratio = '125%'
+  elsif section.settings.image_ratio == 'square'
+    assign image_ratio = '100%'
+  endif
 -%}
 
-<div class="section-{{ section.id }} section-{{ section.id }}-padding section-{{ section.id }}-margin color-{{ section.settings.color_scheme }} gradient section-main-box brands-main-collection-main">
+<div class="section-{{ section.id }} section-{{ section.id }}-padding section-{{ section.id }}-margin color-{{ section.settings.color_scheme }} gradient section-main-box sub-collection-main">
   <div class="page-width">
     {% if section.settings.heading != blank or section.settings.sec_text != blank %}
       <div class="sec-head text-align-{{ section.settings.text_align }} {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
@@ -37,7 +45,7 @@
       </div>
     {% endif %}
 
-    <div class="brands-main-collection-layout{% if sidebar_menu.links == blank %} brands-main-collection-layout--no-sidebar{% endif %}">
+    <div class="sub-collection-layout{% if sidebar_menu.links != blank %} sub-collection-layout--with-sidebar{% endif %}">
       {% if sidebar_menu.links != blank %}
         <aside class="brands-main-collection-sidebar" aria-label="{{ section.settings.sidebar_heading | default: 'Brands' | escape }}">
           {% if section.settings.sidebar_heading != blank %}
@@ -135,48 +143,46 @@
         </aside>
       {% endif %}
 
-      <div class="brands-main-collection-content">
-        {% for block in section.blocks %}
-          {% if block.type == 'category' and block.settings.show_tile %}
-            {%- liquid
-              assign category_collection = block.settings.collection
-              assign category_link = block.settings.link
-              assign category_title = block.settings.title
-              assign category_image = block.settings.image
-
-              if category_collection != blank
-                assign category_link = category_collection.url
-
-                if category_title == blank
-                  assign category_title = category_collection.title
-                endif
-
-                if category_image == blank
-                  assign category_image = category_collection.featured_image
-                endif
-              endif
-            -%}
-            <a
-              {% if category_link == blank %}
-                role="link" aria-disabled="true"
-              {% else %}
-                href="{{ category_link }}"
-              {% endif %}
-              class="brands-main-collection-tile{% if block.settings.featured_tile %} brands-main-collection-tile--featured{% endif %}"
-              {{ block.shopify_attributes }}
-            >
-              <span class="brands-main-collection-tile__media">
-                {% if category_image != blank %}
-                  {{ category_image | image_url: width: 1200 | image_tag: loading: 'lazy', class: 'brands-main-collection-tile__image', widths: '320, 480, 640, 800, 1000, 1200', sizes: '(min-width: 990px) 40vw, (min-width: 750px) 50vw, 100vw', alt: category_title }}
-                {% else %}
-                  {{ 'collection-apparel-1' | placeholder_svg_tag: 'placeholder-svg brands-main-collection-tile__image' }}
-                {% endif %}
-                <span class="brands-main-collection-tile__overlay" aria-hidden="true"></span>
-              </span>
-              <span class="brands-main-collection-tile__title">{{ category_title }}</span>
-            </a>
-          {% endif %}
-        {% endfor %}
+      <div class="sub-collection-content">
+        {% if sub_collections != blank %}
+          <ul class="sub-collection-list sub-collection-list--{{ section.settings.card_view }}" style="--sub-collection-columns-desktop: {{ section.settings.columns_desktop }}; --sub-collection-columns-mobile: {{ section.settings.columns_mobile }}; --sub-collection-image-ratio: {{ image_ratio }};" role="list">
+            {% for sub_collection in sub_collections %}
+              <li class="sub-collection-card {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}" {% if settings.animations_reveal_on_scroll %}data-cascade style="--animation-order: {{ forloop.index }};"{% endif %}>
+                <a href="{{ sub_collection.url }}" class="sub-collection-card__link color-{{ section.settings.card_color_scheme }} gradient">
+                  <span class="sub-collection-card__media">
+                    {% if sub_collection.featured_image != blank %}
+                      {{ sub_collection.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', class: 'sub-collection-card__image', widths: '300, 450, 600, 750, 900', sizes: '(min-width: 990px) calc((100vw - 10rem) / 3), (min-width: 750px) calc((100vw - 8rem) / 2), calc(100vw - 3rem)', alt: sub_collection.featured_image.alt | default: sub_collection.title }}
+                    {% else %}
+                      {{ 'collection-apparel-1' | placeholder_svg_tag: 'placeholder-svg sub-collection-card__placeholder' }}
+                    {% endif %}
+                  </span>
+                  <span class="sub-collection-card__content">
+                    <span>
+                      <span class="sub-collection-card__title">{{ sub_collection.title }}</span>
+                      {% if section.settings.show_description and sub_collection.description != blank %}
+                        <span class="sub-collection-card__description">{{ sub_collection.description | strip_html | truncatewords: 18 }}</span>
+                      {% endif %}
+                      {% if section.settings.show_product_count %}
+                        {%- liquid
+                          assign available_products_count = 0
+                          for product in sub_collection.products
+                            if product.available
+                              assign available_products_count = available_products_count | plus: 1
+                            endif
+                          endfor
+                        -%}
+                        <span class="sub-collection-card__count">{{ sub_collection.all_products_count }} products | {{ available_products_count }} available</span>
+                      {% endif %}
+                    </span>
+                    <span class="sub-collection-card__arrow" aria-hidden="true">{{ 'icon-caret.svg' | inline_asset_content }}</span>
+                  </span>
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% elsif section.settings.empty_text != blank %}
+          <p class="sub-collection-empty">{{ section.settings.empty_text }}</p>
+        {% endif %}
       </div>
     </div>
   </div>
@@ -287,9 +293,9 @@
 
 {% schema %}
 {
-  "name": "Brands Main Collection",
+  "name": "Sub Collection",
   "tag": "section",
-  "class": "brands-main-collection-wrapper",
+  "class": "sub-collection-wrapper",
   "settings": [
     {
       "type": "color_scheme",
@@ -304,7 +310,8 @@
     {
       "type": "inline_richtext",
       "id": "heading",
-      "label": "Heading"
+      "label": "Heading",
+      "default": "Sub Collections"
     },
     {
       "type": "richtext",
@@ -315,7 +322,7 @@
       "type": "select",
       "id": "text_align",
       "label": "Text alignment",
-      "default": "center",
+      "default": "left",
       "options": [
         {
           "value": "left",
@@ -330,6 +337,12 @@
           "label": "Right"
         }
       ]
+    },
+    {
+      "type": "richtext",
+      "id": "empty_text",
+      "label": "Empty text",
+      "default": "<p>Add collections to this collection's Sub Collections metafield.</p>"
     },
     {
       "type": "header",
@@ -349,6 +362,89 @@
     },
     {
       "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "color_scheme",
+      "id": "card_color_scheme",
+      "label": "Card color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "select",
+      "id": "card_view",
+      "label": "Card view",
+      "default": "grid",
+      "options": [
+        {
+          "value": "grid",
+          "label": "Grid"
+        },
+        {
+          "value": "list",
+          "label": "List"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "label": "Columns desktop",
+      "default": 3
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Columns mobile",
+      "default": "1",
+      "options": [
+        {
+          "value": "1",
+          "label": "1 column"
+        },
+        {
+          "value": "2",
+          "label": "2 columns"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "Image ratio",
+      "default": "adapt",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "Landscape"
+        },
+        {
+          "value": "square",
+          "label": "Square"
+        },
+        {
+          "value": "portrait",
+          "label": "Portrait"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_count",
+      "label": "Show product count",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show collection description",
+      "default": false
+    },
+    {
+      "type": "header",
       "content": "Section Settings"
     },
     {
@@ -359,7 +455,7 @@
       "step": 2,
       "unit": "px",
       "label": "Padding Top",
-      "default": 80
+      "default": 40
     },
     {
       "type": "range",
@@ -369,7 +465,7 @@
       "step": 2,
       "unit": "px",
       "label": "Padding Bottom",
-      "default": 80
+      "default": 40
     },
     {
       "type": "range",
@@ -403,7 +499,7 @@
       "step": 1,
       "unit": "px",
       "label": "Padding top",
-      "default": 40
+      "default": 25
     },
     {
       "type": "range",
@@ -413,70 +509,12 @@
       "step": 1,
       "unit": "px",
       "label": "Padding bottom",
-      "default": 40
-    }
-  ],
-  "blocks": [
-    {
-      "type": "category",
-      "name": "Category",
-      "settings": [
-        {
-          "type": "collection",
-          "id": "collection",
-          "label": "Collection",
-          "info": "When selected, the card links to this collection. Image and title can also fall back to this collection."
-        },
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Image"
-        },
-        {
-          "type": "inline_richtext",
-          "id": "title",
-          "label": "Title"
-        },
-        {
-          "type": "url",
-          "id": "link",
-          "label": "Link",
-          "info": "Used only when no collection is selected."
-        },
-        {
-          "type": "checkbox",
-          "id": "show_in_sidebar",
-          "label": "Show in sidebar",
-          "default": true
-        },
-        {
-          "type": "checkbox",
-          "id": "show_tile",
-          "label": "Show tile",
-          "default": true
-        },
-        {
-          "type": "checkbox",
-          "id": "featured_tile",
-          "label": "Featured tile",
-          "default": false
-        }
-      ]
+      "default": 25
     }
   ],
   "presets": [
     {
-      "name": "Brands Main Collection",
-      "blocks": [
-        {
-          "type": "category",
-          "settings": {
-            "title": "Engines",
-            "link": "/pages/honda-engines",
-            "featured_tile": true
-          }
-        }
-      ]
+      "name": "Sub Collection"
     }
   ]
 }

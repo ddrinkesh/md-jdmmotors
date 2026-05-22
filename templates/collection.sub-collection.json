@@ -35,8 +35,34 @@
         "color_scheme": "scheme-4"
       }
     },
+    "sub_collection": {
+      "type": "sub-collection",
+      "settings": {
+        "color_scheme": "scheme-3",
+        "heading": "",
+        "sec_text": "",
+        "text_align": "left",
+        "empty_text": "<p>Add collections to this collection's Sub Collections metafield.</p>",
+        "sidebar_heading": "Brands",
+        "sidebar_menu": "brands-sidebar",
+        "card_color_scheme": "scheme-1",
+        "card_view": "list",
+        "columns_desktop": 3,
+        "columns_mobile": "1",
+        "image_ratio": "square",
+        "show_product_count": true,
+        "show_description": false,
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "padding_top_mobi": 40,
+        "padding_bottom_mobi": 40
+      }
+    },
     "product-grid": {
       "type": "main-collection-product-grid",
+      "disabled": true,
       "settings": {
         "products_per_page": 4,
         "columns_desktop": 3,
@@ -61,6 +87,7 @@
   "order": [
     "banner",
     "inner_banner_sub_collection",
+    "sub_collection",
     "product-grid"
   ]
 }

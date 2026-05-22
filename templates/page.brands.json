@@ -37,40 +37,27 @@
     "brands_main_collection": {
       "type": "brands-main-collection",
       "blocks": {
-        "category_dM3Pgp": {
+        "category_honda_transmissions": {
           "type": "category",
-          "source": "{{ page.metafields.custom.brand.value }}",
+          "source": "{{ page.metafields.custom.brand.value.engine.value }}",
           "settings": {
-            "collection": "{{ page.metafields.custom.brand.value.collection.value }}",
-            "image": "{{ page.metafields.custom.brand.value.image.value }}",
-            "title": "{{ page.metafields.custom.brand.value.title.value }}",
-            "link": "",
-            "show_in_sidebar": true,
-            "show_tile": true,
-            "featured_tile": false
-          }
-        },
-        "category_honda_engines": {
-          "type": "category",
-          "disabled": true,
-          "settings": {
-            "collection": "",
-            "image": "shopify://shop_images/engine-1.jpg",
+            "collection": "{{ page.metafields.custom.brand.value.engine.value.sub_collection.value }}",
+            "image": "{{ page.metafields.custom.brand.value.engine.value.image.value }}",
             "title": "Engines",
-            "link": "/pages/honda-engines",
+            "link": "",
             "show_in_sidebar": true,
             "show_tile": true,
             "featured_tile": true
           }
         },
-        "category_honda_transmissions": {
+        "category_dfRDP8": {
           "type": "category",
-          "disabled": true,
+          "source": "{{ page.metafields.custom.brand.value.transmissions.value }}",
           "settings": {
-            "collection": "",
-            "image": "shopify://shop_images/transmission-1.jpg",
+            "collection": "{{ page.metafields.custom.brand.value.transmissions.value.sub_collection.value }}",
+            "image": "{{ page.metafields.custom.brand.value.transmissions.value.image.value }}",
             "title": "Transmissions",
-            "link": "/pages/honda-transmissions",
+            "link": "",
             "show_in_sidebar": true,
             "show_tile": true,
             "featured_tile": false
@@ -78,12 +65,12 @@
         },
         "category_honda_accessories": {
           "type": "category",
-          "disabled": true,
+          "source": "{{ page.metafields.custom.brand.value.accessories.value }}",
           "settings": {
-            "collection": "",
-            "image": "shopify://shop_images/tire-1.jpg",
+            "collection": "{{ page.metafields.custom.brand.value.accessories.value.sub_collection.value }}",
+            "image": "{{ page.metafields.custom.brand.value.accessories.value.image.value }}",
             "title": "Accessories",
-            "link": "/pages/honda-accessories",
+            "link": "",
             "show_in_sidebar": true,
             "show_tile": true,
             "featured_tile": false
@@ -91,12 +78,12 @@
         },
         "category_honda_front_clips": {
           "type": "category",
-          "disabled": true,
+          "source": "{{ page.metafields.custom.brand.value.front_clips.value }}",
           "settings": {
-            "collection": "",
-            "image": "shopify://shop_images/frontclips-1.jpg",
+            "collection": "{{ page.metafields.custom.brand.value.front_clips.value.sub_collection.value }}",
+            "image": "{{ page.metafields.custom.brand.value.front_clips.value.image.value }}",
             "title": "Front Clips",
-            "link": "/pages/honda-front-clips",
+            "link": "",
             "show_in_sidebar": true,
             "show_tile": true,
             "featured_tile": false
@@ -104,12 +91,12 @@
         },
         "category_honda_cars": {
           "type": "category",
-          "disabled": true,
+          "source": "{{ page.metafields.custom.brand.value.cars.value }}",
           "settings": {
-            "collection": "",
-            "image": "shopify://shop_images/cars-1.jpg",
+            "collection": "{{ page.metafields.custom.brand.value.cars.value.sub_collection.value }}",
+            "image": "{{ page.metafields.custom.brand.value.cars.value.image.value }}",
             "title": "Cars",
-            "link": "/pages/honda-cars",
+            "link": "",
             "show_in_sidebar": true,
             "show_tile": true,
             "featured_tile": false
@@ -117,20 +104,20 @@
         }
       },
       "block_order": [
-        "category_dM3Pgp",
-        "category_honda_engines",
         "category_honda_transmissions",
+        "category_dfRDP8",
         "category_honda_accessories",
         "category_honda_front_clips",
         "category_honda_cars"
       ],
       "name": "Brands Main Collection",
       "settings": {
-        "color_scheme": "background-1",
+        "color_scheme": "scheme-3",
         "heading": "",
         "sec_text": "",
         "text_align": "center",
         "sidebar_heading": "Brands",
+        "sidebar_menu": "brands-sidebar",
         "padding_top": 60,
         "padding_bottom": 80,
         "margin_top": 0,
