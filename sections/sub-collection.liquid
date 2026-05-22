@@ -56,8 +56,21 @@
             {% for parent_link in sidebar_menu.links %}
               {%- liquid
                 assign parent_object = parent_link.object
+                assign parent_brand = parent_object.metafields.custom.brand.value
                 assign parent_image = parent_object.metafields.custom.sidebar_image.value
                 assign is_active_parent = parent_link.active
+
+                if parent_image == blank
+                  assign parent_image = parent_brand.brand_logo.value
+                endif
+
+                if parent_image == blank
+                  assign parent_image = parent_brand.logo.value
+                endif
+
+                if parent_image == blank
+                  assign parent_image = parent_brand.image.value
+                endif
 
                 if parent_image == blank
                   assign parent_image = parent_object.metafields.custom.logo.value
@@ -111,7 +124,24 @@
                     {% for child_link in parent_link.links %}
                       {%- liquid
                         assign child_object = child_link.object
-                        assign child_image = child_object.metafields.custom.sidebar_image.value
+                        assign child_handle = child_link.title | handleize
+                        assign child_image = blank
+
+                        if child_handle == 'engine' or child_handle == 'engines'
+                          assign child_image = parent_brand.engine.value.image.value
+                        elsif child_handle == 'transmission' or child_handle == 'transmissions'
+                          assign child_image = parent_brand.transmissions.value.image.value
+                        elsif child_handle == 'accessory' or child_handle == 'accessories'
+                          assign child_image = parent_brand.accessories.value.image.value
+                        elsif child_handle == 'front-clip' or child_handle == 'front-clips'
+                          assign child_image = parent_brand.front_clips.value.image.value
+                        elsif child_handle == 'car' or child_handle == 'cars'
+                          assign child_image = parent_brand.cars.value.image.value
+                        endif
+
+                        if child_image == blank
+                          assign child_image = child_object.metafields.custom.sidebar_image.value
+                        endif
 
                         if child_image == blank
                           assign child_image = child_object.metafields.custom.image.value
