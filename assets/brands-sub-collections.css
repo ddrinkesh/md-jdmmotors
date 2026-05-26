@@ -10,11 +10,12 @@
 .brands-sub-collections-main .brands-sub-collections-sidebar__title { margin: 0 0 24px; padding-bottom: 18px; border-bottom: 1px solid #e6e6e6; font-size: 18px; line-height: 1.2; font-weight: 500; color: #1f1f1f; }
 .brands-sub-collections-main .brands-sub-collections-menu { display: flex; flex-direction: column; gap: 2px; }
 .brands-sub-collections-main .brands-sub-collections-menu__item { overflow: hidden; border: 1px solid #dfdfdf; border-radius: 6px; background: #ffffff; }
-.brands-sub-collections-main .brands-sub-collections-menu__link { display: flex; align-items: center; justify-content: space-between; gap: 14px; min-height: 42px; padding: 8px 14px; color: #1f1f1f; text-decoration: none; transition: color 0.2s ease; }
+.brands-sub-collections-main .brands-sub-collections-menu__link { display: flex; align-items: center; justify-content: space-between; gap: 14px; min-height: 42px; padding: 8px 14px 8px 8px; color: #1f1f1f; text-decoration: none; transition: color 0.2s ease; }
 .brands-sub-collections-main .brands-sub-collections-menu__link.is-active { color: #cd1719; }
 .brands-sub-collections-main .brands-sub-collections-menu__brand { display: flex; align-items: center; gap: 14px; min-width: 0; }
-.brands-sub-collections-main .brands-sub-collections-menu__logo { display: flex; align-items: center; justify-content: center; width: 42px; height: 24px; overflow: hidden; font-size: 8px; line-height: 1; font-weight: 700; color: #111111; text-transform: uppercase; flex-shrink: 0; }
+.brands-sub-collections-main .brands-sub-collections-menu__logo { display: flex; align-items: center; justify-content: center; width: 33px; aspect-ratio: 1; overflow: hidden; font-size: 8px; line-height: 1; font-weight: 700; color: #111111; text-transform: uppercase; flex-shrink: 0; }
 .brands-sub-collections-main .brands-sub-collections-menu__logo-img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.brands-sub-collections-main .brands-sub-collections-menu:not(.brands-sub-collections-menu--second) .brands-sub-collections-menu__logo-img { object-fit: cover; }
 .brands-sub-collections-main .brands-sub-collections-menu__name { display: block; overflow: hidden; font-size: 16px; line-height: 1.2; text-overflow: ellipsis; white-space: nowrap; }
 .brands-sub-collections-main .brands-sub-collections-menu__arrow { display: flex; align-items: center; justify-content: center; width: 14px; height: 14px; color: currentColor; transform: rotate(-90deg); transition: transform 0.2s ease; flex-shrink: 0; }
 .brands-sub-collections-main .brands-sub-collections-menu__arrow svg { display: block; width: 12px; height: auto; }
@@ -26,6 +27,8 @@
 .brands-sub-collections-main .brands-sub-collections-submenu__link.is-active, .brands-sub-collections-main .brands-sub-collections-submenu__link:hover { color: #cd1719; background: #fafafa; }
 .brands-sub-collections-main .brands-sub-collections-submenu__image { display: block; width: 30px; height: 30px; background: #d9d9d9; object-fit: cover; flex-shrink: 0; }
 .brands-sub-collections-main .brands-sub-collections-submenu__img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+.brands-sub-collections-main .brands-sub-collections-sidebar__title--menu2 { margin-top: 32px; }
 
 .brands-sub-collections-main .brands-sub-collections-content { display: block; width: 100%; }
 

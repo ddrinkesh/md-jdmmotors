@@ -25,6 +25,7 @@
 
 {%- liquid
   assign sidebar_menu = section.settings.sidebar_menu
+  assign sidebar_menu_2 = section.settings.sidebar_menu_2
 -%}
 
 <div class="section-{{ section.id }} section-{{ section.id }}-padding section-{{ section.id }}-margin color-{{ section.settings.color_scheme }} gradient section-main-box brands-sub-collections-main">
@@ -40,147 +41,292 @@
       </div>
     {% endif %}
 
-    <div class="brands-sub-collections-layout{% if sidebar_menu.links == blank %} brands-sub-collections-layout--no-sidebar{% endif %}">
-      {% if sidebar_menu.links != blank %}
+    <div class="brands-sub-collections-layout{% if sidebar_menu.links == blank and sidebar_menu_2.links == blank %} brands-sub-collections-layout--no-sidebar{% endif %}">
+      {% if sidebar_menu.links != blank or sidebar_menu_2.links != blank %}
         <aside class="brands-sub-collections-sidebar" aria-label="{{ section.settings.sidebar_heading | default: 'Brands' | escape }}">
-          {% if section.settings.sidebar_heading != blank %}
-            <h3 class="brands-sub-collections-sidebar__title">{{ section.settings.sidebar_heading }}</h3>
+
+          {% if sidebar_menu.links != blank %}
+            {% if section.settings.sidebar_heading != blank %}
+              <h3 class="brands-sub-collections-sidebar__title">{{ section.settings.sidebar_heading }}</h3>
+            {% endif %}
+
+            <div class="brands-sub-collections-menu">
+              {% for parent_link in sidebar_menu.links %}
+                {%- liquid
+                  assign parent_object = parent_link.object
+                  assign parent_brand = parent_object.metafields.custom.brand.value
+                  assign parent_image = parent_object.metafields.custom.sidebar_image.value
+                  assign is_active_parent = parent_link.active
+
+                  if parent_brand.first != blank
+                    assign parent_brand = parent_brand.first
+                  endif
+
+                  if parent_image == blank
+                    assign parent_image = parent_brand.brand_logo.value
+                  endif
+
+                  if parent_image == blank
+                    assign parent_image = parent_brand.brand_logo
+                  endif
+
+                  if parent_image == blank
+                    assign parent_image = parent_brand.logo.value
+                  endif
+
+                  if parent_image == blank
+                    assign parent_image = parent_brand.logo
+                  endif
+
+                  if parent_image == blank
+                    assign parent_image = parent_brand.image.value
+                  endif
+
+                  if parent_image == blank
+                    assign parent_image = parent_brand.image
+                  endif
+
+                  if parent_image == blank
+                    assign parent_image = parent_object.metafields.custom.logo.value
+                  endif
+
+                  if parent_image == blank
+                    assign parent_image = parent_object.metafields.custom.image.value
+                  endif
+
+                  if parent_image == blank
+                    assign parent_image = parent_object.featured_image
+                  endif
+
+                  if parent_image == blank
+                    assign parent_image = parent_object.image
+                  endif
+
+                  if is_active_parent == false and parent_link.links != blank
+                    for child_link in parent_link.links
+                      if child_link.active
+                        assign is_active_parent = true
+                      endif
+                    endfor
+                  endif
+                -%}
+
+                <div class="brands-sub-collections-menu__item{% if is_active_parent %} is-active{% endif %}">
+                  <a
+                    href="{{ parent_link.url }}"
+                    class="brands-sub-collections-menu__link{% if is_active_parent %} is-active{% endif %}"
+                    {% if parent_link.links != blank %}
+                      data-brands-sidebar-toggle
+                      aria-expanded="{% if is_active_parent %}true{% else %}false{% endif %}"
+                    {% endif %}
+                  >
+                    <span class="brands-sub-collections-menu__brand">
+                      <span class="brands-sub-collections-menu__logo">
+                        {% if parent_image != blank %}
+                          {{ parent_image | image_url: width: 120 | image_tag: loading: 'lazy', class: 'brands-sub-collections-menu__logo-img', widths: '60, 90, 120', alt: parent_link.title }}
+                        {% else %}
+                          {{ parent_link.title }}
+                        {% endif %}
+                      </span>
+                      <span class="brands-sub-collections-menu__name">{{ parent_link.title }}</span>
+                    </span>
+                    {% if parent_link.links != blank %}<span class="brands-sub-collections-menu__arrow" aria-hidden="true">{{ 'icon-caret.svg' | inline_asset_content }}</span>{% endif %}
+                  </a>
+
+                  {% if parent_link.links != blank %}
+                    <div class="brands-sub-collections-submenu" data-brands-sidebar-submenu aria-hidden="{% if is_active_parent %}false{% else %}true{% endif %}">
+                      {% for child_link in parent_link.links %}
+                        {%- liquid
+                          assign child_object = child_link.object
+                          assign child_handle = child_link.title | handleize
+                          assign child_image = blank
+
+                          if child_handle == 'engine' or child_handle == 'engines'
+                            assign child_image = parent_brand.engine.value.image.value
+                          elsif child_handle == 'transmission' or child_handle == 'transmissions'
+                            assign child_image = parent_brand.transmissions.value.image.value
+                          elsif child_handle == 'accessory' or child_handle == 'accessories'
+                            assign child_image = parent_brand.accessories.value.image.value
+                          elsif child_handle == 'front-clip' or child_handle == 'front-clips'
+                            assign child_image = parent_brand.front_clips.value.image.value
+                          elsif child_handle == 'car' or child_handle == 'cars'
+                            assign child_image = parent_brand.cars.value.image.value
+                          endif
+
+                          if child_image == blank
+                            assign child_image = child_object.metafields.custom.sidebar_image.value
+                          endif
+
+                          if child_image == blank
+                            assign child_image = child_object.metafields.custom.image.value
+                          endif
+
+                          if child_image == blank
+                            assign child_image = child_object.featured_image
+                          endif
+
+                          if child_image == blank
+                            assign child_image = child_object.image
+                          endif
+                        -%}
+
+                        <a href="{{ child_link.url }}" class="brands-sub-collections-submenu__link{% if child_link.active %} is-active{% endif %}">
+                          <span class="brands-sub-collections-submenu__image">
+                            {% if child_image != blank %}
+                              {{ child_image | image_url: width: 90 | image_tag: loading: 'lazy', class: 'brands-sub-collections-submenu__img', widths: '45, 60, 90', alt: child_link.title }}
+                            {% endif %}
+                          </span>
+                          <span>{{ child_link.title }}</span>
+                        </a>
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+                </div>
+              {% endfor %}
+            </div>
           {% endif %}
 
-          <div class="brands-sub-collections-menu">
-            {% for parent_link in sidebar_menu.links %}
-              {%- liquid
-                assign parent_object = parent_link.object
-                assign parent_brand = parent_object.metafields.custom.brand.value
-                assign parent_image = parent_object.metafields.custom.sidebar_image.value
-                assign is_active_parent = parent_link.active
+          {% if sidebar_menu_2.links != blank %}
+            {% if section.settings.sidebar_heading_2 != blank %}
+              <h3 class="brands-sub-collections-sidebar__title brands-sub-collections-sidebar__title--menu2">{{ section.settings.sidebar_heading_2 }}</h3>
+            {% endif %}
 
-                if parent_brand.first != blank
-                  assign parent_brand = parent_brand.first
-                endif
+            <div class="brands-sub-collections-menu brands-sub-collections-menu--second">
+              {% for parent_link in sidebar_menu_2.links %}
+                {%- liquid
+                  assign parent_object_2 = parent_link.object
+                  assign parent_brand_2 = parent_object_2.metafields.custom.brand.value
+                  assign parent_image_2 = parent_object_2.metafields.custom.sidebar_image.value
+                  assign is_active_parent_2 = parent_link.active
 
-                if parent_image == blank
-                  assign parent_image = parent_brand.brand_logo.value
-                endif
+                  if parent_brand_2.first != blank
+                    assign parent_brand_2 = parent_brand_2.first
+                  endif
 
-                if parent_image == blank
-                  assign parent_image = parent_brand.brand_logo
-                endif
+                  if parent_image_2 == blank
+                    assign parent_image_2 = parent_brand_2.brand_logo.value
+                  endif
 
-                if parent_image == blank
-                  assign parent_image = parent_brand.logo.value
-                endif
+                  if parent_image_2 == blank
+                    assign parent_image_2 = parent_brand_2.brand_logo
+                  endif
 
-                if parent_image == blank
-                  assign parent_image = parent_brand.logo
-                endif
+                  if parent_image_2 == blank
+                    assign parent_image_2 = parent_brand_2.logo.value
+                  endif
 
-                if parent_image == blank
-                  assign parent_image = parent_brand.image.value
-                endif
+                  if parent_image_2 == blank
+                    assign parent_image_2 = parent_brand_2.logo
+                  endif
 
-                if parent_image == blank
-                  assign parent_image = parent_brand.image
-                endif
+                  if parent_image_2 == blank
+                    assign parent_image_2 = parent_brand_2.image.value
+                  endif
 
-                if parent_image == blank
-                  assign parent_image = parent_object.metafields.custom.logo.value
-                endif
+                  if parent_image_2 == blank
+                    assign parent_image_2 = parent_brand_2.image
+                  endif
 
-                if parent_image == blank
-                  assign parent_image = parent_object.metafields.custom.image.value
-                endif
+                  if parent_image_2 == blank
+                    assign parent_image_2 = parent_object_2.metafields.custom.logo.value
+                  endif
 
-                if parent_image == blank
-                  assign parent_image = parent_object.featured_image
-                endif
+                  if parent_image_2 == blank
+                    assign parent_image_2 = parent_object_2.metafields.custom.image.value
+                  endif
 
-                if parent_image == blank
-                  assign parent_image = parent_object.image
-                endif
+                  if parent_image_2 == blank
+                    assign parent_image_2 = parent_object_2.featured_image
+                  endif
 
-                if is_active_parent == false and parent_link.links != blank
-                  for child_link in parent_link.links
-                    if child_link.active
-                      assign is_active_parent = true
-                    endif
-                  endfor
-                endif
-              -%}
+                  if parent_image_2 == blank
+                    assign parent_image_2 = parent_object_2.image
+                  endif
 
-              <div class="brands-sub-collections-menu__item{% if is_active_parent %} is-active{% endif %}">
-                <a
-                  href="{{ parent_link.url }}"
-                  class="brands-sub-collections-menu__link{% if is_active_parent %} is-active{% endif %}"
-                  {% if parent_link.links != blank %}
-                    data-brands-sidebar-toggle
-                    aria-expanded="{% if is_active_parent %}true{% else %}false{% endif %}"
-                  {% endif %}
-                >
-                  <span class="brands-sub-collections-menu__brand">
-                    <span class="brands-sub-collections-menu__logo">
-                      {% if parent_image != blank %}
-                        {{ parent_image | image_url: width: 120 | image_tag: loading: 'lazy', class: 'brands-sub-collections-menu__logo-img', widths: '60, 90, 120', alt: parent_link.title }}
-                      {% else %}
-                        {{ parent_link.title }}
-                      {% endif %}
+                  if is_active_parent_2 == false and parent_link.links != blank
+                    for child_link in parent_link.links
+                      if child_link.active
+                        assign is_active_parent_2 = true
+                      endif
+                    endfor
+                  endif
+                -%}
+
+                <div class="brands-sub-collections-menu__item{% if is_active_parent_2 %} is-active{% endif %}">
+                  <a
+                    href="{{ parent_link.url }}"
+                    class="brands-sub-collections-menu__link{% if is_active_parent_2 %} is-active{% endif %}"
+                    {% if parent_link.links != blank %}
+                      data-brands-sidebar-toggle
+                      aria-expanded="{% if is_active_parent_2 %}true{% else %}false{% endif %}"
+                    {% endif %}
+                  >
+                    <span class="brands-sub-collections-menu__brand">
+                      <span class="brands-sub-collections-menu__logo">
+                        {% if parent_image_2 != blank %}
+                          {{ parent_image_2 | image_url: width: 120 | image_tag: loading: 'lazy', class: 'brands-sub-collections-menu__logo-img', widths: '60, 90, 120', alt: parent_link.title }}
+                        {% else %}
+                          {{ parent_link.title }}
+                        {% endif %}
+                      </span>
+                      <span class="brands-sub-collections-menu__name">{{ parent_link.title }}</span>
                     </span>
-                    <span class="brands-sub-collections-menu__name">{{ parent_link.title }}</span>
-                  </span>
-                  <span class="brands-sub-collections-menu__arrow" aria-hidden="true">{{ 'icon-caret.svg' | inline_asset_content }}</span>
-                </a>
+                    {% if parent_link.links != blank %}<span class="brands-sub-collections-menu__arrow" aria-hidden="true">{{ 'icon-caret.svg' | inline_asset_content }}</span>{% endif %}
+                  </a>
 
-                {% if parent_link.links != blank %}
-                  <div class="brands-sub-collections-submenu" data-brands-sidebar-submenu aria-hidden="{% if is_active_parent %}false{% else %}true{% endif %}">
-                    {% for child_link in parent_link.links %}
-                      {%- liquid
-                        assign child_object = child_link.object
-                        assign child_handle = child_link.title | handleize
-                        assign child_image = blank
+                  {% if parent_link.links != blank %}
+                    <div class="brands-sub-collections-submenu" data-brands-sidebar-submenu aria-hidden="{% if is_active_parent_2 %}false{% else %}true{% endif %}">
+                      {% for child_link in parent_link.links %}
+                        {%- liquid
+                          assign child_object_2 = child_link.object
+                          assign child_handle_2 = child_link.title | handleize
+                          assign child_image_2 = blank
 
-                        if child_handle == 'engine' or child_handle == 'engines'
-                          assign child_image = parent_brand.engine.value.image.value
-                        elsif child_handle == 'transmission' or child_handle == 'transmissions'
-                          assign child_image = parent_brand.transmissions.value.image.value
-                        elsif child_handle == 'accessory' or child_handle == 'accessories'
-                          assign child_image = parent_brand.accessories.value.image.value
-                        elsif child_handle == 'front-clip' or child_handle == 'front-clips'
-                          assign child_image = parent_brand.front_clips.value.image.value
-                        elsif child_handle == 'car' or child_handle == 'cars'
-                          assign child_image = parent_brand.cars.value.image.value
-                        endif
+                          if child_handle_2 == 'engine' or child_handle_2 == 'engines'
+                            assign child_image_2 = parent_brand_2.engine.value.image.value
+                          elsif child_handle_2 == 'transmission' or child_handle_2 == 'transmissions'
+                            assign child_image_2 = parent_brand_2.transmissions.value.image.value
+                          elsif child_handle_2 == 'accessory' or child_handle_2 == 'accessories'
+                            assign child_image_2 = parent_brand_2.accessories.value.image.value
+                          elsif child_handle_2 == 'front-clip' or child_handle_2 == 'front-clips'
+                            assign child_image_2 = parent_brand_2.front_clips.value.image.value
+                          elsif child_handle_2 == 'car' or child_handle_2 == 'cars'
+                            assign child_image_2 = parent_brand_2.cars.value.image.value
+                          endif
 
-                        if child_image == blank
-                          assign child_image = child_object.metafields.custom.sidebar_image.value
-                        endif
+                          if child_image_2 == blank
+                            assign child_image_2 = child_object_2.metafields.custom.sidebar_image.value
+                          endif
 
-                        if child_image == blank
-                          assign child_image = child_object.metafields.custom.image.value
-                        endif
+                          if child_image_2 == blank
+                            assign child_image_2 = child_object_2.metafields.custom.image.value
+                          endif
 
-                        if child_image == blank
-                          assign child_image = child_object.featured_image
-                        endif
+                          if child_image_2 == blank
+                            assign child_image_2 = child_object_2.featured_image
+                          endif
 
-                        if child_image == blank
-                          assign child_image = child_object.image
-                        endif
-                      -%}
+                          if child_image_2 == blank
+                            assign child_image_2 = child_object_2.image
+                          endif
+                        -%}
 
-                      <a href="{{ child_link.url }}" class="brands-sub-collections-submenu__link{% if child_link.active %} is-active{% endif %}">
-                        <span class="brands-sub-collections-submenu__image">
-                          {% if child_image != blank %}
-                            {{ child_image | image_url: width: 90 | image_tag: loading: 'lazy', class: 'brands-sub-collections-submenu__img', widths: '45, 60, 90', alt: child_link.title }}
-                          {% endif %}
-                        </span>
-                        <span>{{ child_link.title }}</span>
-                      </a>
-                    {% endfor %}
-                  </div>
-                {% endif %}
-              </div>
-            {% endfor %}
-          </div>
+                        <a href="{{ child_link.url }}" class="brands-sub-collections-submenu__link{% if child_link.active %} is-active{% endif %}">
+                          <span class="brands-sub-collections-submenu__image">
+                            {% if child_image_2 != blank %}
+                              {{ child_image_2 | image_url: width: 90 | image_tag: loading: 'lazy', class: 'brands-sub-collections-submenu__img', widths: '45, 60, 90', alt: child_link.title }}
+                            {% endif %}
+                          </span>
+                          <span>{{ child_link.title }}</span>
+                        </a>
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+
         </aside>
       {% endif %}
 
@@ -436,6 +582,17 @@
       "id": "sidebar_menu",
       "label": "Sidebar menu",
       "info": "Use parent menu items for brands and nested submenu items for linked collections. Images are pulled from linked collection images or custom collection metafields."
+    },
+    {
+      "type": "inline_richtext",
+      "id": "sidebar_heading_2",
+      "label": "Sidebar heading 2"
+    },
+    {
+      "type": "link_list",
+      "id": "sidebar_menu_2",
+      "label": "Sidebar menu 2",
+      "info": "Second menu displayed below the first in the sidebar. Same design and image logic applies."
     },
     {
       "type": "header",

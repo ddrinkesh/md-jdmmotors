@@ -5,9 +5,9 @@
 .brands-main-collection-main .sec-text { margin-top: 10px; }
 .brands-main-collection-main .brands-main-collection-layout { display: grid; grid-template-columns: 320px 1fr; gap: 40px; align-items: flex-start; }
 .brands-main-collection-main .brands-main-collection-layout--no-sidebar { display: block; }
-.brands-main-collection-main .brands-main-collection-sidebar {  }
+.brands-main-collection-main .brands-main-collection-sidebar {  } 
 .brands-main-collection-main .brands-main-collection-sidebar__title { margin: 0 0 24px; padding-bottom: 18px; border-bottom: 1px solid #e6e6e6; font-size: 18px; line-height: 1.2; font-weight: 500; color: #1f1f1f; }
-.brands-main-collection-main .brands-main-collection-menu { display: flex; flex-direction: column; gap: 14px; }
+.brands-main-collection-main .brands-main-collection-menu { display: flex; flex-direction: column; gap: 2px; }
 .brands-main-collection-main .brands-main-collection-menu__item { overflow: hidden; border: 1px solid #dfdfdf; border-radius: 6px; background: #ffffff; }
 .brands-main-collection-main .brands-main-collection-menu__link { display: flex; align-items: center; justify-content: space-between; gap: 14px; min-height: 42px; padding: 8px 14px; color: #1f1f1f; text-decoration: none; transition: color 0.2s ease; }
 .brands-main-collection-main .brands-main-collection-menu__link.is-active { color: #cd1719; }
