@@ -1,0 +1,2 @@
+{% assign use_cover_class = true %}
+{{ logo_image | image_url: width: 400 | image_tag: class: (use_cover_class ? 'brands-sub-collections-card__image brands-sub-collections-card__image--cover' : 'brands-sub-collections-card__image'), loading: 'lazy', alt: img_alt, widths: '120, 200, 300, 400' }}

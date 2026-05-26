@@ -52,8 +52,16 @@
                 assign parent_image = parent_object.metafields.custom.sidebar_image.value
                 assign is_active_parent = parent_link.active
 
+                if parent_brand.first != blank
+                  assign parent_brand = parent_brand.first
+                endif
+
                 if parent_image == blank
                   assign parent_image = parent_brand.brand_logo.value
+                endif
+
+                if parent_image == blank
+                  assign parent_image = parent_brand.brand_logo
                 endif
 
                 if parent_image == blank
@@ -61,7 +69,15 @@
                 endif
 
                 if parent_image == blank
+                  assign parent_image = parent_brand.logo
+                endif
+
+                if parent_image == blank
                   assign parent_image = parent_brand.image.value
+                endif
+
+                if parent_image == blank
+                  assign parent_image = parent_brand.image
                 endif
 
                 if parent_image == blank

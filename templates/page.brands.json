@@ -41,7 +41,7 @@
           "type": "category",
           "source": "{{ page.metafields.custom.brand.value.engine.value }}",
           "settings": {
-            "collection": "",
+            "collection": "{{ page.metafields.custom.brand.value.engine.value.sub_collection.value }}",
             "image": "{{ page.metafields.custom.brand.value.engine.value.image.value }}",
             "title": "Engines",
             "link": "",
@@ -54,7 +54,7 @@
           "type": "category",
           "source": "{{ page.metafields.custom.brand.value.transmissions.value }}",
           "settings": {
-            "collection": "",
+            "collection": "{{ page.metafields.custom.brand.value.transmissions.value.sub_collection.value }}",
             "image": "{{ page.metafields.custom.brand.value.transmissions.value.image.value }}",
             "title": "Transmissions",
             "link": "",
@@ -67,7 +67,7 @@
           "type": "category",
           "source": "{{ page.metafields.custom.brand.value.accessories.value }}",
           "settings": {
-            "collection": "",
+            "collection": "{{ page.metafields.custom.brand.value.accessories.value.sub_collection.value }}",
             "image": "{{ page.metafields.custom.brand.value.accessories.value.image.value }}",
             "title": "Accessories",
             "link": "",
@@ -80,7 +80,7 @@
           "type": "category",
           "source": "{{ page.metafields.custom.brand.value.front_clips.value }}",
           "settings": {
-            "collection": "",
+            "collection": "{{ page.metafields.custom.brand.value.front_clips.value.sub_collection.value }}",
             "image": "{{ page.metafields.custom.brand.value.front_clips.value.image.value }}",
             "title": "Front Clips",
             "link": "",
@@ -93,7 +93,7 @@
           "type": "category",
           "source": "{{ page.metafields.custom.brand.value.cars.value }}",
           "settings": {
-            "collection": "",
+            "collection": "{{ page.metafields.custom.brand.value.cars.value.sub_collection.value }}",
             "image": "{{ page.metafields.custom.brand.value.cars.value.image.value }}",
             "title": "Cars",
             "link": "",

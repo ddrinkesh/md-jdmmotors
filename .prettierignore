@@ -1,0 +1,2 @@
+# Ignore custom asset files to preserve strict one-line CSS format
+assets/*.css

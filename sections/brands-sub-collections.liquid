@@ -1,4 +1,4 @@
-{{ 'sub-collection.css' | asset_url | stylesheet_tag }}
+{{ 'brands-sub-collections.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
   @media screen and (min-width: 750px) {
@@ -12,6 +12,10 @@
     }
   }
   @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} {
+      margin-top: {{ section.settings.margin_top | times: 0.75 | round }}px;
+      margin-bottom: {{ section.settings.margin_bottom | times: 0.75 | round }}px;
+    }
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top_mobi }}px;
       padding-bottom: {{ section.settings.padding_bottom_mobi }}px;
@@ -20,19 +24,10 @@
 {%- endstyle -%}
 
 {%- liquid
-  assign sub_collection_metafield = collection.metafields.custom.sub_collections
-  assign sub_collections = sub_collection_metafield.value
   assign sidebar_menu = section.settings.sidebar_menu
-  assign image_ratio = '75%'
-
-  if section.settings.image_ratio == 'portrait'
-    assign image_ratio = '125%'
-  elsif section.settings.image_ratio == 'square'
-    assign image_ratio = '100%'
-  endif
 -%}
 
-<div class="section-{{ section.id }} section-{{ section.id }}-padding section-{{ section.id }}-margin color-{{ section.settings.color_scheme }} gradient section-main-box sub-collection-main">
+<div class="section-{{ section.id }} section-{{ section.id }}-padding section-{{ section.id }}-margin color-{{ section.settings.color_scheme }} gradient section-main-box brands-sub-collections-main">
   <div class="page-width">
     {% if section.settings.heading != blank or section.settings.sec_text != blank %}
       <div class="sec-head text-align-{{ section.settings.text_align }} {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
@@ -45,14 +40,14 @@
       </div>
     {% endif %}
 
-    <div class="sub-collection-layout{% if sidebar_menu.links != blank %} sub-collection-layout--with-sidebar{% endif %}">
+    <div class="brands-sub-collections-layout{% if sidebar_menu.links == blank %} brands-sub-collections-layout--no-sidebar{% endif %}">
       {% if sidebar_menu.links != blank %}
-        <aside class="brands-main-collection-sidebar" aria-label="{{ section.settings.sidebar_heading | default: 'Brands' | escape }}">
+        <aside class="brands-sub-collections-sidebar" aria-label="{{ section.settings.sidebar_heading | default: 'Brands' | escape }}">
           {% if section.settings.sidebar_heading != blank %}
-            <h3 class="brands-main-collection-sidebar__title">{{ section.settings.sidebar_heading }}</h3>
+            <h3 class="brands-sub-collections-sidebar__title">{{ section.settings.sidebar_heading }}</h3>
           {% endif %}
 
-          <div class="brands-main-collection-menu">
+          <div class="brands-sub-collections-menu">
             {% for parent_link in sidebar_menu.links %}
               {%- liquid
                 assign parent_object = parent_link.object
@@ -113,30 +108,30 @@
                 endif
               -%}
 
-              <div class="brands-main-collection-menu__item{% if is_active_parent %} is-active{% endif %}">
+              <div class="brands-sub-collections-menu__item{% if is_active_parent %} is-active{% endif %}">
                 <a
                   href="{{ parent_link.url }}"
-                  class="brands-main-collection-menu__link{% if is_active_parent %} is-active{% endif %}"
+                  class="brands-sub-collections-menu__link{% if is_active_parent %} is-active{% endif %}"
                   {% if parent_link.links != blank %}
                     data-brands-sidebar-toggle
                     aria-expanded="{% if is_active_parent %}true{% else %}false{% endif %}"
                   {% endif %}
                 >
-                  <span class="brands-main-collection-menu__brand">
-                    <span class="brands-main-collection-menu__logo">
+                  <span class="brands-sub-collections-menu__brand">
+                    <span class="brands-sub-collections-menu__logo">
                       {% if parent_image != blank %}
-                        {{ parent_image | image_url: width: 120 | image_tag: loading: 'lazy', class: 'brands-main-collection-menu__logo-img', widths: '60, 90, 120', alt: parent_link.title }}
+                        {{ parent_image | image_url: width: 120 | image_tag: loading: 'lazy', class: 'brands-sub-collections-menu__logo-img', widths: '60, 90, 120', alt: parent_link.title }}
                       {% else %}
                         {{ parent_link.title }}
                       {% endif %}
                     </span>
-                    <span class="brands-main-collection-menu__name">{{ parent_link.title }}</span>
+                    <span class="brands-sub-collections-menu__name">{{ parent_link.title }}</span>
                   </span>
-                  <span class="brands-main-collection-menu__arrow" aria-hidden="true">{{ 'icon-caret.svg' | inline_asset_content }}</span>
+                  <span class="brands-sub-collections-menu__arrow" aria-hidden="true">{{ 'icon-caret.svg' | inline_asset_content }}</span>
                 </a>
 
                 {% if parent_link.links != blank %}
-                  <div class="brands-main-collection-submenu" data-brands-sidebar-submenu aria-hidden="{% if is_active_parent %}false{% else %}true{% endif %}">
+                  <div class="brands-sub-collections-submenu" data-brands-sidebar-submenu aria-hidden="{% if is_active_parent %}false{% else %}true{% endif %}">
                     {% for child_link in parent_link.links %}
                       {%- liquid
                         assign child_object = child_link.object
@@ -172,10 +167,10 @@
                         endif
                       -%}
 
-                      <a href="{{ child_link.url }}" class="brands-main-collection-submenu__link{% if child_link.active %} is-active{% endif %}">
-                        <span class="brands-main-collection-submenu__image">
+                      <a href="{{ child_link.url }}" class="brands-sub-collections-submenu__link{% if child_link.active %} is-active{% endif %}">
+                        <span class="brands-sub-collections-submenu__image">
                           {% if child_image != blank %}
-                            {{ child_image | image_url: width: 90 | image_tag: loading: 'lazy', class: 'brands-main-collection-submenu__img', widths: '45, 60, 90', alt: child_link.title }}
+                            {{ child_image | image_url: width: 90 | image_tag: loading: 'lazy', class: 'brands-sub-collections-submenu__img', widths: '45, 60, 90', alt: child_link.title }}
                           {% endif %}
                         </span>
                         <span>{{ child_link.title }}</span>
@@ -189,61 +184,100 @@
         </aside>
       {% endif %}
 
-      <div class="sub-collection-content">
-        {% if sub_collections != blank %}
-          <ul class="sub-collection-list sub-collection-list--{{ section.settings.card_view }}" style="--sub-collection-columns-desktop: {{ section.settings.columns_desktop }}; --sub-collection-columns-mobile: {{ section.settings.columns_mobile }}; --sub-collection-image-ratio: {{ image_ratio }};" role="list">
-            {% for sub_collection in sub_collections %}
-              <li class="sub-collection-card {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}" {% if settings.animations_reveal_on_scroll %}data-cascade style="--animation-order: {{ forloop.index }};"{% endif %}>
-                <a href="{{ sub_collection.url }}" class="sub-collection-card__link color-{{ section.settings.card_color_scheme }} gradient">
-                  <span class="sub-collection-card__media">
-                    {% if sub_collection.featured_image != blank %}
-                      {{ sub_collection.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', class: 'sub-collection-card__image', widths: '300, 450, 600, 750, 900', sizes: '(min-width: 990px) calc((100vw - 10rem) / 3), (min-width: 750px) calc((100vw - 8rem) / 2), calc(100vw - 3rem)', alt: sub_collection.featured_image.alt | default: sub_collection.title }}
-                    {% else %}
-                      {{ 'collection-apparel-1' | placeholder_svg_tag: 'placeholder-svg sub-collection-card__placeholder' }}
-                    {% endif %}
+      <div class="brands-sub-collections-content">
+        <div
+          class="brands-sub-collections-grid {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+          style="--columns-desktop: {{ section.settings.columns_desktop }}; --columns-tablet: {{ section.settings.columns_tablet }}; --columns-mobile: {{ section.settings.columns_mobile }};"
+        >
+          {%- for block in section.blocks -%}
+            {%- liquid
+              assign collection = block.settings.collection
+              assign brand_logo = block.settings.brand_logo
+              assign has_logo = false
+              assign logo_image = blank
+              assign use_cover_class = false
+
+              if brand_logo != blank
+                assign logo_image = brand_logo
+                assign has_logo = true
+              elsif collection != blank and collection.featured_image != blank
+                assign logo_image = collection.featured_image
+                assign use_cover_class = true
+              endif
+
+              assign card_link = block.settings.custom_link
+              if collection != blank
+                assign card_link = collection.url
+              endif
+
+              assign card_title = block.settings.custom_title
+              if card_title == blank and collection != blank
+                assign card_title = collection.title
+              endif
+
+              assign available_count = block.settings.custom_count
+              if collection != blank
+                assign available_count = collection.all_products_count
+              endif
+            -%}
+
+            <a
+              {% if card_link != blank %}
+                href="{{ card_link }}"
+              {% else %}
+                role="link" aria-disabled="true"
+              {% endif %}
+              class="brands-sub-collections-card"
+              {{ block.shopify_attributes }}
+            >
+              <div class="brands-sub-collections-card__image-wrapper">
+                {%- if logo_image != blank -%}
+                  {%- assign img_alt = logo_image.alt | default: card_title | default: 'Brand Logo' | escape -%}
+                  {%- assign image_class = 'brands-sub-collections-card__image' -%}
+                  {%- if use_cover_class -%}
+                    {%- assign image_class = image_class | append: ' brands-sub-collections-card__image--cover' -%}
+                  {%- endif -%}
+                  {{ logo_image | image_url: width: 400 | image_tag: class: image_class, loading: 'lazy', alt: img_alt, widths: '120, 200, 300, 400' }}
+                {%- else -%}
+                  {%- assign placeholder_index = forloop.index | modulo: 6 | plus: 1 -%}
+                  {{
+                    'collection-apparel-'
+                    | append: placeholder_index
+                    | placeholder_svg_tag: 'brands-sub-collections-card__placeholder'
+                  }}
+                {%- endif -%}
+              </div>
+
+              <div class="brands-sub-collections-card__info">
+                {%- if has_logo == false and card_title != blank -%}
+                  <span class="brands-sub-collections-card__title">{{ card_title }}</span>
+                {%- endif -%}
+
+                {%- if available_count != blank -%}
+                  <span class="brands-sub-collections-card__count">
+                    {{ available_count }}
+                    {{ section.settings.available_label | escape }}
                   </span>
-                  <span class="sub-collection-card__content">
-                    <span>
-                      <span class="sub-collection-card__title">{{ sub_collection.title }}</span>
-                      {% if section.settings.show_description and sub_collection.description != blank %}
-                        <span class="sub-collection-card__description">{{ sub_collection.description | strip_html | truncatewords: 18 }}</span>
-                      {% endif %}
-                      {% if section.settings.show_product_count %}
-                        {%- liquid
-                          assign available_products_count = 0
-                          for product in sub_collection.products
-                            if product.available
-                              assign available_products_count = available_products_count | plus: 1
-                            endif
-                          endfor
-                        -%}
-                        <span class="sub-collection-card__count">{{ sub_collection.all_products_count }} products | {{ available_products_count }} available</span>
-                      {% endif %}
-                    </span>
-                    <span class="sub-collection-card__arrow" aria-hidden="true">{{ 'icon-caret.svg' | inline_asset_content }}</span>
-                  </span>
-                </a>
-              </li>
-            {% endfor %}
-          </ul>
-        {% elsif section.settings.empty_text != blank %}
-          <p class="sub-collection-empty">{{ section.settings.empty_text }}</p>
-        {% endif %}
+                {%- endif -%}
+              </div>
+            </a>
+          {%- endfor -%}
+        </div>
       </div>
     </div>
   </div>
 </div>
 
 <script>
-  if (!window.brandsCollectionSidebarAccordion) {
-    window.brandsCollectionSidebarAccordion = true;
+  if (!window.brandsSubCollectionsSidebarAccordion) {
+    window.brandsSubCollectionsSidebarAccordion = true;
 
     function getSubmenu(item) {
       return item && item.querySelector('[data-brands-sidebar-submenu]');
     }
 
     function setInitialSidebarState() {
-      document.querySelectorAll('.brands-main-collection-menu__item').forEach(function(item) {
+      document.querySelectorAll('.brands-sub-collections-menu__item').forEach(function(item) {
         var submenu = getSubmenu(item);
         if (!submenu) return;
 
@@ -311,8 +345,8 @@
         return;
       }
 
-      var item = toggle.closest('.brands-main-collection-menu__item');
-      var menu = toggle.closest('.brands-main-collection-menu');
+      var item = toggle.closest('.brands-sub-collections-menu__item');
+      var menu = toggle.closest('.brands-sub-collections-menu');
       var submenu = getSubmenu(item);
 
       if (!item || !menu || !submenu) {
@@ -322,7 +356,7 @@
       event.preventDefault();
 
       var shouldOpen = !item.classList.contains('is-active');
-      var allItems = menu.querySelectorAll('.brands-main-collection-menu__item');
+      var allItems = menu.querySelectorAll('.brands-sub-collections-menu__item');
 
       allItems.forEach(function(menuItem) {
         closeSidebarItem(menuItem);
@@ -339,15 +373,18 @@
 
 {% schema %}
 {
-  "name": "Sub Collection",
+  "name": "Brands Sub-Collections",
   "tag": "section",
-  "class": "sub-collection-wrapper",
+  "class": "brands-sub-collections-wrapper",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
   "settings": [
     {
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "Color scheme",
-      "default": "background-1"
+      "default": "scheme-1"
     },
     {
       "type": "header",
@@ -357,7 +394,7 @@
       "type": "inline_richtext",
       "id": "heading",
       "label": "Heading",
-      "default": "Sub Collections"
+      "default": "Shop by Brands"
     },
     {
       "type": "richtext",
@@ -368,7 +405,7 @@
       "type": "select",
       "id": "text_align",
       "label": "Text alignment",
-      "default": "left",
+      "default": "center",
       "options": [
         {
           "value": "left",
@@ -383,12 +420,6 @@
           "label": "Right"
         }
       ]
-    },
-    {
-      "type": "richtext",
-      "id": "empty_text",
-      "label": "Empty text",
-      "default": "<p>Add collections to this collection's Sub Collections metafield.</p>"
     },
     {
       "type": "header",
@@ -408,86 +439,40 @@
     },
     {
       "type": "header",
-      "content": "Layout"
-    },
-    {
-      "type": "color_scheme",
-      "id": "card_color_scheme",
-      "label": "Card color scheme",
-      "default": "scheme-1"
-    },
-    {
-      "type": "select",
-      "id": "card_view",
-      "label": "Card view",
-      "default": "grid",
-      "options": [
-        {
-          "value": "grid",
-          "label": "Grid"
-        },
-        {
-          "value": "list",
-          "label": "List"
-        }
-      ]
+      "content": "Grid Layout"
     },
     {
       "type": "range",
       "id": "columns_desktop",
       "min": 2,
-      "max": 5,
+      "max": 6,
       "step": 1,
-      "label": "Columns desktop",
-      "default": 3
+      "default": 3,
+      "label": "Columns on Desktop"
     },
     {
-      "type": "select",
+      "type": "range",
+      "id": "columns_tablet",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 3,
+      "label": "Columns on Tablet"
+    },
+    {
+      "type": "range",
       "id": "columns_mobile",
-      "label": "Columns mobile",
-      "default": "1",
-      "options": [
-        {
-          "value": "1",
-          "label": "1 column"
-        },
-        {
-          "value": "2",
-          "label": "2 columns"
-        }
-      ]
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 2,
+      "label": "Columns on Mobile"
     },
     {
-      "type": "select",
-      "id": "image_ratio",
-      "label": "Image ratio",
-      "default": "adapt",
-      "options": [
-        {
-          "value": "adapt",
-          "label": "Landscape"
-        },
-        {
-          "value": "square",
-          "label": "Square"
-        },
-        {
-          "value": "portrait",
-          "label": "Portrait"
-        }
-      ]
-    },
-    {
-      "type": "checkbox",
-      "id": "show_product_count",
-      "label": "Show product count",
-      "default": false
-    },
-    {
-      "type": "checkbox",
-      "id": "show_description",
-      "label": "Show collection description",
-      "default": false
+      "type": "text",
+      "id": "available_label",
+      "label": "Available products label suffix",
+      "default": "Available"
     },
     {
       "type": "header",
@@ -501,7 +486,7 @@
       "step": 2,
       "unit": "px",
       "label": "Padding Top",
-      "default": 40
+      "default": 0
     },
     {
       "type": "range",
@@ -511,7 +496,7 @@
       "step": 2,
       "unit": "px",
       "label": "Padding Bottom",
-      "default": 40
+      "default": 0
     },
     {
       "type": "range",
@@ -558,9 +543,57 @@
       "default": 25
     }
   ],
+  "blocks": [
+    {
+      "type": "brand",
+      "name": "Brand Block",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "brand_logo",
+          "label": "Brand Logo",
+          "info": "Transparent background recommended. If empty, fallback is collection image."
+        },
+        {
+          "type": "text",
+          "id": "custom_title",
+          "label": "Custom Brand Name Override",
+          "info": "Optional. Falls back to collection title if left blank (only shown if no logo is selected)."
+        },
+        {
+          "type": "url",
+          "id": "custom_link",
+          "label": "Custom Link Override",
+          "info": "Optional. Falls back to collection URL if left blank."
+        },
+        {
+          "type": "text",
+          "id": "custom_count",
+          "label": "Custom Product Count Override",
+          "info": "Optional. Falls back to collection product count if left blank."
+        }
+      ]
+    }
+  ],
   "presets": [
     {
-      "name": "Sub Collection"
+      "name": "Brands Sub-Collections",
+      "blocks": [
+        {
+          "type": "brand"
+        },
+        {
+          "type": "brand"
+        },
+        {
+          "type": "brand"
+        }
+      ]
     }
   ]
 }
