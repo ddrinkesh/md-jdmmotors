@@ -5,7 +5,7 @@
 .sub-collection-main .sec-text { margin-top: 10px; }
 .sub-collection-main .sub-collection-layout--with-sidebar { display: grid; grid-template-columns: 320px 1fr; gap: 40px; align-items: flex-start; }
 .sub-collection-main .brands-main-collection-sidebar__title { margin: 0 0 24px; padding-bottom: 18px; border-bottom: 1px solid #e6e6e6; font-size: 18px; line-height: 1.2; font-weight: 500; color: #1f1f1f; }
-.sub-collection-main .brands-main-collection-menu { display: flex; flex-direction: column; gap: 14px; }
+.sub-collection-main .brands-main-collection-menu { display: flex; flex-direction: column; gap: 2px; }
 .sub-collection-main .brands-main-collection-menu__item { overflow: hidden; border: 1px solid #dfdfdf; border-radius: 6px; background: #ffffff; }
 .sub-collection-main .brands-main-collection-menu__link { display: flex; align-items: center; justify-content: space-between; gap: 14px; min-height: 42px; padding: 8px 14px; color: #1f1f1f; text-decoration: none; transition: color 0.2s ease; }
 .sub-collection-main .brands-main-collection-menu__link.is-active { color: #cd1719; }
