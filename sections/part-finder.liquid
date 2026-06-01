@@ -1,4 +1,5 @@
 {{ 'part-finder.css' | asset_url | stylesheet_tag }}
+{{ 'custom-part-finder.js' | asset_url | script_tag }}
 
 {%- style -%}
   @media screen and (min-width: 750px) {
@@ -23,12 +24,55 @@
   }
 {%- endstyle -%}
 
+{% liquid
+  assign vehicles = shop.metaobjects.part_finder_data.values
+%}
+
+<script>
+  (function () {
+    'use strict';
+
+    var partFinderVehicles_{{ section.id | handleize | replace: '-', '_' }} = [
+      {%- for vehicle in vehicles -%}
+        {
+          "brand": {{ vehicle.brand.value | default: '' | json }},
+          "model": {{ vehicle.model.value | default: '' | json }},
+          "year":  {{ vehicle.year.value  | default: '' | json }}
+        }{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+    ];
+
+    var partFinderConfig_{{ section.id | handleize | replace: '-', '_' }} = {
+      sectionId:     {{ section.id | json }},
+      collectionUrl: {% if section.settings.destination_collection != blank %}{{ section.settings.destination_collection.url | json }}{% else %}'/collections/all'{% endif %},
+      data: partFinderVehicles_{{ section.id | handleize | replace: '-', '_' }}
+    };
+
+    function initInstance(cfg) { new window.PartFinder(cfg); }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function () {
+        initInstance(partFinderConfig_{{ section.id | handleize | replace: '-', '_' }});
+      });
+    } else {
+      initInstance(partFinderConfig_{{ section.id | handleize | replace: '-', '_' }});
+    }
+
+    document.addEventListener('shopify:section:load', function (e) {
+      if (e.detail.sectionId === {{ section.id | json }}) {
+        initInstance(partFinderConfig_{{ section.id | handleize | replace: '-', '_' }});
+      }
+    });
+
+  })();
+</script>
+
 <div class="section-{{ section.id }} section-{{ section.id }}-padding color-{{ section.settings.color_scheme }} gradient section-main-box part-finder-section">
-  <div class="part-finder page-width">
+  <div class="part-finder page-width" data-section-id="{{ section.id }}">
 
     {% if section.settings.heading != blank or section.settings.heading_highlight != blank %}
       <div class="sec-head text-align-{{ section.settings.text_align }} {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-        
+
         {% if section.settings.heading != blank %}
           <h2 class="sec-title">{{ section.settings.heading }}</h2>
         {%- endif -%}
@@ -87,13 +131,13 @@
     {
       "type": "header",
       "content": "Heading"
-    },    
+    },
     {
       "type": "inline_richtext",
       "id": "heading",
-      "label": "Heading",          
+      "label": "Heading",
       "info": "Highlighted text should be added in bold format, and the bold text will appear in red color."
-    },  
+    },
     {
       "type": "select",
       "id": "text_align",
@@ -141,6 +185,16 @@
       "id": "button_label",
       "label": "Button Label",
       "default": "FIND"
+    },
+    {
+      "type": "header",
+      "content": "Destination"
+    },
+    {
+      "type": "collection",
+      "id": "destination_collection",
+      "label": "Destination Collection",
+      "info": "Customers will be redirected here with vehicle filters applied. Falls back to /collections/all if not set."
     },
     {
       "type": "header",
