@@ -107,7 +107,7 @@
         {{- block.settings.heading_2 -}}
         {% if block.settings.text_2 != blank %}
           {% if block.settings.year_range %}
-            {% assign years = product.metafields.custom.years.value %}
+            {% assign years = product.metafields.custom.year.value %}
             {% if years != blank %}
               {% assign sorted_years = years | sort %}
               <span class="text"> {{ sorted_years.first }}-{{ sorted_years.last }} </span>
