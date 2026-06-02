@@ -279,6 +279,14 @@
                     {{ product.description }}
                   </div>
                 {%- endif -%}
+
+                   {%- when 'description' -%}
+                {%- if product.description != blank -%}
+                  <div class="product__description rte quick-add-hidden" {{ block.shopify_attributes }}>
+                    {{ product.description }}
+                  </div>
+                {%- endif -%}
+                
               {%- when 'sku' -%}
                 <p
                   class="product__sku{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.sku.size == 0 %} visibility-hidden{% endif %}"
@@ -1253,11 +1261,18 @@
       "name": "t:sections.main-product.blocks.description.name",
       "limit": 1
     },
+   {
+  "type": "short_description",
+  "name": "Short Description",
+  "limit": 1,
+  "settings": [
     {
-      "type": "short_description",
-      "name": "Short Description",
-      "limit": 1
-    },
+      "type": "textarea",
+      "id": "short_description",
+      "label": "Short Description"
+    }
+  ]
+},
     {
       "type": "share",
       "name": "t:sections.main-product.blocks.share.name",
