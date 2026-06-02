@@ -100,7 +100,7 @@
           "settings": {
             "heading": "Applications",
             "icon": "none",
-            "content": "{{ product.description }}",
+            "content": "<p>{{ product.metafields.custom.applications | metafield_tag }}</p>",
             "page": ""
           }
         },
@@ -109,7 +109,7 @@
           "settings": {
             "heading": "Modifications",
             "icon": "none",
-            "content": "{{ product.description }}",
+            "content": "<p>{{ product.metafields.custom.modifications | metafield_tag }}</p>",
             "page": ""
           }
         },
@@ -118,7 +118,7 @@
           "settings": {
             "heading": "Warranty",
             "icon": "none",
-            "content": "{{ product.description }}",
+            "content": "<p>{{ product.metafields.custom.warranty | metafield_tag }}</p>",
             "page": ""
           }
         }
