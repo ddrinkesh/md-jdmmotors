@@ -41,6 +41,7 @@
         "icon_with_text_MPWyhf": {
           "type": "icon-with-text",
           "settings": {
+            "year_range": true,
             "layout": "vertical",
             "icon_1": "heart",
             "image_1": "shopify://shop_images/Frame_1.svg",
