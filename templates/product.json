@@ -38,6 +38,10 @@
             "text_style": "body"
           }
         },
+        "short_description_feqnHb": {
+          "type": "short_description",
+          "settings": {}
+        },
         "icon_with_text_MPWyhf": {
           "type": "icon-with-text",
           "settings": {
@@ -128,6 +132,7 @@
         "title",
         "price",
         "text_qFpUVA",
+        "short_description_feqnHb",
         "icon_with_text_MPWyhf",
         "variant_picker",
         "quantity_selector",
