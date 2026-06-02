@@ -328,7 +328,7 @@
             {%- endif -%}
 
             <div class="pro-other-info">
-              {% assign years = item.product.metafields.custom.year.value %}
+              {% assign years = card_product.metafields.custom.year.value %}
               {% if years != blank %}
                 {% assign sorted_years = years | sort %}
                 <div class="info-box time-duration">
@@ -337,10 +337,10 @@
                 </div>
               {% endif %}
 
-              {% if item.product.metafields.custom.mileage != blank %}
+              {% if card_product.metafields.custom.mileage != blank %}
                 <div class="info-box miles-info">
                   {{ 'miles.svg' | inline_asset_content }}
-                  {{ item.product.metafields.custom.mileage }}
+                  {{ card_product.metafields.custom.mileage }}
                 </div>
               {% endif %}
             </div>
