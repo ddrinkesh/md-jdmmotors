@@ -38,6 +38,13 @@
             "text_style": "body"
           }
         },
+        "text_EmhRme": {
+          "type": "text",
+          "settings": {
+            "text": "",
+            "text_style": "body"
+          }
+        },
         "icon_with_text_MPWyhf": {
           "type": "icon-with-text",
           "settings": {
@@ -127,6 +134,7 @@
         "title",
         "price",
         "text_qFpUVA",
+        "text_EmhRme",
         "icon_with_text_MPWyhf",
         "variant_picker",
         "quantity_selector",
