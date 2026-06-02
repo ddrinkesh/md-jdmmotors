@@ -45,7 +45,7 @@
             "icon_1": "heart",
             "image_1": "shopify://shop_images/Frame_1.svg",
             "heading_1": "Item Code :",
-            "text_1": "VK45-AT",
+            "text_1": "{{ product.metafields.custom.item_code.value }}",
             "icon_2": "return",
             "image_2": "shopify://shop_images/Frame_2.svg",
             "heading_2": "Years :",
