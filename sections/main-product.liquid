@@ -281,9 +281,9 @@
                 {%- endif -%}
 
               {%- when 'short_description' -%}
-                {%- if block.settings.short_description != blank -%}
+                {%- if product.metafields.custom.short_description != blank -%}
                   <div class="product__short-description rte" {{ block.shopify_attributes }}>
-                    {{ block.settings.short_description }}
+                    {{ product.metafields.custom.short_description | metafield_tag }}
                   </div>
                 {%- endif -%}
 
@@ -1264,14 +1264,7 @@
     {
       "type": "short_description",
       "name": "Short Description",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "textarea",
-          "id": "short_description",
-          "label": "Short Description"
-        }
-      ]
+      "limit": 1
     },
     {
       "type": "share",
