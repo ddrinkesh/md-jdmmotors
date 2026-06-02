@@ -26,7 +26,6 @@
 <div class="section-{{ section.id }} section-{{ section.id }}-padding section-{{ section.id }}-margin color-{{ section.settings.color_scheme }} gradient section-main-box faq-main">
   <div class="page-width">
     <div class="faq-inner faq-inner--{{ section.settings.layout }}">
-
       {% if section.settings.heading != blank or section.settings.sec_text != blank %}
         <div class="faq-head sec-head text-align-{{ section.settings.text_align }} {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
           {% if section.settings.heading != blank %}
@@ -38,26 +37,71 @@
         </div>
       {% endif %}
 
-      {% if section.blocks.size > 0 %}
+      {% liquid
+        assign faq_items = blank
+
+        if product and product.metafields.custom.faqs.value != blank
+          assign faq_items = product.metafields.custom.faqs.value
+        elsif collection and collection.metafields.custom.faqs.value != blank
+          assign faq_items = collection.metafields.custom.faqs.value
+        endif
+      %}
+
+      {% if faq_items != blank or section.blocks.size > 0 %}
         <div class="faq-list {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-          {% for block in section.blocks %}
-            <details class="faq-item" {% if block.settings.open_by_default %}open{% endif %} {{ block.shopify_attributes }}>
-              <summary class="faq-item__summary">
-                <span class="faq-item__question">{{ block.settings.question }}</span>
-                <span class="faq-item__toggle" aria-hidden="true">
-                  {{ 'icon-caret.svg' | inline_asset_content }}
-                </span>
-              </summary>
-              <div class="faq-item__answer">
-                <div class="faq-item__answer-inner rte">
-                  {{ block.settings.answer }}
+          {% if faq_items != blank %}
+            {% for faq in faq_items %}
+              <details
+                class="faq-item"
+                {% if forloop.first %}
+                  open
+                {% endif %}
+              >
+                <summary class="faq-item__summary">
+                  <span class="faq-item__question">
+                    {{ faq.question }}
+                  </span>
+                  <span class="faq-item__toggle" aria-hidden="true">
+                    {{ 'icon-caret.svg' | inline_asset_content }}
+                  </span>
+                </summary>
+
+                <div class="faq-item__answer">
+                  <div class="faq-item__answer-inner rte">
+                    {{ faq.answer }}
+                  </div>
                 </div>
-              </div>
-            </details>
-          {% endfor %}
+              </details>
+            {% endfor %}
+
+          {% else %}
+            {% for block in section.blocks %}
+              <details
+                class="faq-item"
+                {% if block.settings.open_by_default %}
+                  open
+                {% endif %}
+                {{ block.shopify_attributes }}
+              >
+                <summary class="faq-item__summary">
+                  <span class="faq-item__question">
+                    {{ block.settings.question }}
+                  </span>
+                  <span class="faq-item__toggle" aria-hidden="true">
+                    {{ 'icon-caret.svg' | inline_asset_content }}
+                  </span>
+                </summary>
+
+                <div class="faq-item__answer">
+                  <div class="faq-item__answer-inner rte">
+                    {{ block.settings.answer }}
+                  </div>
+                </div>
+              </details>
+            {% endfor %}
+          {% endif %}
         </div>
       {% endif %}
-
     </div>
   </div>
 </div>
@@ -192,7 +236,7 @@
       "label": "Heading",
       "default": "Frequently Asked",
       "info": "Highlighted text should be added in bold format, and the bold text will appear in red color."
-    },     
+    },
     {
       "type": "richtext",
       "id": "sec_text",
