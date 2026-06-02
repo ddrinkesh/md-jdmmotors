@@ -80,9 +80,9 @@
       {%- endif -%}
       <span class="inline-richtext">
         {{- block.settings.heading_1 -}}
-        {%if block.settings.text_1 != blank %}
+        {% if block.settings.text_1 != blank %}
           <span class="text">{{ block.settings.text_1 }}</span>
-        {%endif %}
+        {% endif %}
       </span>
     </li>
   {%- endunless -%}
@@ -105,9 +105,17 @@
       {%- endif -%}
       <span class="inline-richtext">
         {{- block.settings.heading_2 -}}
-        {%if block.settings.text_2 != blank %}
-          <span class="text">{{ block.settings.text_2 }}</span>
-        {%endif %}
+        {% if block.settings.text_2 != blank %}
+          {% if block.settings.year_range %}
+            {% assign years = product.metafields.custom.years.value %}
+            {% if years != blank %}
+              {% assign sorted_years = years | sort %}
+              <span class="text"> {{ sorted_years.first }}-{{ sorted_years.last }} </span>
+            {% endif %}
+          {% else %}
+            <span class="text">{{ block.settings.text_2 }}</span>
+          {% endif %}
+        {% endif %}
       </span>
     </li>
   {%- endunless -%}
@@ -130,9 +138,9 @@
       {%- endif -%}
       <span class="inline-richtext">
         {{- block.settings.heading_3 -}}
-        {%if block.settings.text_3 != blank %}
+        {% if block.settings.text_3 != blank %}
           <span class="text">{{ block.settings.text_3 }}</span>
-        {%endif %}
+        {% endif %}
       </span>
     </li>
   {%- endunless -%}
@@ -155,9 +163,9 @@
       {%- endif -%}
       <span class="inline-richtext">
         {{- block.settings.heading_4 -}}
-        {%if block.settings.text_4 != blank %}
+        {% if block.settings.text_4 != blank %}
           <span class="text">{{ block.settings.text_4 }}</span>
-        {%endif %}
+        {% endif %}
       </span>
     </li>
   {%- endunless -%}
@@ -180,9 +188,9 @@
       {%- endif -%}
       <span class="inline-richtext">
         {{- block.settings.heading_5 -}}
-        {%if block.settings.text_5 != blank %}
+        {% if block.settings.text_5 != blank %}
           <span class="text">{{ block.settings.text_5 }}</span>
-        {%endif %}
+        {% endif %}
       </span>
     </li>
   {%- endunless -%}
@@ -205,9 +213,9 @@
       {%- endif -%}
       <span class="inline-richtext">
         {{- block.settings.heading_6 -}}
-        {%if block.settings.text_6 != blank %}
+        {% if block.settings.text_6 != blank %}
           <span class="text">{{ block.settings.text_6 }}</span>
-        {%endif %}
+        {% endif %}
       </span>
     </li>
   {%- endunless -%}
