@@ -180,16 +180,16 @@
                 {% endif %}
               {%- endif -%}
             {%- endfor -%}
-            
-            {% if product.metafields.custom.item_number != blank %}
-              <span class="badge label label--custom label--custom-{{ product.metafields.custom.item_number }}">
-                {{ product.metafields.custom.item_number }}
+
+            {% if card_product.metafields.custom.item_number != blank %}
+              <span class="badge label label--custom label--custom-{{ card_product.metafields.custom.item_number }}">
+                {{ card_product.metafields.custom.item_number }}
               </span>
           {% endif %}
 
-          {% if product.metafields.custom.type != blank %}
-              <span class="badge label label--custom label--custom-{{ product.metafields.custom.type }}">
-                {{ product.metafields.custom.type }}
+          {% if card_product.metafields.custom.type != blank %}
+              <span class="badge label label--custom label--custom-{{ card_product.metafields.custom.type }}">
+                {{ card_product.metafields.custom.type }}
               </span>
           {% endif %}
           </div>
