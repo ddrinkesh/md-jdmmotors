@@ -153,6 +153,19 @@
               {% endif %}
             {%- endif -%}
           {%- endfor -%}
+
+          {% if product.metafields.custom.item_code != blank %}
+              <span class="badge label label--custom label--custom-{{ product.metafields.custom.item_code }}">
+                {{ product.metafields.custom.item_code }}
+              </span>
+          {% endif %}
+
+          {% if product.metafields.custom.type != blank %}
+              <span class="badge label label--custom label--custom-{{ product.metafields.custom.item_code }}">
+                {{ product.metafields.custom.type }}
+              </span>
+          {% endif %}
+
         </div>
       </div>
       <div class="product__info-wrapper grid__item{% if settings.page_width > 1400 and section.settings.media_size == "small" %} product__info-wrapper--extra-padding{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
