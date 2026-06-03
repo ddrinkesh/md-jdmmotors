@@ -34,7 +34,7 @@
         "text_qFpUVA": {
           "type": "text",
           "settings": {
-            "text": "{{ product.vendor }}",
+            "text": "{{ product.metafields.custom.model | metafield_text }}",
             "text_style": "body"
           }
         },
