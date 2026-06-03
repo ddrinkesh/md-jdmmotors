@@ -14,6 +14,16 @@ class MainSearch extends SearchForm {
     this.allSearchInputs.forEach((input) => input.addEventListener('input', this.onInput.bind(this)));
   }
 
+  onFormSubmit(event) {
+  const form = event.target;
+  const input = form.querySelector('input[type="search"]');
+  if (!input) return;
+  const term = input.value.trim();
+  if (term && !term.startsWith('title:') && !term.startsWith('tag:')) {
+    input.value = `tag:${term}`;
+  }
+}
+
   onFormReset(event) {
     super.onFormReset(event);
     if (super.shouldResetForm()) {
