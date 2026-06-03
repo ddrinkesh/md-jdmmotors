@@ -22,7 +22,7 @@ class MainSearch extends SearchForm {
   const input = form.querySelector('input[type="search"]');
   if (!input) return;
   const term = input.value.trim();
-  if (term && !term.startsWith('title:') && !term.startsWith('tag:')) {
+  if (term && !term.startsWith('tag:')) {
     input.value = `tag:${term}`;
   }
 }
