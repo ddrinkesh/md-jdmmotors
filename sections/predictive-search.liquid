@@ -235,6 +235,8 @@
           {{- 'icon-arrow.svg' | inline_asset_content -}}
         </span>
       </button>
+
+      {% comment %} {{  tag based suggestions only code }} {% endcomment %}
       {%- if predictive_search.resources.products.size > 0 -%}
   <div class="predictive-search__tag-suggestion">
     <a 
