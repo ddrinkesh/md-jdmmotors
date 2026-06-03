@@ -235,6 +235,18 @@
           {{- 'icon-arrow.svg' | inline_asset_content -}}
         </span>
       </button>
+      {%- if predictive_search.resources.products.size > 0 -%}
+  <div class="predictive-search__tag-suggestion">
+    <a 
+      href="/search?q=title:{{ predictive_search.terms | url_encode }}+OR+tag:{{ predictive_search.terms | url_encode }}&type=product"
+      class="predictive-search__item link link--text h5 animate-arrow"
+      tabindex="-1"
+    >
+      <span>See all "{{ predictive_search.terms }}" products</span>
+      <span class="svg-wrapper">{{- 'icon-arrow.svg' | inline_asset_content -}}</span>
+    </a>
+  </div>
+{%- endif -%}
     </div>
   </div>
 
