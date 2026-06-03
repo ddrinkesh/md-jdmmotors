@@ -154,9 +154,9 @@
             {%- endif -%}
           {%- endfor -%}
 
-          {% if product.metafields.custom.item_code != blank %}
-              <span class="badge label label--custom label--custom-{{ product.metafields.custom.item_code }}">
-                {{ product.metafields.custom.item_code }}
+          {% if product.metafields.custom.item_number != blank %}
+              <span class="badge label label--custom label--custom-{{ product.metafields.custom.item_number }}">
+                {{ product.metafields.custom.item_number }}
               </span>
           {% endif %}
 
