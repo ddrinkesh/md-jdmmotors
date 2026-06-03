@@ -115,6 +115,18 @@
               {% endif %}
             {%- endif -%}
           {%- endfor -%}
+
+          {% if product.metafields.custom.item_number != blank %}
+              <span class="badge label label--custom label--custom-{{ product.metafields.custom.item_number }}">
+                {{ product.metafields.custom.item_number }}
+              </span>
+          {% endif %}
+
+          {% if product.metafields.custom.type != blank %}
+              <span class="badge label label--custom label--custom-{{ product.metafields.custom.type }}">
+                {{ product.metafields.custom.type }}
+              </span>
+          {% endif %}
         </div>
       </div>
       <div class="grid__item product__media-wrapper product-info-hidden">
