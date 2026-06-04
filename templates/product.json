@@ -126,6 +126,10 @@
             "content": "<p>{{ product.metafields.custom.warranty | metafield_tag }}</p>",
             "page": ""
           }
+        },
+        "dibs_lb_ordereasy_product_block_EYekXT": {
+          "type": "shopify://apps/dibs/blocks/lb-ordereasy-product-block/7cc74442-1b61-4b87-afed-944e0def999c",
+          "settings": {}
         }
       },
       "block_order": [
@@ -140,7 +144,8 @@
         "collapsible_tab_iFVjx8",
         "collapsible_tab_dVpe3M",
         "collapsible_tab_JEjgRy",
-        "collapsible_tab_PUWWBg"
+        "collapsible_tab_PUWWBg",
+        "dibs_lb_ordereasy_product_block_EYekXT"
       ],
       "settings": {
         "enable_sticky_info": true,
