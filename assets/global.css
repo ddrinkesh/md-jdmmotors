@@ -278,6 +278,8 @@ input:focus{background:transparent !important;}
 
 .shopify-policy__container .shopify-policy__body hr { margin: 4rem 0 2.5rem; background: #325248; }
 
+.main-page-wrapper:has(.shopify-policy__container) .main-page-title { display: none; }
+.main-page-wrapper .shopify-policy__container { padding: 0; }
 
 predictive-search .search .reset__button,
 predictive-search .search .search__button { top: -7px; }
