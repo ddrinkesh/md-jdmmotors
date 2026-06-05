@@ -34,34 +34,39 @@
         "text_qFpUVA": {
           "type": "text",
           "settings": {
-            "text": "{{ product.vendor }}",
+            "text": "{{ product.metafields.custom.model | metafield_text }}",
             "text_style": "body"
           }
+        },
+        "short_description_feqnHb": {
+          "type": "short_description",
+          "settings": {}
         },
         "icon_with_text_MPWyhf": {
           "type": "icon-with-text",
           "settings": {
+            "year_range": true,
             "layout": "vertical",
             "icon_1": "heart",
             "image_1": "shopify://shop_images/Frame_1.svg",
             "heading_1": "Item Code :",
-            "text_1": "VK45-AT",
+            "text_1": "{{ product.metafields.custom.item_code.value }}",
             "icon_2": "return",
             "image_2": "shopify://shop_images/Frame_2.svg",
             "heading_2": "Years :",
-            "text_2": "2006-2010",
+            "text_2": "{{ product.metafields.custom.year | metafield_text }}",
             "icon_3": "truck",
             "image_3": "shopify://shop_images/Frame_3.svg",
             "heading_3": "Type :",
-            "text_3": "Automatic",
+            "text_3": "{{ product.metafields.custom.type.value }}",
             "icon_4": "truck",
             "image_4": "shopify://shop_images/material-symbols_speed-outline-rounded.svg",
             "heading_4": "Mileage :",
-            "text_4": "53,000 Miles",
+            "text_4": "{{ product.metafields.custom.mileage.value }}",
             "icon_5": "truck",
             "image_5": "shopify://shop_images/Frame_4.svg",
             "heading_5": "Part :",
-            "text_5": "Torque Converter",
+            "text_5": "{{ product.metafields.custom.parts | metafield_text }}",
             "icon_6": "truck",
             "heading_6": "",
             "text_6": ""
@@ -100,7 +105,7 @@
           "settings": {
             "heading": "Applications",
             "icon": "none",
-            "content": "{{ product.description }}",
+            "content": "<p>{{ product.metafields.custom.applications | metafield_tag }}</p>",
             "page": ""
           }
         },
@@ -109,7 +114,7 @@
           "settings": {
             "heading": "Modifications",
             "icon": "none",
-            "content": "{{ product.description }}",
+            "content": "<p>{{ product.metafields.custom.modifications | metafield_tag }}</p>",
             "page": ""
           }
         },
@@ -118,15 +123,20 @@
           "settings": {
             "heading": "Warranty",
             "icon": "none",
-            "content": "{{ product.description }}",
+            "content": "<p>{{ product.metafields.custom.warranty | metafield_tag }}</p>",
             "page": ""
           }
+        },
+        "dibs_lb_ordereasy_product_block_EYekXT": {
+          "type": "shopify://apps/dibs/blocks/lb-ordereasy-product-block/7cc74442-1b61-4b87-afed-944e0def999c",
+          "settings": {}
         }
       },
       "block_order": [
         "title",
         "price",
         "text_qFpUVA",
+        "short_description_feqnHb",
         "icon_with_text_MPWyhf",
         "variant_picker",
         "quantity_selector",
@@ -134,7 +144,8 @@
         "collapsible_tab_iFVjx8",
         "collapsible_tab_dVpe3M",
         "collapsible_tab_JEjgRy",
-        "collapsible_tab_PUWWBg"
+        "collapsible_tab_PUWWBg",
+        "dibs_lb_ordereasy_product_block_EYekXT"
       ],
       "settings": {
         "enable_sticky_info": true,

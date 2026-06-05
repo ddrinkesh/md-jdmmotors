@@ -9,10 +9,25 @@ class MainSearch extends SearchForm {
     let allSearchForms = [];
     this.allSearchInputs.forEach((input) => allSearchForms.push(input.form));
     this.input.addEventListener('focus', this.onInputFocus.bind(this));
+
+    // ADD THIS — intercept submit on all search forms
+    allSearchForms.forEach((form) => form.addEventListener('submit', this.onFormSubmit.bind(this)));
+
     if (allSearchForms.length < 2) return;
     allSearchForms.forEach((form) => form.addEventListener('reset', this.onFormReset.bind(this)));
     this.allSearchInputs.forEach((input) => input.addEventListener('input', this.onInput.bind(this)));
   }
+
+  // ADD THIS new method:
+  onFormSubmit(event) {
+  const form = event.target;
+  const input = form.querySelector('input[type="search"]');
+  if (!input) return;
+  const term = input.value.trim();
+  if (term && !term.startsWith('tag:')) {
+    input.value = `tag:${term}`;
+  }
+}
 
   onFormReset(event) {
     super.onFormReset(event);
