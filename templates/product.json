@@ -72,6 +72,10 @@
             "text_6": ""
           }
         },
+        "dibs_lb_ordereasy_product_block_npetgg": {
+          "type": "shopify://apps/dibs/blocks/lb-ordereasy-product-block/7cc74442-1b61-4b87-afed-944e0def999c",
+          "settings": {}
+        },
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
@@ -138,6 +142,7 @@
         "text_qFpUVA",
         "short_description_feqnHb",
         "icon_with_text_MPWyhf",
+        "dibs_lb_ordereasy_product_block_npetgg",
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
