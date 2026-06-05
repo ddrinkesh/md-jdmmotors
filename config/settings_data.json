@@ -129,6 +129,11 @@
     "show_cart_note": false,
     "cart_drawer_collection": "",
     "cart_color_scheme": "scheme-1",
+    "Upsell_title": "Ship to Address",
+    "upsell_all_pro": [
+      "liftgate-50-usd",
+      "residential-50-usd"
+    ],
     "sections": {
       "main-password-header": {
         "type": "main-password-header",
