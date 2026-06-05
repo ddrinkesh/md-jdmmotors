@@ -1348,6 +1348,7 @@ class CartPerformance {
 
     callback();
 
+
     const endMarker = performance.mark(`${metricName}:end`);
 
     performance.measure(
@@ -1357,3 +1358,41 @@ class CartPerformance {
     );
   }
 }
+// upsell add ons 
+document.addEventListener('change', function (e) {
+
+  if (!e.target.classList.contains('upsell-checkbox')) return;
+  const checkbox = e.target;
+  const variantId = Number(checkbox.dataset.variantId);
+
+  // ADD PRODUCT
+  if (checkbox.checked) {
+    const form = checkbox.closest('form');
+    if (!form) return;
+    form.dispatchEvent(
+      new Event('submit', {
+        bubbles: true,
+        cancelable: true
+      })
+    );
+    return;
+  }
+
+  // REMOVE PRODUCT
+  const cartRows = document.querySelectorAll('.cart-item');
+  for (const row of cartRows) {
+    const rowVariantId = Number(
+      row.dataset.cartVariantId
+    );
+    if (rowVariantId !== variantId) continue;
+    const removeBtn =
+      row.querySelector('cart-remove-button') ||
+      row.querySelector('cart-remove-button a');
+
+    if (removeBtn) {
+      removeBtn.click();
+    }
+    break;
+  }
+
+});

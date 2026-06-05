@@ -43,10 +43,21 @@ class CartItems extends HTMLElement {
   }
 
   resetQuantityInput(id) {
-    const input = this.querySelector(`#Quantity-${id}`);
-    input.value = input.getAttribute('value');
-    this.isEnterPressed = false;
+  const input = this.querySelector(`#Quantity-${id}`);
+
+  if (!input) {
+    console.log('Quantity input not found:', id);
+    return;
   }
+
+  input.value = input.getAttribute('value');
+  this.isEnterPressed = false;
+}
+  // resetQuantityInput(id) {
+  //   const input = this.querySelector(`#Quantity-${id}`);
+  //   input.value = input.getAttribute('value');
+  //   this.isEnterPressed = false;
+  // }
 
   setValidity(event, index, message) {
     event.target.setCustomValidity(message);
@@ -56,6 +67,9 @@ class CartItems extends HTMLElement {
   }
 
   validateQuantity(event) {
+      if (!event.target.classList.contains('quantity__input')) {
+          return;
+        }
     const inputValue = parseInt(event.target.value);
     const index = event.target.dataset.index;
     let message = '';
@@ -106,17 +120,55 @@ class CartItems extends HTMLElement {
           console.error(e);
         });
     } else {
-      return fetch(`${routes.cart_url}?section_id=main-cart-items`)
-        .then((response) => response.text())
-        .then((responseText) => {
-          const html = new DOMParser().parseFromString(responseText, 'text/html');
-          const sourceQty = html.querySelector('cart-items');
-          this.innerHTML = sourceQty.innerHTML;
-        })
-        .catch((e) => {
-          console.error(e);
-        });
-    }
+
+  return fetch(routes.cart_url)
+    .then((response) => response.text())
+    .then((responseText) => {
+
+      const html = new DOMParser().parseFromString(
+        responseText,
+        'text/html'
+      );
+
+      // Cart Items
+      const sourceQty = html.querySelector('cart-items');
+
+      if (sourceQty) {
+        this.innerHTML = sourceQty.innerHTML;
+      }
+
+      // Footer
+      const footer = document.getElementById(
+        'main-cart-footer'
+      );
+
+      const newFooter = html.querySelector(
+        '#main-cart-footer'
+      );
+
+      if (footer && newFooter) {
+        footer.innerHTML = newFooter.innerHTML;
+      }
+
+      // Bubble
+      const bubble = document.getElementById(
+        'cart-icon-bubble'
+      );
+
+      const newBubble = html.querySelector(
+        '#cart-icon-bubble'
+      );
+
+      if (bubble && newBubble) {
+        bubble.innerHTML = newBubble.innerHTML;
+      }
+
+    })
+    .catch((e) => {
+      console.error(e);
+    });
+
+}
   }
 
   getSectionsToRender() {

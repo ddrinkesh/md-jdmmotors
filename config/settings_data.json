@@ -129,6 +129,11 @@
     "show_cart_note": false,
     "cart_drawer_collection": "",
     "cart_color_scheme": "scheme-1",
+    "Upsell_title": "Ship to Address",
+    "upsell_all_pro": [
+      "liftgate-50-usd",
+      "residential-50-usd"
+    ],
     "sections": {
       "main-password-header": {
         "type": "main-password-header",
@@ -144,6 +149,16 @@
       }
     },
     "content_for_index": [],
+    "blocks": {
+      "6464650315188175684": {
+        "type": "shopify://apps/dibs/blocks/lb-ordereasy-embed/7cc74442-1b61-4b87-afed-944e0def999c",
+        "disabled": false,
+        "settings": {
+          "ordereasy_custom_script": "<script></script>",
+          "disable_form_product_validation": false
+        }
+      }
+    },
     "color_schemes": {
       "scheme-1": {
         "settings": {

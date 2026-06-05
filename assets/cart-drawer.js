@@ -14,12 +14,19 @@ class CartDrawer extends HTMLElement {
     cartLink.setAttribute('role', 'button');
     cartLink.setAttribute('aria-haspopup', 'dialog');
     cartLink.addEventListener('click', (event) => {
-      event.preventDefault();
+
+      event.preventDefault()
+    if (window.location.pathname === '/cart') {
+      return;
+    };
       this.open(cartLink);
     });
     cartLink.addEventListener('keydown', (event) => {
       if (event.code.toUpperCase() === 'SPACE') {
         event.preventDefault();
+    if (window.location.pathname === '/cart') {
+      return;
+    }
         this.open(cartLink);
       }
     });
@@ -84,8 +91,12 @@ class CartDrawer extends HTMLElement {
     });
 
     setTimeout(() => {
-      this.querySelector('#CartDrawer-Overlay').addEventListener('click', this.close.bind(this));
-      this.open();
+      this.querySelector('#CartDrawer-Overlay')
+        .addEventListener('click', this.close.bind(this));
+
+      if (window.location.pathname !== '/cart') {
+        this.open();
+      }
     });
   }
 
