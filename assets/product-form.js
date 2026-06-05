@@ -8,7 +8,14 @@ if (!customElements.get('product-form')) {
         this.form = this.querySelector('form');
         this.variantIdInput.disabled = false;
         this.form.addEventListener('submit', this.onSubmitHandler.bind(this));
-        this.cart = document.querySelector('cart-notification') || document.querySelector('cart-drawer');
+        // this.cart = document.querySelector('cart-notification') || document.querySelector('cart-drawer'); 
+        if (window.location.pathname === '/cart') {
+          this.cart = document.querySelector('cart-items');
+        } else {
+          this.cart =
+            document.querySelector('cart-notification') ||
+            document.querySelector('cart-drawer');
+        }
         this.submitButton = this.querySelector('[type="submit"]');
         this.submitButtonText = this.submitButton.querySelector('span');
 
@@ -33,13 +40,18 @@ if (!customElements.get('product-form')) {
 
         const formData = new FormData(this.form);
         if (this.cart) {
-          formData.append(
-            'sections',
-            this.cart.getSectionsToRender().map((section) => section.id)
-          );
-          formData.append('sections_url', window.location.pathname);
-          this.cart.setActiveElement(document.activeElement);
-        }
+
+            formData.append(
+              'sections',
+              this.cart.getSectionsToRender().map((section) => section.id)
+            );
+
+            formData.append('sections_url', window.location.pathname);
+
+            if (typeof this.cart.setActiveElement === 'function') {
+              this.cart.setActiveElement(document.activeElement);
+            }
+          }
         config.body = formData;
 
         fetch(`${routes.cart_add_url}`, config)
@@ -91,10 +103,22 @@ if (!customElements.get('product-form')) {
               );
               quickAddModal.hide(true);
             } else {
-              CartPerformance.measure("add:paint-updated-sections", () => {
-                this.cart.renderContents(response);
-              });
-            }
+              if (window.location.pathname === '/cart') {
+
+                const cartItems = document.querySelector('cart-items');
+
+                if (cartItems) {
+                  cartItems.onCartUpdate();
+                }
+
+              } else {
+
+                CartPerformance.measure("add:paint-updated-sections", () => {
+                  this.cart.renderContents(response);
+                });
+
+              }
+              }
           })
           .catch((e) => {
             console.error(e);
