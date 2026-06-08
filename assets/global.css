@@ -295,6 +295,186 @@ select:focus-visible { outline: none !important; outline-offset: 0; box-shadow: 
 .lb-ordereasy-plan-selection-container .lb-ordereasy-payment-option-description { line-height: 1; margin-top: 5px; } 
 .lb-ordereasy-plan-selection-container .lb-ordereasy-payment-option-radio {accent-color: #cd1719;}
 
+/* Cart upsell add-ons */
+.cart-drawer-upsell {
+  margin-top: 3rem;
+  padding: 2.4rem;
+  border: 1px solid rgba(var(--color-foreground), 0.12);
+  border-radius: 8px;
+  background: rgb(var(--color-background));
+}
+
+.cart-drawer-upsell__title {
+  margin: 0 0 1.6rem;
+  color: rgb(var(--color-title));
+  font-size: 28px;
+  line-height: 1.15;
+}
+
+.upsell-products {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.upsell-product,
+.upsell-product__content,
+.upsell-product__text {
+  min-width: 0;
+}
+
+.upsell-wrapper {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 40px;
+  align-items: center;
+  gap: 16px;
+  height: 100%;
+  min-height: 94px;
+  padding: 14px 18px;
+  border: 1px solid rgba(var(--color-foreground), 0.1);
+  border-radius: 8px;
+  background: rgba(var(--color-background), 0.92);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.upsell-wrapper:hover {
+  border-color: rgba(var(--color-button), 0.4);
+  box-shadow: 0 10px 24px rgba(var(--color-shadow), 0.08);
+}
+
+.upsell-product__title {
+  margin: 0;
+  color: rgb(var(--color-title));
+  line-height: 1.2;
+}
+
+.upsell-product__description {
+  display: -webkit-box;
+  margin: 6px 0 0;
+  overflow: hidden;
+  color: rgba(var(--color-foreground), 0.72);
+  font-size: 13px;
+  line-height: 1.35;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.upsell-product__price {
+  display: block;
+  margin-top: 8px;
+  color: rgb(var(--color-foreground));
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.upsell-product-form {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+  width: 40px;
+  height: 100%;
+  min-height: 40px;
+}
+
+.upsell-product-form form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+.upsell-product-form .loading__spinner {
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%);
+}
+
+.upsell-checkbox {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.upsell-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.upsell-toggle__icon {
+  position: relative;
+  display: block;
+  width: 28px;
+  height: 28px;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  color: rgb(var(--color-foreground));
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.upsell-toggle__icon::before,
+.upsell-toggle__icon::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 14px;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+  transform: translate(-50%, -50%);
+  transform-origin: center;
+  transition: width 0.2s ease, transform 0.2s ease, background 0.2s ease;
+}
+
+.upsell-toggle__icon::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.upsell-toggle:hover .upsell-toggle__icon {
+  border-color: rgba(var(--color-button), 0.35);
+  color: rgb(var(--color-button));
+}
+
+.upsell-checkbox:focus-visible + .upsell-toggle .upsell-toggle__icon {
+  outline: 2px solid rgba(var(--color-button), 0.45);
+  outline-offset: 3px;
+}
+
+.upsell-checkbox:checked + .upsell-toggle .upsell-toggle__icon {
+  border-color: rgb(var(--color-button));
+  background: rgb(var(--color-button));
+  color: rgb(var(--color-button-text));
+}
+
+.upsell-checkbox:checked + .upsell-toggle .upsell-toggle__icon::before {
+  width: 13px;
+  transform: translate(-43%, -30%) rotate(-45deg);
+}
+
+.upsell-checkbox:checked + .upsell-toggle .upsell-toggle__icon::after {
+  width: 7px;
+  transform: translate(-120%, 72%) rotate(45deg);
+}
+
+@media screen and (max-width: 989px) {
+  .upsell-products {
+    grid-template-columns: 1fr;
+  }
+}
+
  
 @media screen and (max-width: 749px){
 
@@ -314,6 +494,47 @@ select:focus-visible { outline: none !important; outline-offset: 0; box-shadow: 
   .sec-head .sec-text > * { font-size: 15px; }
 
   .shopify-section.section iframe { max-height: 250px; }
+
+  .cart-drawer-upsell {
+    margin-top: 2rem;
+    padding: 1.6rem;
+  }
+
+  .cart-drawer-upsell__title {
+    margin-bottom: 1.2rem;
+    font-size: 24px;
+  }
+
+  .upsell-wrapper {
+    grid-template-columns: minmax(0, 1fr) 36px;
+    gap: 12px;
+    min-height: 84px;
+    padding: 12px 14px;
+  }
+
+  .upsell-product__description {
+    -webkit-line-clamp: 2;
+  }
+
+  .upsell-product-form {
+    width: 36px;
+    min-height: 36px;
+  }
+
+  .upsell-toggle {
+    width: 36px;
+    height: 36px;
+  }
+
+  .upsell-toggle__icon {
+    width: 26px;
+    height: 26px;
+  }
+
+  .upsell-toggle__icon::before,
+  .upsell-toggle__icon::after {
+    width: 12px;
+  }
 
 }
  

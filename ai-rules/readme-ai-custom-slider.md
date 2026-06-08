@@ -210,7 +210,7 @@ Follow this structure:
 * Reuse this exact structure unless I request a different layout.
 
 ```liquid
-{% if section.settings.heading != blank or section.settings.sub_title != blank %}
+{% if section.settings.heading != blank or section.settings.sec_text != blank %}
   <div class="sec-head text-align-{{ section.settings.text_align }} {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
 
     {% if section.settings.heading != blank %}

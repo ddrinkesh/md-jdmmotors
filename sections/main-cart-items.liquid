@@ -111,7 +111,7 @@
                         <p class="caption-with-letter-spacing">{{ item.product.vendor }}</p>
                       {%- endif -%}
 
-                      <a href="{{ item.url }}" class="cart-item__name h4 break">{{ item.product.title | escape }}</a>
+                      <a href="{{ item.url }}" class="cart-item__name h5 break">{{ item.product.title | escape }}</a>
 
                       {%- if item.original_price != item.final_price -%}
                         <div class="cart-item__discounted-prices">
@@ -479,7 +479,7 @@
       {% if settings.upsell_all_pro != blank %}
         <div class="cart-drawer-upsell">
           {% if settings.Upsell_title != blank %}
-            <h3>{{ settings.Upsell_title }}</h3>
+            <h3 class="cart-drawer-upsell__title">{{ settings.Upsell_title }}</h3>
           {% endif %}
               <div class="upsell-products">
                 {% for product in settings.upsell_all_pro limit: 2 %}
@@ -494,12 +494,12 @@
                   <div class="upsell-product">
                     <div class="upsell-wrapper">
                       <div class="upsell-product__content">
-                        <div>
-                          <p class="h5">{{ product.title }}</p>
-                          {% if product.description  %}
-                            <p>{{ product.description }}</p>
+                        <div class="upsell-product__text">
+                          <p class="upsell-product__title h5">{{ product.title }}</p>
+                          {% if product.description != blank %}
+                            <p class="upsell-product__description">{{ product.description | strip_html | truncatewords: 14 }}</p>
                           {% endif %}
-                          <span>{{ variant.price | money }}</span>
+                          <span class="upsell-product__price">{{ variant.price | money }}</span>
                         </div>
                       </div>
                       <product-form class="product-form upsell-product-form">
@@ -525,10 +525,15 @@
 
                           <input
                             type="checkbox"
+                            id="Upsell-{{ section.id }}-{{ variant.id }}"
                             class="upsell-checkbox"
                             data-variant-id="{{ variant.id }}"
+                            aria-label="{% if in_cart %}Remove{% else %}Add{% endif %} {{ product.title | escape }}"
                             {% if in_cart %}checked{% endif %}
                           >
+                          <label class="upsell-toggle" for="Upsell-{{ section.id }}-{{ variant.id }}" aria-hidden="true">
+                            <span class="upsell-toggle__icon"></span>
+                          </label>
                           <button
                             type="submit"
                             hidden
