@@ -84,9 +84,12 @@ cart-items .title-wrapper-with-link {
   height: 100%;
 }
 
-.cart-item__name {
+.cart-item__details .cart-item__name {
   text-decoration: none;
   display: block;
+  font-family: var(--font-body-family);
+  font-weight: 700;
+  letter-spacing: 0;
 }
 
 .cart-item__name:hover {

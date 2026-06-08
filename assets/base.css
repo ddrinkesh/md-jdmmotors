@@ -3971,11 +3971,3 @@ font-weight: 400; line-height: normal; top: 10px; left: 11px; text-transform: no
 
 .template-search__header .template-search__search .reset__button { top: 0; height: 53px; right: 55px; }
 .template-search__header .template-search__search .search__button { top: 0; right: 10px; height: 53px; }
-
-
-/* upsell add-ons  */
-.upsell-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-}
