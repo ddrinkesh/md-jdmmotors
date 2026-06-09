@@ -282,7 +282,7 @@
         "text_align": "left",
         "show_description": false,
         "description_style": "body",
-        "collection": "frontpage",
+        "collection": "shop",
         "products_to_show": 8,
         "columns_desktop": 4,
         "show_view_all": true,
