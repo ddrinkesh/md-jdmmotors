@@ -1,5 +1,6 @@
 {{ 'component-cart.css' | asset_url | stylesheet_tag }}
 {{ 'component-totals.css' | asset_url | stylesheet_tag }}
+{{ 'cart-page.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'component-discounts.css' | asset_url | stylesheet_tag }}
 
@@ -38,6 +39,7 @@
       {%- endif -%}
 
       <div class="cart__blocks">
+        <p class="cart-summary__label">Order Summary</p>
         {% for block in section.blocks %}
           {%- case block.type -%}
             {%- when '@app' -%}

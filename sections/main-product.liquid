@@ -325,6 +325,8 @@
               {%- when 'custom_liquid' -%}
                 {{ block.settings.custom_liquid }}
               {%- when 'collapsible_tab' -%}
+
+                {% if block.settings.content != blank or block.settings.page.content != blank %}
                 <div class="product__accordion accordion quick-add-hidden" {{ block.shopify_attributes }}>
                   <details id="Details-{{ block.id }}-{{ section.id }}">
                     <summary>
@@ -342,6 +344,8 @@
                     </div>
                   </details>
                 </div>
+                {% endif %}
+
               {%- when 'quantity_selector' -%}
                 <div
                   id="Quantity-Form-{{ section.id }}"
@@ -1090,6 +1094,72 @@
     </script>
   </div>
 </product-info>
+
+<script>
+  (function () {
+    function initProductAccordions(root) {
+      const accordions = Array.from((root || document).querySelectorAll('.product__accordion'));
+      if (!accordions.length) return;
+
+      accordions.forEach(function (wrapper) {
+        const details = wrapper.querySelector('details');
+        if (!details || details.dataset.smoothAccordionInit === 'true') return;
+        details.dataset.smoothAccordionInit = 'true';
+
+        const summary = details.querySelector('summary');
+        const content = details.querySelector('.accordion__content');
+        if (!summary || !content) return;
+
+        if (details.hasAttribute('open')) {
+          content.style.height = 'auto';
+          content.style.opacity = '1';
+        } else {
+          content.style.height = '0px';
+          content.style.opacity = '0';
+        }
+
+        summary.addEventListener('click', function (e) {
+          e.preventDefault();
+
+          if (details.hasAttribute('open')) {
+            content.style.height = content.scrollHeight + 'px';
+            content.style.opacity = '1';
+            requestAnimationFrame(function () {
+              content.style.height = '0px';
+              content.style.opacity = '0';
+            });
+            content.addEventListener('transitionend', function onEnd(ev) {
+              if (ev.propertyName !== 'height') return;
+              details.removeAttribute('open');
+              content.removeEventListener('transitionend', onEnd);
+            });
+          } else {
+            details.setAttribute('open', '');
+            content.style.height = '0px';
+            content.style.opacity = '0';
+            requestAnimationFrame(function () {
+              requestAnimationFrame(function () {
+                content.style.height = content.scrollHeight + 'px';
+                content.style.opacity = '1';
+              });
+            });
+            content.addEventListener('transitionend', function onEnd(ev) {
+              if (ev.propertyName !== 'height') return;
+              content.style.height = 'auto';
+              content.removeEventListener('transitionend', onEnd);
+            });
+          }
+        });
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function () { initProductAccordions(); });
+    } else {
+      initProductAccordions();
+    }
+  })();
+</script>
 
 {% schema %}
 {

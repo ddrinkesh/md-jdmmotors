@@ -282,7 +282,7 @@
         "text_align": "left",
         "show_description": false,
         "description_style": "body",
-        "collection": "frontpage",
+        "collection": "home",
         "products_to_show": 8,
         "columns_desktop": 4,
         "show_view_all": true,
@@ -407,7 +407,7 @@
         "text_align": "left",
         "show_description": false,
         "description_style": "body",
-        "collection": "frontpage",
+        "collection": "home",
         "products_to_show": 8,
         "columns_desktop": 4,
         "show_view_all": true,
@@ -494,63 +494,6 @@
         "padding_bottom_mobi": 40
       }
     },
-    "faq_4gbeVt": {
-      "type": "faq",
-      "blocks": {
-        "faq_XKrG4F": {
-          "type": "faq",
-          "settings": {
-            "question": "How do I purchase a car?",
-            "answer": "<p>Please call us or send us a message and we will work that out directly with you. You may be able to reserve a vehicle this way, but it is on a first-come-first-serve basis.</p>",
-            "open_by_default": true
-          }
-        },
-        "faq_imkP8T": {
-          "type": "faq",
-          "settings": {
-            "question": "I can't find what I'm looking for.",
-            "answer": "<p>Please call us or send us a message and we will work that out directly with you. You may be able to reserve a vehicle this way, but it is on a first-come-first-serve basis.</p>",
-            "open_by_default": false
-          }
-        },
-        "faq_iyABPB": {
-          "type": "faq",
-          "settings": {
-            "question": "What happens if I can't pay online?",
-            "answer": "<p>Please call us or send us a message and we will work that out directly with you. You may be able to reserve a vehicle this way, but it is on a first-come-first-serve basis.</p>",
-            "open_by_default": false
-          }
-        },
-        "faq_pHyaKE": {
-          "type": "faq",
-          "settings": {
-            "question": "How do I reserve something? How does it work?",
-            "answer": "<p>Please call us or send us a message and we will work that out directly with you. You may be able to reserve a vehicle this way, but it is on a first-come-first-serve basis.</p>",
-            "open_by_default": false
-          }
-        }
-      },
-      "block_order": [
-        "faq_XKrG4F",
-        "faq_imkP8T",
-        "faq_iyABPB",
-        "faq_pHyaKE"
-      ],
-      "name": "FAQ",
-      "settings": {
-        "color_scheme": "scheme-1",
-        "heading": "Frequently Asked<strong> Questions2222.</strong>",
-        "sec_text": "",
-        "text_align": "left",
-        "layout": "two_column",
-        "padding_top": 80,
-        "padding_bottom": 80,
-        "margin_top": 0,
-        "margin_bottom": 0,
-        "padding_top_mobi": 40,
-        "padding_bottom_mobi": 40
-      }
-    },
     "contact_us_UEtMEL": {
       "type": "contact-us",
       "blocks": {
@@ -622,7 +565,6 @@
     "testimonials_with_video_MBYYNq",
     "featured_collection_dyYba6",
     "faq_FVTQbp",
-    "faq_4gbeVt",
     "contact_us_UEtMEL"
   ]
 }
