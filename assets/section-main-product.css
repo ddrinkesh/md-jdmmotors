@@ -268,6 +268,12 @@ a.product__text {
 
 .product__accordion .accordion__content {
   padding: 0 1rem;
+  overflow: hidden;
+  height: 0;
+  opacity: 0;
+  transition: height 0.38s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.24s ease;
+  will-change: height;
+  margin-bottom: 0;
 }
 
 .product .price .badge {
@@ -1313,6 +1319,7 @@ a.product__text {
 
 .product-media-container .media {
   padding-top: var(--ratio-percent);
+  border-radius: 30px;
 }
 
 .product-media-container.constrain-height .media {
@@ -1502,6 +1509,7 @@ a.product__text {
 .product .product__info-wrapper .price__container { margin: 0; }
 
 .product .product__info-wrapper .icon-with-text--vertical { display: flex; flex-wrap: wrap; padding: 15px; border-radius: 15px; background: #F7F7F7; padding-bottom: 5px;} 
+.product .product__info-wrapper .icon-with-text--vertical:not(:has( li)) { display: none !important; }
 .product .product__info-wrapper .icon-with-text .icon-with-text__item { width: 50%; margin-bottom: 15px; }
 .product .product__info-wrapper .icon-with-text.icon-with-text--vertical .svg-wrapper { margin-right: 5px; }
 .product .product__info-wrapper .icon-with-text .inline-richtext {color: #414754; font-size: 16px; font-style: normal; font-weight: 400; line-height: normal; text-transform: uppercase; }
@@ -1512,6 +1520,7 @@ a.product__text {
 .product .product__info-wrapper .product__accordion { border-color:  rgba(0, 0, 0, 0.16); } 
 .product .product__info-wrapper .product__accordion summary .icon-caret { right: 4px; } 
 .product .product__info-wrapper .product__accordion .accordion__content { padding: 0; }
+.product .product__info-wrapper .product__accordion .accordion__content::after { content: ''; display: block; height: 24px; }
 .product .product__info-wrapper .product__accordion:nth-last-of-type { border: none; }
 
 .product .product__info-wrapper .product__text { line-height: 1.625; }

@@ -1,0 +1,363 @@
+/* ============================================================
+   CART PAGE — Complete Theme Redesign
+   ============================================================ */
+
+/* ============================================================
+   DESKTOP: 2-COLUMN GRID (items | summary sidebar)
+   ============================================================ */
+@media screen and (min-width: 990px) {
+  .template-cart #MainContent {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 0 50px;
+    align-items: start;
+    max-width: var(--page-width);
+    margin: 0 auto;
+    padding: 0 50px;
+    width: 100%;
+  }
+
+  .template-cart #shopify-section-cart-items {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .template-cart .cart__footer-wrapper {
+    grid-column: 2;
+    grid-row: 1;
+    position: sticky;
+    top: 24px;
+  }
+
+  /* Remove inner page-width constraints — grid handles it */
+  .template-cart #shopify-section-cart-items .page-width,
+  .template-cart .cart__footer-wrapper .page-width {
+    max-width: none !important;
+    padding: 0 !important;
+    margin: 0;
+  }
+
+  /* Footer top padding aligns with items header */
+  .template-cart .cart__footer-wrapper .cart__footer {
+    padding-top: 90px !important;
+    max-width: none;
+    margin: 0;
+  }
+}
+
+.template-cart cart-items.is-empty { padding:100px 0; }
+ 
+/* ============================================================
+   PAGE HEADER
+   ============================================================ */
+.template-cart cart-items .title-wrapper-with-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 28px;
+  border-bottom: 1px solid rgba(var(--color-foreground), 0.1);
+  margin-bottom: 0;
+}
+
+.template-cart cart-items .title-wrapper-with-link .title--primary {
+  font-size: 36px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase;
+  margin: 0;
+  color: rgb(var(--color-title));
+  font-family: var(--font-heading-family);
+  line-height: 1.1;
+}
+
+.template-cart cart-items .title-wrapper-with-link .underlined-link {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: rgba(var(--color-foreground), 0.5);
+  text-decoration: none;
+  border: 1px solid rgba(var(--color-foreground), 0.2);
+  padding: 8px 18px;
+  border-radius: 4px;
+  transition: color 0.2s ease, border-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.template-cart cart-items .title-wrapper-with-link .underlined-link:hover {
+  color: #e31e24;
+  border-color: #e31e24;
+  text-decoration: none;
+}
+
+/* ============================================================
+   EMPTY STATE
+   ============================================================ */
+.template-cart .cart__warnings {
+  padding: 80px 0;
+  text-align: center;
+}
+
+.template-cart .cart__empty-text {
+  font-size: 22px !important;
+  font-weight: 400;
+  color: rgba(var(--color-foreground), 0.4);
+  font-family: var(--font-heading-family);
+ text-transform: none;
+  letter-spacing: 0.04em;
+  margin: 0 0 10px;
+  line-height: 1.2;
+}
+
+/* ============================================================
+   TABLE COLUMN HEADERS
+   ============================================================ */
+.template-cart cart-items form .cart-items thead th {
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase;
+  color: rgba(var(--color-foreground), 0.4) !important;
+  opacity: 1 !important;
+  padding-top: 22px !important;
+  padding-bottom: 22px !important;
+}
+
+.template-cart cart-items form .cart-items thead tr {
+  border-bottom: 1px solid rgba(var(--color-foreground), 0.1);
+}
+
+/* ============================================================
+   CART ITEM ROWS
+   ============================================================ */
+.template-cart cart-items form .cart-items .cart-item {
+  border-bottom: 1px solid rgba(var(--color-foreground), 0.08);
+}
+
+.template-cart cart-items form .cart-items td {
+  padding-top: 28px !important;
+  padding-bottom: 28px !important;
+  vertical-align: middle !important;
+}
+
+/* ---- Product image ---- */
+.template-cart cart-items .cart-item__image-container {
+  display: block !important;
+  width: 110px !important;
+  height: 110px !important;
+  min-width: 110px;
+  border-radius: 10px !important;
+  overflow: hidden;
+  background: rgba(var(--color-foreground), 0.04);
+  border: 1px solid rgba(var(--color-foreground), 0.08) !important;
+}
+
+.template-cart cart-items .cart-item__image {
+  width: 110px !important;
+  height: 110px !important;
+  max-width: none !important;
+  object-fit: cover !important;
+}
+
+/* ---- Product name ---- */
+.template-cart cart-items form .cart-item__name {
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0 !important;
+  line-height: 1.35 !important;
+  color: rgb(var(--color-title)) !important;
+  text-decoration: none !important;
+  transition: color 0.2s ease;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.template-cart cart-items form .cart-item__name:hover {
+  color: #e31e24 !important;
+  text-decoration: none !important;
+}
+
+/* ---- Variant / options ---- */
+.template-cart cart-items form .product-option {
+  font-size: 12px !important;
+  color: rgba(var(--color-foreground), 0.55) !important;
+}
+
+/* ---- Unit price ---- */
+.template-cart cart-items .cart-item__details .product-option {
+  font-size: 14px !important;
+  color: rgba(var(--color-foreground), 0.7) !important;
+}
+
+/* ---- Line prices (mobile total + desktop total) ---- */
+.template-cart cart-items .cart-item__price-wrapper .price--end {
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  color: #e31e24 !important;
+}
+
+.template-cart cart-items .cart-item__price-wrapper .cart-item__old-price {
+  font-size: 12px !important;
+  color: rgba(var(--color-foreground), 0.4) !important;
+}
+
+/* Unit price (the per-item price shown in details) */
+.template-cart cart-items .cart-item__details .price {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: rgba(var(--color-foreground), 0.75) !important;
+}
+
+/* ---- Remove button ---- */
+.template-cart cart-items form cart-remove-button .button {
+  color: rgba(var(--color-foreground), 0.28) !important;
+  background: transparent !important;
+  border-color: transparent !important;
+  transition: color 0.2s ease !important;
+}
+
+.template-cart cart-items form cart-remove-button .button:hover {
+  color: #e31e24 !important;
+  background: transparent !important;
+}
+
+/* ============================================================
+   CART SUMMARY CARD (footer section)
+   ============================================================ */
+
+/* Remove default footer padding resets */
+.template-cart #main-cart-footer .cart__footer {
+  max-width: none;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  border: none;
+  display: block;
+}
+
+/* The summary card */
+.template-cart #main-cart-footer .cart__blocks {
+  background: rgba(var(--color-foreground), 0.03) !important;
+  border: 1px solid rgba(var(--color-foreground), 0.12) !important;
+  border-radius: 12px !important;
+  padding: 32px !important;
+}
+ 
+
+/* "ORDER SUMMARY" label — added via liquid */
+.cart-summary__label {
+  margin: 0 0 20px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(var(--color-foreground), 0.1);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(var(--color-foreground), 0.45);
+  font-family: var(--font-body-family);
+}
+
+/* Discounts */
+.template-cart #main-cart-footer .discounts {
+  margin-bottom: 16px;
+}
+
+/* Totals row */
+.template-cart #main-cart-footer .totals {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin-bottom: 0 !important;
+}
+
+.template-cart #main-cart-footer .totals__total {
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  color: rgba(var(--color-foreground), 0.6) !important;
+  font-family: var(--font-body-family);
+  margin: 0 !important;
+}
+
+.template-cart #main-cart-footer .totals__total-value {
+  font-size: 28px !important;  
+  letter-spacing: 0 !important;
+  color: #000000 !important;
+  font-family: var(--font-heading-family);
+  margin: 0 !important;
+  line-height: 1;
+}
+
+/* Tax note */
+.template-cart #main-cart-footer .tax-note {
+  font-size: 11px !important;
+  color: rgba(var(--color-foreground), 0.45) !important;
+  margin: 7px 0 0 !important;
+  text-align: left;
+  line-height: 1.6;
+}
+
+/* Checkout button */
+.template-cart #main-cart-footer .cart__ctas {
+  display: block !important;
+  text-align: center;
+  margin-top: 24px;
+}
+
+.template-cart #main-cart-footer .cart__checkout-button {
+  max-width: none !important;
+  width: 100% !important;
+  padding: 15px 24px !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase;
+}
+
+/* Dynamic checkout */
+.template-cart #main-cart-footer .cart__dynamic-checkout-buttons {
+  max-width: none !important;
+  margin-top: 12px;
+}
+
+/* ============================================================
+   RESPONSIVE: mobile / tablet
+   ============================================================ */
+@media screen and (max-width: 749px) {
+  .template-cart cart-items .title-wrapper-with-link .title--primary {
+    font-size: 22px !important;
+  }
+
+  .template-cart cart-items .title-wrapper-with-link .underlined-link {
+    font-size: 11px;
+    padding: 6px 12px;
+  }
+
+  .template-cart cart-items .cart-item__image-container,
+  .template-cart cart-items .cart-item__image {
+    width: 80px !important;
+    height: 80px !important;
+    min-width: 80px;
+  }
+
+  .template-cart #main-cart-footer .cart__blocks {
+    padding: 24px !important;
+    border-radius: 8px !important;
+  }
+
+  .template-cart #main-cart-footer .totals__total-value {
+    font-size: 22px !important;
+  }
+}
+
+@media screen and (min-width: 750px) and (max-width: 989px) {
+  .template-cart cart-items .title-wrapper-with-link .title--primary {
+    font-size: 28px !important;
+  }
+
+  .template-cart #main-cart-footer .cart__footer {
+    max-width: 480px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
