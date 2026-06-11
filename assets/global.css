@@ -559,3 +559,7 @@ select:focus-visible { outline: none !important; outline-offset: 0; box-shadow: 
 }
 
 /* & Policy pages */
+
+
+.product-grid-main-wrapper { width: 100%; }
+
