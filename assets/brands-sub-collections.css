@@ -6,7 +6,6 @@
 .brands-sub-collections-main .brands-sub-collections-layout { display: grid; grid-template-columns: 320px 1fr; gap: 40px; align-items: flex-start; }
 .brands-sub-collections-main .brands-sub-collections-layout--no-sidebar { display: block; }
 
-.brands-sub-collections-main .brands-sub-collections-sidebar {  }
 .brands-sub-collections-main .brands-sub-collections-sidebar__title { margin: 0 0 24px; padding-bottom: 18px; border-bottom: 1px solid #e6e6e6; font-size: 18px; line-height: 1.2; font-weight: 500; color: #1f1f1f; }
 .brands-sub-collections-main .brands-sub-collections-menu { display: flex; flex-direction: column; gap: 2px; }
 .brands-sub-collections-main .brands-sub-collections-menu__item { overflow: hidden; border: 1px solid #dfdfdf; border-radius: 6px; background: #ffffff; }
@@ -32,19 +31,47 @@
 
 .brands-sub-collections-main .brands-sub-collections-content { display: block; width: 100%; }
 
-.brands-sub-collections-main .brands-sub-collections-grid { display: grid; grid-template-columns: repeat(var(--columns-desktop), 1fr); gap: 1px; background-color: #e6e6e6; border: 1px solid #e6e6e6; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); }
-.brands-sub-collections-main .brands-sub-collections-card { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #ffffff; text-decoration: none; padding: 40px 24px; transition: background-color 0.25s ease, transform 0.25s ease; min-height: 250px; text-align: center; }
-.brands-sub-collections-main .brands-sub-collections-card::before { content: ''; position: absolute; inset: 0; border: 2px solid transparent; transition: border-color 0.25s ease; pointer-events: none; border-radius: inherit; }
-.brands-sub-collections-main .brands-sub-collections-card:hover { background-color: #fafafa; }
+/* ── Grid base ── */
+.brands-sub-collections-main .brands-sub-collections-grid { display: grid; grid-template-columns: repeat(var(--columns-desktop), 1fr); }
 
-.brands-sub-collections-main .brands-sub-collections-card__image-wrapper { display: flex; align-items: center; justify-content: center; width: 100%; height: 120px; margin-bottom: 20px; overflow: hidden; }
-.brands-sub-collections-main .brands-sub-collections-card__image { max-width: 85%; max-height: 100%; object-fit: contain; transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
+/* Grid view — flush, outer border, 1px internal dividers via gap+bg */
+.brands-sub-collections-main .brands-sub-collections-grid--grid { gap: 1px; background-color: #e6e6e6; border: 1px solid #e6e6e6; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+
+/* Cards view — floating cards with gap */
+.brands-sub-collections-main .brands-sub-collections-grid--cards { gap: var(--card-gap, 16px); background-color: transparent; border: none; border-radius: 0; overflow: visible; }
+.brands-sub-collections-main .brands-sub-collections-grid--cards .brands-sub-collections-card { border-radius: 12px; border: 1px solid #e8e8e8; box-shadow: 0 2px 12px rgba(0,0,0,0.06); overflow: hidden; }
+.brands-sub-collections-main .brands-sub-collections-grid--cards .brands-sub-collections-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.13); transform: translateY(-3px); border-color: #d4d4d4; background-color: #fff; }
+.brands-sub-collections-main .brands-sub-collections-grid--cards .brands-sub-collections-card::before { display: none; }
+.brands-sub-collections-main .brands-sub-collections-grid--cards .brands-sub-collections-card__image-wrapper { height: auto; aspect-ratio: 1 / 1; }
+.brands-sub-collections-main .brands-sub-collections-grid--cards .brands-sub-collections-card__image-wrapper .brands-sub-collections-card__image { width: 100%; height: 100%; max-width: 100%; max-height: 100%; object-fit: cover; }
+
+/* ── Card base ── */
+.brands-sub-collections-main .brands-sub-collections-card { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #ffffff; text-decoration: none; padding: 32px 20px 24px; transition: background-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease; min-height: 220px; text-align: center; }
+.brands-sub-collections-main .brands-sub-collections-card::before { content: ''; position: absolute; inset: 0; border: 2px solid transparent; transition: border-color 0.25s ease; pointer-events: none; border-radius: inherit; z-index: 1; }
+.brands-sub-collections-main .brands-sub-collections-grid--grid .brands-sub-collections-card:hover { background-color: #fafafa; }
+.brands-sub-collections-main .brands-sub-collections-grid--grid .brands-sub-collections-card:hover::before { border-color: rgba(205,23,25,0.18); }
+
+/* ── Title (above image) ── */
+.brands-sub-collections-main .brands-sub-collections-card__title { font-size: 1.5rem; font-weight: 600; color: rgb(var(--color-foreground)); margin: 0 0 5px; text-align: center; line-height: 1.3; letter-spacing: 0.01em; transition: color 0.2s ease; }
+.brands-sub-collections-main .brands-sub-collections-card:hover .brands-sub-collections-card__title { color: #cd1719; }
+
+/* ── Image wrapper ── */
+.brands-sub-collections-main .brands-sub-collections-card__image-wrapper { display: flex; align-items: center; justify-content: center; width: 100%; height: 110px; overflow: hidden; flex-shrink: 0; }
+.brands-sub-collections-main .brands-sub-collections-card__image { max-width: 85%; max-height: 100%; object-fit: contain; transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1); }
+.brands-sub-collections-main .brands-sub-collections-card:hover .brands-sub-collections-card__image { transform: scale(1.06); }
 .brands-sub-collections-main .brands-sub-collections-card__image--cover { object-fit: cover; width: 100%; height: 100%; max-width: 100%; border-radius: 4px; }
 .brands-sub-collections-main .brands-sub-collections-card__placeholder { width: 100%; height: 100%; max-width: 85%; fill: #8c8c8c; background-color: #f7f7f7; padding: 10px; border-radius: 4px; }
 
-.brands-sub-collections-main .brands-sub-collections-card__info { display: flex; flex-direction: column; align-items: center; gap: 6px; margin-top: auto; }
-.brands-sub-collections-main .brands-sub-collections-card__title { font-size: 1.8rem; font-weight: 500; color: rgb(var(--color-foreground)); margin: 0; transition: color 0.2s ease; }
-.brands-sub-collections-main .brands-sub-collections-card__count { font-size: 1.3rem; font-weight: 400; color: #767676; letter-spacing: 0.05em; }
+/* ── Info (count below image) ── */
+.brands-sub-collections-main .brands-sub-collections-card__info { display: flex; flex-direction: column; align-items: center; gap: 4px; margin-top: 14px; width: 100%; text-align: center; }
+.brands-sub-collections-main .brands-sub-collections-card__count { display: inline-block; font-size: 1.2rem; font-weight: 500; color: #000000; background-color: #f7f7f7; padding: 3px 10px; border-radius: 20px; letter-spacing: 0.04em; line-height: 1.5; }
+
+.brands-sub-collections-main .brands-sub-collections-card--full-image { padding: 0; justify-content: flex-start; align-items: stretch; min-height: 0; }
+.brands-sub-collections-main .brands-sub-collections-card--full-image .brands-sub-collections-card__image-wrapper { width: 100%; height: auto; margin-bottom: 0; flex-shrink: 0; }
+.brands-sub-collections-main .brands-sub-collections-card--full-image .brands-sub-collections-card__image { width: 100%; height: auto; max-width: 100%; max-height: none; object-fit: cover; }
+.brands-sub-collections-main .brands-sub-collections-card--full-image .brands-sub-collections-card__image--cover { width: 100%; height: auto; border-radius: 0; }
+.brands-sub-collections-main .brands-sub-collections-card--full-image .brands-sub-collections-card__placeholder { max-width: 100%; padding: 0; border-radius: 0; }
+.brands-sub-collections-main .brands-sub-collections-card--full-image .brands-sub-collections-card__info { padding: 16px 20px; margin-top: 0; width: 100%; align-items: center; text-align: center; }
 
 @media screen and (max-width: 1199px) {
   .brands-sub-collections-main .brands-sub-collections-layout { grid-template-columns: 320px 1fr; }

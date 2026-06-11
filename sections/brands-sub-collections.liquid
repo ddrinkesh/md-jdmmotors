@@ -332,8 +332,8 @@
 
       <div class="brands-sub-collections-content">
         <div
-          class="brands-sub-collections-grid {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-          style="--columns-desktop: {{ section.settings.columns_desktop }}; --columns-tablet: {{ section.settings.columns_tablet }}; --columns-mobile: {{ section.settings.columns_mobile }};"
+          class="brands-sub-collections-grid {% if section.settings.card_view %}brands-sub-collections-grid--cards{% else %}brands-sub-collections-grid--grid{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+          style="--columns-desktop: {{ section.settings.columns_desktop }}; --columns-tablet: {{ section.settings.columns_tablet }}; --columns-mobile: {{ section.settings.columns_mobile }}; --card-gap: {{ section.settings.card_gap }}px;"
         >
           {%- for block in section.blocks -%}
             {%- liquid
@@ -365,6 +365,13 @@
               if collection != blank
                 assign available_count = collection.all_products_count
               endif
+
+              assign show_card_title = false
+              if card_title != blank
+                if has_logo == false or section.settings.show_title_always
+                  assign show_card_title = true
+                endif
+              endif
             -%}
 
             <a
@@ -373,7 +380,7 @@
               {% else %}
                 role="link" aria-disabled="true"
               {% endif %}
-              class="brands-sub-collections-card"
+              class="brands-sub-collections-card{% if section.settings.full_image_view %} brands-sub-collections-card--full-image{% endif %}"
               {{ block.shopify_attributes }}
             >
               <div class="brands-sub-collections-card__image-wrapper">
@@ -394,18 +401,19 @@
                 {%- endif -%}
               </div>
 
-              <div class="brands-sub-collections-card__info">
-                {%- if has_logo == false and card_title != blank -%}
-                  <span class="brands-sub-collections-card__title">{{ card_title }}</span>
-                {%- endif -%}
-
-                {%- if available_count != blank -%}
-                  <span class="brands-sub-collections-card__count">
-                    {{ available_count }}
-                    {{ section.settings.available_label | escape }}
-                  </span>
-                {%- endif -%}
-              </div>
+              {%- if show_card_title or available_count != blank -%}
+                <div class="brands-sub-collections-card__info">
+                  {%- if show_card_title -%}
+                    <span class="brands-sub-collections-card__title">{{ card_title }}</span>
+                  {%- endif -%}
+                  {%- if available_count != blank -%}
+                    <span class="brands-sub-collections-card__count">
+                      {{ available_count }}
+                      {{ section.settings.available_label | escape }}
+                    </span>
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
             </a>
           {%- endfor -%}
         </div>
@@ -624,6 +632,38 @@
       "step": 1,
       "default": 2,
       "label": "Columns on Mobile"
+    },
+    {
+      "type": "checkbox",
+      "id": "card_view",
+      "label": "Card view",
+      "default": false,
+      "info": "Show cards with spacing and shadow. Unchecked = flush grid."
+    },
+    {
+      "type": "range",
+      "id": "card_gap",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Card gap",
+      "default": 16,
+      "info": "Gap between cards. Applies to Cards view."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_title_always",
+      "label": "Always show title",
+      "default": true,
+      "info": "Show title text above image even when a logo is present."
+    },
+    {
+      "type": "checkbox",
+      "id": "full_image_view",
+      "label": "Full image view",
+      "default": false,
+      "info": "Images expand to full card width. Info content stays below image."
     },
     {
       "type": "text",
