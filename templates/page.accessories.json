@@ -1,14 +1,196 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
       "type": "main-page",
+      "disabled": true,
       "settings": {
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "brands_sub_collections_hcei7W": {
+      "type": "brands-sub-collections",
+      "blocks": {
+        "brand_RXeCia": {
+          "type": "brand",
+          "settings": {
+            "collection": "honda-cars",
+            "brand_logo": "shopify://shop_images/12-accessories-exterior.jpg",
+            "custom_title": "",
+            "custom_link": "",
+            "custom_count": ""
+          }
+        },
+        "brand_HmxjjY": {
+          "type": "brand",
+          "settings": {
+            "collection": "mazda-cars",
+            "brand_logo": "shopify://shop_images/2-mazda-logo-2854267a8e-seeklogo.com.png",
+            "custom_title": "",
+            "custom_link": "",
+            "custom_count": ""
+          }
+        },
+        "brand_cHcyGi": {
+          "type": "brand",
+          "settings": {
+            "collection": "mitsubishi-cars",
+            "brand_logo": "shopify://shop_images/3-mitsubishi-logo12.png",
+            "custom_title": "",
+            "custom_link": "",
+            "custom_count": ""
+          }
+        },
+        "brand_gfphJL": {
+          "type": "brand",
+          "settings": {
+            "collection": "nissan-cars",
+            "brand_logo": "shopify://shop_images/4-nissan_2020_logo.svg",
+            "custom_title": "",
+            "custom_link": "",
+            "custom_count": ""
+          }
+        },
+        "brand_Hx8DRp": {
+          "type": "brand",
+          "settings": {
+            "collection": "subaru-cars",
+            "brand_logo": "shopify://shop_images/5-subaru2.png",
+            "custom_title": "",
+            "custom_link": "",
+            "custom_count": ""
+          }
+        },
+        "brand_nYEHEJ": {
+          "type": "brand",
+          "settings": {
+            "collection": "toyota-cars",
+            "brand_logo": "shopify://shop_images/6-toyota1.png",
+            "custom_title": "",
+            "custom_link": "",
+            "custom_count": ""
+          }
+        },
+        "brand_PrKFUz": {
+          "type": "brand",
+          "settings": {
+            "collection": "acura-cars",
+            "brand_logo": "shopify://shop_images/7-acura-logo-800x800.png",
+            "custom_title": "",
+            "custom_link": "",
+            "custom_count": ""
+          }
+        },
+        "brand_88UzTg": {
+          "type": "brand",
+          "settings": {
+            "collection": "infiniti-cars",
+            "brand_logo": "shopify://shop_images/10-infiniti-logo.png",
+            "custom_title": "",
+            "custom_link": "",
+            "custom_count": ""
+          }
+        },
+        "brand_wngpe9": {
+          "type": "brand",
+          "settings": {
+            "collection": "lexus-cars",
+            "brand_logo": "shopify://shop_images/11-lexus.png",
+            "custom_title": "",
+            "custom_link": "",
+            "custom_count": ""
+          }
+        },
+        "brand_Tp7MiK": {
+          "type": "brand",
+          "settings": {
+            "collection": "scion-cars",
+            "brand_logo": "shopify://shop_images/12-scion-logo-square.png",
+            "custom_title": "",
+            "custom_link": "",
+            "custom_count": ""
+          }
+        },
+        "brand_pmwJqP": {
+          "type": "brand",
+          "settings": {
+            "collection": "hyundai-cars",
+            "brand_logo": "shopify://shop_images/13-hyundai-logo-white.png",
+            "custom_title": "",
+            "custom_link": "",
+            "custom_count": ""
+          }
+        },
+        "brand_CapX84": {
+          "type": "brand",
+          "settings": {
+            "collection": "kia-cars",
+            "brand_logo": "shopify://shop_images/14-kia-logo-white.png",
+            "custom_title": "",
+            "custom_link": "",
+            "custom_count": ""
+          }
+        },
+        "brand_qQMhrF": {
+          "type": "brand",
+          "settings": {
+            "collection": "chevrolet-cars",
+            "brand_logo": "shopify://shop_images/15-images.jpg",
+            "custom_title": "",
+            "custom_link": "",
+            "custom_count": ""
+          }
+        }
+      },
+      "block_order": [
+        "brand_RXeCia",
+        "brand_HmxjjY",
+        "brand_cHcyGi",
+        "brand_gfphJL",
+        "brand_Hx8DRp",
+        "brand_nYEHEJ",
+        "brand_PrKFUz",
+        "brand_88UzTg",
+        "brand_wngpe9",
+        "brand_Tp7MiK",
+        "brand_pmwJqP",
+        "brand_CapX84",
+        "brand_qQMhrF"
+      ],
+      "name": "Brands Sub-Collections",
+      "settings": {
+        "color_scheme": "scheme-3",
+        "heading": "Shop <strong>Accessories</strong>",
+        "sec_text": "",
+        "text_align": "left",
+        "sidebar_heading": "Categoriess",
+        "sidebar_menu": "categories-1",
+        "sidebar_heading_2": "Brands",
+        "sidebar_menu_2": "brands-sidebar",
+        "columns_desktop": 3,
+        "columns_tablet": 3,
+        "columns_mobile": 2,
+        "available_label": "Available",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "padding_top_mobi": 40,
+        "padding_bottom_mobi": 40
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "brands_sub_collections_hcei7W"
   ]
 }
