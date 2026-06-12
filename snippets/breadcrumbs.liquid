@@ -86,6 +86,8 @@
 {% for parent in collections %}
   {% assign sub_collections = parent.metafields.custom.sub_collections.value %}
 {% endfor %}
+==>{{ sub_collections }}
+
   {% if sub_collections %}
     {% for child in sub_collections %}
       {% if child.handle == collection.handle %}
