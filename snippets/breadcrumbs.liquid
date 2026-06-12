@@ -44,145 +44,44 @@
               <span class="breadcrumbs__link current_page">{{ product.title }}</span>
               </li>
             {% endcomment %}
-{%- when 'product' -%}
-  {% assign brand_page = product.metafields.custom.brands.value.first %}
-  {% assign brand_handle = brand_page | handleize %}
-  {% assign engine_series = product.metafields.custom.collection_tag.value %}
-  {% assign engine_series_handle = engine_series | handleize %}
+          {%- when 'product' -%}
+            {% assign brand_page = product.metafields.custom.brands.value.first %}
+            {% assign engine_type = product.type %}
+            {% assign engine_series = product.metafields.custom.collection_tag %}
 
-  {% assign current_collection = blank %}
-  {% assign parent_collection = blank %}
+            {% if brand_page != blank %}
+              <li class="breadcrumbs__item">
+                <a href="/pages/{{ brand_page }}" class="breadcrumbs__link">
+                  {{ brand_page | capitalize }}
+                </a>
+                /
+              </li>
+            {% endif %}
 
-  {% comment %} 1st try: search inside sub_collections (has a parent) {% endcomment %}
-  {% if engine_series_handle != blank %}
-  {% for parent in collections %}
-    {% assign sub_collections = parent.metafields.custom.sub_collections.value %}
+            {% if engine_type != blank %}
+              <li class="breadcrumbs__item">
+                <a href="/collections/{{ brand_page | handleize }}-{{ engine_type | handleize }}" class="breadcrumbs__link">
+                  {{ brand_page | capitalize }}
+                  {{ engine_type | capitalize }}
+                </a>
+                /
+              </li>
+            {% endif %}
 
-    {% if sub_collections %}
-      {% for child in sub_collections %}
-        {% if child.handle contains engine_series_handle and child.handle contains brand_handle %}
-          {% assign current_collection = child %}
-          {% assign parent_collection = parent %}
-          {% break %}
-        {% endif %}
-      {% endfor %}
-    {% endif %}
+            {% if engine_series != blank %}
+              <li class="breadcrumbs__item">
+                <a href="/collections/{{ engine_series | handleize }}" class="breadcrumbs__link">
+                  {{ engine_series }}
+                </a>
+                /
+              </li>
+            {% endif %}
 
-    {% if current_collection != blank %}
-      {% break %}
-    {% endif %}
-  {% endfor %}
-{% endif %}
-  {% comment %} 2nd try: fallback - top-level "{brand}-{collection_tag}" with no parent {% endcomment %}
-  {% if current_collection == blank %}
-    {% assign fallback_handle = brand_handle | append: '-' | append: engine_series_handle %}
-    {% assign current_collection = collections[fallback_handle] %}
-  {% endif %}
-
-  {% comment %} 1. Brand {% endcomment %}
-  {% if brand_page != blank %}
-    <li class="breadcrumbs__item">
-      <a href="/pages/{{ brand_handle }}" class="breadcrumbs__link">
-        {{ brand_page | capitalize }}
-      </a>
-      /
-    </li>
-  {% endif %}
-
-  {% comment %} 2. Parent collection (only if found via sub_collections) {% endcomment %}
-  {% if parent_collection != blank %}
-    {% assign words = parent_collection.title | split: ' ' %}
-    {% assign title_case = '' %}
-    {% for word in words %}
-      {% assign title_case = title_case | append: word | capitalize | append: ' ' %}
-    {% endfor %}
-    {% assign title_case = title_case | strip %}
-
-    <li class="breadcrumbs__item">
-      <a href="{{ parent_collection.url }}" class="breadcrumbs__link">
-        {{ title_case }}
-      </a>
-      /
-    </li>
-  {% endif %}
-
-  {% comment %} 3. Current collection (sub-collection OR top-level) {% endcomment %}
-  {% if current_collection != blank %}
-    <li class="breadcrumbs__item">
-      <a href="{{ current_collection.url }}" class="breadcrumbs__link">
-        {{ current_collection.title }}
-      </a>
-      /
-    </li>
-  {% endif %}
-
-  {% comment %} 4. Product {% endcomment %}
-  <li class="breadcrumbs__item current_page">
-    <span class="breadcrumbs__link current_page">
-      {{ product.title }}
-    </span>
-  </li>
-
-{%- when 'collection' -%}
-  {% if collection.handle %}
-    {% assign parent_collection = blank %}
-
-    {% for parent in collections %}
-      {% assign sub_collections = parent.metafields.custom.sub_collections.value %}
-
-      {% if sub_collections %}
-        {% for child in sub_collections %}
-          {% if child.handle == collection.handle %}
-            {% assign parent_collection = parent %}
-            {% break %}
-          {% endif %}
-        {% endfor %}
-      {% endif %}
-
-      {% if parent_collection != blank %}
-        {% break %}
-      {% endif %}
-    {% endfor %}
-
-    {% assign handle_parts = collection.handle | split: '-' %}
-    {% assign brand = handle_parts.first %}
-
-    {% if brand == 'jdm' and handle_parts.size > 1 %}
-      {% assign brand = handle_parts[1] %}
-    {% endif %}
-
-    {% comment %} 1. Brand {% endcomment %}
-    <li class="breadcrumbs__item">
-      <a href="/pages/{{ brand | handleize }}" class="breadcrumbs__link">
-        {{ brand | capitalize }}
-      </a>
-      /
-    </li>
-
-    {% comment %} 2. Parent collection (if this is a sub-collection) {% endcomment %}
-    {% if parent_collection != blank %}
-      {% assign words = parent_collection.title | split: ' ' %}
-      {% assign title_case = '' %}
-      {% for word in words %}
-        {% assign title_case = title_case | append: word | capitalize | append: ' ' %}
-      {% endfor %}
-      {% assign title_case = title_case | strip %}
-
-      <li class="breadcrumbs__item">
-        <a href="{{ parent_collection.url }}" class="breadcrumbs__link">
-          {{ title_case }}
-        </a>
-        /
-      </li>
-    {% endif %}
-
-    {% comment %} 3. Current collection {% endcomment %}
-    <li class="breadcrumbs__item current_page">
-      <span class="breadcrumbs__link current_page">
-        {{ collection.title }}
-      </span>
-    </li>
-  {% endif %}
+            <li class="breadcrumbs__item current_page">
+              <span class="breadcrumbs__link current_page">
+                {{ product.title }}
+              </span>
+            </li>
           {%- when 'collection' and collection.handle -%}
             {% assign parent_collection = blank %}
 
