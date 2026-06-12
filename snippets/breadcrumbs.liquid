@@ -44,7 +44,7 @@
             </li> {% endcomment %}
             {%- when 'product' -%}
 
-  {% assign brand_page = product.metafields.custom.brands %}
+  {% assign brand_page = product.metafields.custom.brands.value.first %}
   {% assign engine_type = product.type %}
   {% assign engine_series = product.metafields.custom.collection_tag %}
 
