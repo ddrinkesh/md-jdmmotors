@@ -84,8 +84,8 @@
 
 {% assign parent_collection = blank %}
 {% for parent in collections %}
-  {% assign sub_collections = parent.metafields.custom.sub_collections.value %}
-  ==>{{sub_collections | json }}
+  {% assign collections_parent = parent.handle %}
+  ==>{{collections_parent | json }}
 
   {% if sub_collections %}
     {% for child in sub_collections %}
