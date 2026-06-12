@@ -97,6 +97,19 @@
               {% else %}
                 {% assign brand = handle_parts.first %}
               {% endif %}
+              {% for collection in collections %}
+                {% assign collection_name = collection.metafields.custom.sub_collections.value %}
+                {% for collection_last in collection_name %}
+                    {% if collection_last = collection.handle %}
+                      <li class="breadcrumbs__item">
+                        <a href="/collections/{{ collection_last }}" class="breadcrumbs__link">
+                          {{ collection_last | capitalize }}
+                        </a>
+                        /
+                      </li>
+                      {% endif %}
+                  {% endfor %}
+              {% endfor %}
               <li class="breadcrumbs__item">
                 <a href="/pages/{{ brand }}" class="breadcrumbs__link">
                   {{ brand | capitalize }}
