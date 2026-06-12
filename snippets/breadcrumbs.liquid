@@ -119,7 +119,7 @@
             {% if parent_collection != blank %}
               <li class="breadcrumbs__item">
                 <a href="{{ parent_collection.url }}" class="breadcrumbs__link">
-                  {{ parent_collection.title }}
+                  {{ parent_collection.title | capitalize }}
                 </a>
                 /
               </li>
