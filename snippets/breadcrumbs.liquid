@@ -117,9 +117,17 @@
             </li>
 
             {% if parent_collection != blank %}
+              {% assign words = parent_collection.title | split: ' ' %}
+  {% assign title_case = '' %}
+
+  {% for word in words %}
+    {% assign title_case = title_case | append: word | capitalize | append: ' ' %}
+  {% endfor %}
+
+  {% assign title_case = title_case | strip %}
               <li class="breadcrumbs__item">
                 <a href="{{ parent_collection.url }}" class="breadcrumbs__link">
-                  {{ parent_collection.title | capitalize }}
+                  {{ title_case }}
                 </a>
                 /
               </li>
