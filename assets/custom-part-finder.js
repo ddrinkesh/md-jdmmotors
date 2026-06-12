@@ -121,7 +121,7 @@
 
       const params = new URLSearchParams();
       params.set('filter.p.m.custom.brands', brand.trim().toLowerCase());
-      params.set('filter.p.m.custom.model',  model.trim().toUpperCase());
+      params.set('filter.p.m.custom.model',  model.trim());
       params.set('filter.p.m.custom.year',   year.trim());
 
       window.location.href = this.collectionUrl + '?' + params.toString();
