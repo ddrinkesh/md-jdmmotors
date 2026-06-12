@@ -61,7 +61,6 @@
       {% for child in sub_collections %}
         {% if child.handle contains engine_series_handle and child.handle contains brand_handle %}
           {% assign current_collection = child %}
-          ==>{{ current_collection }}
           {% assign parent_collection = parent %}
           {% break %}
         {% endif %}
