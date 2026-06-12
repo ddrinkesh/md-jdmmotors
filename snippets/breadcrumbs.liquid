@@ -118,8 +118,8 @@
 
             {% if parent_collection != blank %}
               <li class="breadcrumbs__item">
-                <a href="{{ parent_collection.url }}" class="breadcrumbs__link ---">
-                  {{ parent_collection.title | capitalize }}
+                <a href="{{ parent_collection.url }}" class="breadcrumbs__link">
+                  {{ parent_collection.title | split: ' ' | map: 'capitalize' | join: ' '  }}
                 </a>
                 /
               </li>
