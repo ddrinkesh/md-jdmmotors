@@ -83,15 +83,9 @@
           {%- when 'collection' and collection.handle -%}
 
 {% assign parent_collection = blank %}
-===>{{ collections | json }}
 {% for parent in collections %}
   {% assign sub_collections = parent.metafields.custom.sub_collections.value %}
-
-Current collection handle: {{ collection.handle }}
-Current collection template suffix: {{ collection.template_suffix }}
-
-sub_collections metafield: {{ collection.metafields.custom.sub_collections.value | json }}
-parent_collection metafield: {{ collection.metafields.custom.parent_collection.value | json }}
+  ==>{{sub_collections | json }}
 
   {% if sub_collections %}
     {% for child in sub_collections %}
