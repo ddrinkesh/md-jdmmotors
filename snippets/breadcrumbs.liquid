@@ -53,6 +53,7 @@
   {% assign current_collection = blank %}
   {% assign parent_collection = blank %}
 
+  {% comment %} 1st try: search inside sub_collections (has a parent) {% endcomment %}
   {% for parent in collections %}
     {% assign sub_collections = parent.metafields.custom.sub_collections.value %}
 
@@ -71,6 +72,12 @@
     {% endif %}
   {% endfor %}
 
+  {% comment %} 2nd try: fallback - top-level "{brand}-{collection_tag}" with no parent {% endcomment %}
+  {% if current_collection == blank %}
+    {% assign fallback_handle = brand_handle | append: '-' | append: engine_series_handle %}
+    {% assign current_collection = collections[fallback_handle] %}
+  {% endif %}
+
   {% comment %} 1. Brand {% endcomment %}
   {% if brand_page != blank %}
     <li class="breadcrumbs__item">
@@ -81,7 +88,7 @@
     </li>
   {% endif %}
 
-  {% comment %} 2. Parent collection {% endcomment %}
+  {% comment %} 2. Parent collection (only if found via sub_collections) {% endcomment %}
   {% if parent_collection != blank %}
     {% assign words = parent_collection.title | split: ' ' %}
     {% assign title_case = '' %}
@@ -98,7 +105,7 @@
     </li>
   {% endif %}
 
-  {% comment %} 3. Sub-collection {% endcomment %}
+  {% comment %} 3. Current collection (sub-collection OR top-level) {% endcomment %}
   {% if current_collection != blank %}
     <li class="breadcrumbs__item">
       <a href="{{ current_collection.url }}" class="breadcrumbs__link">
