@@ -91,52 +91,21 @@
               </li>
             {%- else -%}
 
-              {% assign parent_collection = blank %}
-
-{% for col in collections %}
-  {% assign sub_collections = col.metafields.custom.sub_collections.value %}
-
-  {% if sub_collections %}
-    {% for sub_collection in sub_collections %}
-      {% if sub_collection.handle == collection.handle %}
-        {% assign parent_collection = col %}
-        {% break %}
-      {% endif %}
-    {% endfor %}
-  {% endif %}
-
-  {% if parent_collection %}
-    {% break %}
-  {% endif %}
-{% endfor %}
-{% if parent_collection %}
-
-  {% assign handle_parts = parent_collection.handle | split: '-' %}
-  {% assign brand = handle_parts.first %}
-
-  {% if brand == 'jdm' and handle_parts.size > 1 %}
-    {% assign brand = handle_parts[1] %}
-  {% endif %}
-
-  <li class="breadcrumbs__item">
-    <a href="/pages/{{ brand | handleize }}">
-      {{ brand | capitalize }}
-    </a>
-    /
-  </li>
-
-  <li class="breadcrumbs__item">
-    <a href="{{ parent_collection.url }}">
-      {{ parent_collection.title }}
-    </a>
-    /
-  </li>
-
-{% endif %}
-
-<li class="breadcrumbs__item current_page">
-  <span>{{ collection.title }}</span>
-</li>
+              {% assign handle_parts = collection.handle | split: '-' %}
+              {% if handle_parts.first == 'jdm' %}
+                {% assign brand = handle_parts[1] %}
+              {% else %}
+                {% assign brand = handle_parts.first %}
+              {% endif %}
+              <li class="breadcrumbs__item">
+                <a href="/pages/{{ brand }}" class="breadcrumbs__link">
+                  {{ brand | capitalize }}
+                </a>
+                /
+              </li>
+              <li class="breadcrumbs__item">
+                <a class="breadcrumbs__link" href="{{ collection.url }}" aria-current="page">{{ collection.title }}</a>
+              </li>
             {%- endif -%}
           {%- when 'blog' -%}
             {%- if current_tags -%}
