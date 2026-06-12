@@ -80,9 +80,9 @@
       {{ product.title }}
     </span>
   </li>
-  {% assign parent_collection = collection.metafields.custom.parent_collection.value %}
-  {{ parent_collection.title }}
-          {%- when 'collection' and collection.handle -%}
+{%- when 'collection' and collection.handle -%}
+            {% assign parent_collection = collection.metafields.custom.parent_collection.value %}
+            {{ parent_collection.title }}
 
   {% assign parent_collection = blank %}
 
