@@ -50,7 +50,7 @@
   {% assign engine_type = product.type %}
 
   {% assign engine_type_handle = engine_type | handleize %}
-
+==>{{ engine_type }}
   {% case engine_type | downcase %}
     {% when 'frontclip' %}
       {% assign engine_type_handle = 'front-clips' %}
