@@ -60,7 +60,7 @@
 
             {% if engine_type != blank %}
               <li class="breadcrumbs__item">
-                <a href="/collections/{{ engine_type | handleize }}" class="breadcrumbs__link">
+                <a href="/collections/{{ brand_page | handleize }}-{{ engine_type | handleize }}" class="breadcrumbs__link">
                   {{ brand_page | capitalize }}
                   {{ engine_type | capitalize }}
                 </a>
