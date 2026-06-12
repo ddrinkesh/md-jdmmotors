@@ -209,7 +209,7 @@
             "image": "shopify://shop_images/1_1.jpg",
             "label": "240+ In Stock",
             "title": "Engines",
-            "link": ""
+            "link": "shopify://pages/engines"
           }
         },
         "category_hf9Uwa": {
@@ -218,7 +218,7 @@
             "image": "shopify://shop_images/2_1.jpg",
             "label": "180+ In Stock",
             "title": "Transmissions",
-            "link": ""
+            "link": "shopify://pages/transmissions"
           }
         },
         "category_zQQXqW": {
@@ -227,7 +227,7 @@
             "image": "shopify://shop_images/3_1.jpg",
             "label": "Wheels • Interiors • Misc",
             "title": "Accessories",
-            "link": ""
+            "link": "shopify://pages/accessories"
           }
         },
         "category_qqhcWE": {
@@ -236,7 +236,7 @@
             "image": "shopify://shop_images/4_1.jpg",
             "label": "60+ In Stock",
             "title": "Front Clips",
-            "link": ""
+            "link": "shopify://pages/front-clips"
           }
         },
         "category_iXT8np": {
@@ -245,7 +245,7 @@
             "image": "shopify://shop_images/5_1.jpg",
             "label": "JDM Imports",
             "title": "Wheels",
-            "link": ""
+            "link": "shopify://collections/wheels"
           }
         }
       },
@@ -282,7 +282,6 @@
         "text_align": "left",
         "show_description": false,
         "description_style": "body",
-        "collection": "home",
         "collection": "shop",
         "products_to_show": 8,
         "columns_desktop": 4,
@@ -408,7 +407,6 @@
         "text_align": "left",
         "show_description": false,
         "description_style": "body",
-        "collection": "home",
         "collection": "shop",
         "products_to_show": 8,
         "columns_desktop": 4,

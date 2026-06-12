@@ -125,17 +125,14 @@
       {% endfor %}
     </div>
 
-    {% assign brand_tags = section.settings.brand_tags | split: ',' %}
-    {% if section.settings.brand_tags != blank %}
+    {%- assign brand_menu = linklists[section.settings.brand_tags_menu] -%}
+    {%- if brand_menu.links.size > 0 -%}
       <div class="footer-brands" aria-label="Brands">
-        {% for brand in brand_tags %}
-          {% assign brand_name = brand | strip %}
-          {% if brand_name != blank %}
-            <span class="footer-brands__item">{{ brand_name }}</span>
-          {% endif %}
-        {% endfor %}
+        {%- for link in brand_menu.links -%}
+          <a href="{{ link.url }}" class="footer-brands__item">{{ link.title | escape }}</a>
+        {%- endfor -%}
       </div>
-    {% endif %}
+    {%- endif -%}
 
     <div class="footer-bottom">
       {% if section.settings.copyright_text != blank %}
@@ -369,11 +366,10 @@
       "content": "Bottom"
     },
     {
-      "type": "text",
-      "id": "brand_tags",
-      "label": "Brand tags",
-      "default": "Honda, Mazda, Mitsubishi, Nissan, Subaru, Toyota, Acura, Infiniti, Lexus, Scion, Hyundai, Kia, CHEVROLET",
-      "info": "Separate each brand tag with a comma. Each comma-separated value will appear as an individual tag."
+      "type": "link_list",
+      "id": "brand_tags_menu",
+      "label": "Brand tags menu",
+      "info": "Create a navigation menu in Shopify Admin > Navigation. Each menu item becomes a clickable brand tag with its own link."
     },
     {
       "type": "inline_richtext",

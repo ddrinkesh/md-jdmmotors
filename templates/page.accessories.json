@@ -23,9 +23,9 @@
         "brand_RXeCia": {
           "type": "brand",
           "settings": {
-            "collection": "honda-cars",
+            "collection": "exterior-body-parts",
             "brand_logo": "shopify://shop_images/12-accessories-exterior.jpg",
-            "custom_title": "",
+            "custom_title": "Exterior Body Parts",
             "custom_link": "",
             "custom_count": ""
           }
@@ -33,19 +33,9 @@
         "brand_HmxjjY": {
           "type": "brand",
           "settings": {
-            "collection": "mazda-cars",
-            "brand_logo": "shopify://shop_images/2-mazda-logo-2854267a8e-seeklogo.com.png",
-            "custom_title": "",
-            "custom_link": "",
-            "custom_count": ""
-          }
-        },
-        "brand_cHcyGi": {
-          "type": "brand",
-          "settings": {
-            "collection": "mitsubishi-cars",
-            "brand_logo": "shopify://shop_images/3-mitsubishi-logo12.png",
-            "custom_title": "",
+            "collection": "interior-parts",
+            "brand_logo": "shopify://shop_images/13-hd-wallpaper-nissan-silvia-silvia-nissan-car-interior-auto-custom.jpg",
+            "custom_title": "Interior Parts",
             "custom_link": "",
             "custom_count": ""
           }
@@ -53,9 +43,19 @@
         "brand_gfphJL": {
           "type": "brand",
           "settings": {
-            "collection": "nissan-cars",
-            "brand_logo": "shopify://shop_images/4-nissan_2020_logo.svg",
-            "custom_title": "",
+            "collection": "suspensions",
+            "brand_logo": "shopify://shop_images/14-hd-wallpaper-2016-mercedes-amg-gt-rear-axle-sports-suspension-car.jpg",
+            "custom_title": "Suspensions",
+            "custom_link": "",
+            "custom_count": ""
+          }
+        },
+        "brand_cHcyGi": {
+          "type": "brand",
+          "settings": {
+            "collection": "wheels",
+            "brand_logo": "shopify://shop_images/2-prov5528.jpg",
+            "custom_title": "Wheels",
             "custom_link": "",
             "custom_count": ""
           }
@@ -63,9 +63,9 @@
         "brand_Hx8DRp": {
           "type": "brand",
           "settings": {
-            "collection": "subaru-cars",
-            "brand_logo": "shopify://shop_images/5-subaru2.png",
-            "custom_title": "",
+            "collection": "clusters-and-gauges",
+            "brand_logo": "shopify://shop_images/9-prov5782.jpg",
+            "custom_title": "Clusters and Gauges",
             "custom_link": "",
             "custom_count": ""
           }
@@ -73,79 +73,9 @@
         "brand_nYEHEJ": {
           "type": "brand",
           "settings": {
-            "collection": "toyota-cars",
-            "brand_logo": "shopify://shop_images/6-toyota1.png",
-            "custom_title": "",
-            "custom_link": "",
-            "custom_count": ""
-          }
-        },
-        "brand_PrKFUz": {
-          "type": "brand",
-          "settings": {
-            "collection": "acura-cars",
-            "brand_logo": "shopify://shop_images/7-acura-logo-800x800.png",
-            "custom_title": "",
-            "custom_link": "",
-            "custom_count": ""
-          }
-        },
-        "brand_88UzTg": {
-          "type": "brand",
-          "settings": {
-            "collection": "infiniti-cars",
-            "brand_logo": "shopify://shop_images/10-infiniti-logo.png",
-            "custom_title": "",
-            "custom_link": "",
-            "custom_count": ""
-          }
-        },
-        "brand_wngpe9": {
-          "type": "brand",
-          "settings": {
-            "collection": "lexus-cars",
-            "brand_logo": "shopify://shop_images/11-lexus.png",
-            "custom_title": "",
-            "custom_link": "",
-            "custom_count": ""
-          }
-        },
-        "brand_Tp7MiK": {
-          "type": "brand",
-          "settings": {
-            "collection": "scion-cars",
-            "brand_logo": "shopify://shop_images/12-scion-logo-square.png",
-            "custom_title": "",
-            "custom_link": "",
-            "custom_count": ""
-          }
-        },
-        "brand_pmwJqP": {
-          "type": "brand",
-          "settings": {
-            "collection": "hyundai-cars",
-            "brand_logo": "shopify://shop_images/13-hyundai-logo-white.png",
-            "custom_title": "",
-            "custom_link": "",
-            "custom_count": ""
-          }
-        },
-        "brand_CapX84": {
-          "type": "brand",
-          "settings": {
-            "collection": "kia-cars",
-            "brand_logo": "shopify://shop_images/14-kia-logo-white.png",
-            "custom_title": "",
-            "custom_link": "",
-            "custom_count": ""
-          }
-        },
-        "brand_qQMhrF": {
-          "type": "brand",
-          "settings": {
-            "collection": "chevrolet-cars",
-            "brand_logo": "shopify://shop_images/15-images.jpg",
-            "custom_title": "",
+            "collection": "steering-wheels",
+            "brand_logo": "shopify://shop_images/10-prov5722.jpg",
+            "custom_title": "Steering Wheels",
             "custom_link": "",
             "custom_count": ""
           }
@@ -154,17 +84,10 @@
       "block_order": [
         "brand_RXeCia",
         "brand_HmxjjY",
-        "brand_cHcyGi",
         "brand_gfphJL",
+        "brand_cHcyGi",
         "brand_Hx8DRp",
-        "brand_nYEHEJ",
-        "brand_PrKFUz",
-        "brand_88UzTg",
-        "brand_wngpe9",
-        "brand_Tp7MiK",
-        "brand_pmwJqP",
-        "brand_CapX84",
-        "brand_qQMhrF"
+        "brand_nYEHEJ"
       ],
       "name": "Brands Sub-Collections",
       "settings": {
@@ -179,6 +102,10 @@
         "columns_desktop": 3,
         "columns_tablet": 3,
         "columns_mobile": 2,
+        "card_view": true,
+        "card_gap": 16,
+        "show_title_always": true,
+        "full_image_view": true,
         "available_label": "Available",
         "padding_top": 80,
         "padding_bottom": 80,
