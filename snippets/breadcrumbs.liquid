@@ -52,7 +52,7 @@
   {% assign engine_type_handle = engine_type | handleize %}
 ==>{{ engine_type }}
   {% case engine_type | downcase %}
-    {% when 'frontclip' %}
+    {% when 'FrontClip' %}
       {% assign engine_type_handle = 'front-clips' %}
     {% when 'engines' %}
       {% assign engine_type_handle = 'engines' %}
@@ -73,14 +73,27 @@
     </li>
   {% endif %}
 
-  {% if engine_type != blank %}
-    <li class="breadcrumbs__item">
-      <a href="/collections/{{ brand_page | handleize }}-{{ engine_type_handle }}" class="breadcrumbs__link">
-        {{ brand_page }} {{ engine_type }}
-      </a>
-      /
-    </li>
-  {% endif %}
+ {%- liquid
+                assign current_collection = null
+
+                if collection
+                  assign current_collection = collection
+                elsif request.params.collection_handle and collections[request.params.collection_handle]
+                  assign current_collection = collections[request.params.collection_handle]
+                elsif product and product.collections.size > 0
+                  assign current_collection = product.collections.first
+                endif
+              -%}
+
+              {%- if current_collection and current_collection.handle -%}
+                {%- capture collection_url -%}/collections/{{ current_collection.handle }}{%- endcapture -%}
+                <li class="breadcrumbs__item">
+                  <a href="{{ collection_url }}" class="breadcrumbs__link" title="{{ current_collection.title }}" aria-label="collection">
+                    {{ current_collection.title }}
+                  </a>
+                  /
+                </li>
+              {%- endif -%}
 
   {% if engine_series != blank %}
     <li class="breadcrumbs__item">
