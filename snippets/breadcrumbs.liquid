@@ -46,6 +46,7 @@
             {% endcomment %}
 {%- when 'product' -%}
   {% assign brand_page = product.metafields.custom.brands.value.first %}
+  {% assign brand_handle = brand_page | handleize %}
   {% assign engine_series = product.metafields.custom.collection_tag.value %}
   {% assign engine_series_handle = engine_series | handleize %}
 
@@ -57,7 +58,7 @@
 
     {% if sub_collections %}
       {% for child in sub_collections %}
-        {% if child.handle contains engine_series_handle %}
+        {% if child.handle contains engine_series_handle and child.handle contains brand_handle %}
           {% assign current_collection = child %}
           {% assign parent_collection = parent %}
           {% break %}
@@ -73,14 +74,14 @@
   {% comment %} 1. Brand {% endcomment %}
   {% if brand_page != blank %}
     <li class="breadcrumbs__item">
-      <a href="/pages/{{ brand_page | handleize }}" class="breadcrumbs__link">
+      <a href="/pages/{{ brand_handle }}" class="breadcrumbs__link">
         {{ brand_page | capitalize }}
       </a>
       /
     </li>
   {% endif %}
 
-  {% comment %} 2. Parent collection (e.g. "Honda Accessories") {% endcomment %}
+  {% comment %} 2. Parent collection {% endcomment %}
   {% if parent_collection != blank %}
     {% assign words = parent_collection.title | split: ' ' %}
     {% assign title_case = '' %}
@@ -97,7 +98,7 @@
     </li>
   {% endif %}
 
-  {% comment %} 3. Sub-collection (e.g. "Exterior Body Parts") {% endcomment %}
+  {% comment %} 3. Sub-collection {% endcomment %}
   {% if current_collection != blank %}
     <li class="breadcrumbs__item">
       <a href="{{ current_collection.url }}" class="breadcrumbs__link">
