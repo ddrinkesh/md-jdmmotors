@@ -54,6 +54,7 @@
   {% assign parent_collection = blank %}
 
   {% comment %} 1st try: search inside sub_collections (has a parent) {% endcomment %}
+  {% if engine_series_handle != blank %}
   {% for parent in collections %}
     {% assign sub_collections = parent.metafields.custom.sub_collections.value %}
 
@@ -71,7 +72,7 @@
       {% break %}
     {% endif %}
   {% endfor %}
-
+{% endif %}
   {% comment %} 2nd try: fallback - top-level "{brand}-{collection_tag}" with no parent {% endcomment %}
   {% if current_collection == blank %}
     {% assign fallback_handle = brand_handle | append: '-' | append: engine_series_handle %}
