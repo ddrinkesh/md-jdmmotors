@@ -47,27 +47,12 @@
 {%- when 'product' -%}
 
   {% assign brand_page = product.metafields.custom.brands.value.first %}
-  {% assign engine_type = product.type %}
-
-  {% assign engine_type_handle = engine_type | handleize %}
-==>{{ engine_type }}
-  {% case engine_type | downcase %}
-    {% when 'FrontClip' %}
-      {% assign engine_type_handle = 'front-clips' %}
-    {% when 'engines' %}
-      {% assign engine_type_handle = 'engines' %}
-    {% when 'accessory' %}
-      {% assign engine_type_handle = 'accessories' %}
-    {% when 'transmission' %}
-      {% assign engine_type_handle = 'transmissions' %}
-  {% endcase %}
-
   {% assign engine_series = product.metafields.custom.collection_tag %}
 
   {% if brand_page != blank %}
     <li class="breadcrumbs__item">
       <a href="/pages/{{ brand_page | handleize }}" class="breadcrumbs__link">
-        {{ brand_page }}
+        {{ brand_page | capitalize }}
       </a>
       /
     </li>
