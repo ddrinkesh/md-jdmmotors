@@ -82,7 +82,7 @@
   </li>
           {%- when 'collection' and collection.handle -%}
 {% for collection in collections %}
-  {{- collection.title | link_to: collection.url }}
+  {{- collection |json }}
 {% endfor %}
 
 {% assign parent_collection = blank %}
