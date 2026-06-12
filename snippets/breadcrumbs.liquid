@@ -90,6 +90,15 @@
                 <a class="breadcrumbs__link" href="{{ tag_url }}" aria-current="page">{{ current_tags | join: " + "}}</a>
               </li>
             {%- else -%}
+
+              {% assign handle_parts = collection.handle | split: '-' %}
+              {% assign brand = handle_parts.first %}
+              <li class="breadcrumbs__item">
+                <a href="/pages/{{ brand }}" class="breadcrumbs__link">
+                  {{ brand | capitalize }}
+                </a>
+                /
+              </li>
               <li class="breadcrumbs__item">
                 <a class="breadcrumbs__link" href="{{ collection.url }}" aria-current="page">{{ collection.title }}</a>
               </li>
