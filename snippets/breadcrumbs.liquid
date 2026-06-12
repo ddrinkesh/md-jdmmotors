@@ -82,6 +82,12 @@
   </li>
           {%- when 'collection' and collection.handle -%}
 
+{% comment %}
+  Breadcrumbs for collection pages
+  Finds the parent collection (if any) whose `sub_collections` metafield
+  contains the current collection, then renders: Brand / Parent / Current
+{% endcomment %}
+
 {% assign parent_collection = blank %}
 
 {% for parent in collections %}
@@ -101,37 +107,43 @@
   {% endif %}
 {% endfor %}
 
-{% if parent_collection %}
 
-  {% assign handle_parts = parent_collection.handle | split: '-' %}
-  {% assign brand = handle_parts.first %}
+    <li class="breadcrumbs__item">
+      <a href="/" class="breadcrumbs__link">Home</a>
+      <span class="breadcrumbs__separator">/</span>
+    </li>
 
-  {% if brand == 'jdm' and handle_parts.size > 1 %}
-    {% assign brand = handle_parts[1] %}
-  {% endif %}
+    {% if parent_collection %}
 
-  <li class="breadcrumbs__item">
-    <a href="/pages/{{ brand | handleize }}" class="breadcrumbs__link">
-      {{ brand | capitalize }}
-    </a>
-    /
-  </li>
+      {% assign handle_parts = parent_collection.handle | split: '-' %}
+      {% assign brand = handle_parts.first %}
 
-  <li class="breadcrumbs__item">
-    <a href="{{ parent_collection.url }}" class="breadcrumbs__link">
-      {{ parent_collection.title }}
-    </a>
-    /
-  </li>
+      {% if brand == 'jdm' and handle_parts.size > 1 %}
+        {% assign brand = handle_parts[1] %}
+      {% endif %}
 
-{% endif %}
+      <li class="breadcrumbs__item">
+        <a href="/pages/{{ brand }}" class="breadcrumbs__link">
+          {{ brand | capitalize }}
+        </a>
+        <span class="breadcrumbs__separator">/</span>
+      </li>
 
-<li class="breadcrumbs__item current_page">
-  <span class="breadcrumbs__link current_page">
-    {{ collection.title }}
-  </span>
-</li>
-          {%- when 'blog' -%}
+      <li class="breadcrumbs__item">
+        <a href="{{ parent_collection.url }}" class="breadcrumbs__link">
+          {{ parent_collection.title }}
+        </a>
+        <span class="breadcrumbs__separator">/</span>
+      </li>
+
+    {% endif %}
+
+    <li class="breadcrumbs__item current_page">
+      <span class="breadcrumbs__link current_page" aria-current="page">
+        {{ collection.title }}
+      </span>
+    </li>
+  {%- when 'blog' -%}
             {%- if current_tags -%}
               <li class="breadcrumbs__item">
                 {{ blog.title | link_to: blog.url,class: 'breadcrumbs__link' }}
