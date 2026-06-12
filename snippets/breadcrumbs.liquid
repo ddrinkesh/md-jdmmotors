@@ -68,7 +68,7 @@
 
   {% if engine_series != blank %}
     <li class="breadcrumbs__item">
-      <a href="/collections/{{ engine_series }}" class="breadcrumbs__link">
+      <a href="/collections/{{ engine_series | handleize }}" class="breadcrumbs__link">
         {{ engine_series }}
       </a>
       /
