@@ -44,11 +44,11 @@
               <span class="breadcrumbs__link current_page">{{ product.title }}</span>
               </li>
             {% endcomment %}
-          {%- when 'product' -%}
+{%- when 'product' -%}
   {% assign brand_page = product.metafields.custom.brands.value.first %}
   {% assign engine_series = product.metafields.custom.collection_tag.value %}
-
-  {% assign current_collection = collections[engine_series | handleize] %}
+  {% assign engine_series_handle = engine_series | handleize %}
+  {% assign current_collection = collections[engine_series_handle] %}
   {% assign parent_collection = blank %}
 
   {% if current_collection != blank %}
@@ -80,7 +80,7 @@
     </li>
   {% endif %}
 
-  {% comment %} 2. Parent collection (e.g. "Acura Engines") {% endcomment %}
+  {% comment %} 2. Parent collection {% endcomment %}
   {% if parent_collection != blank %}
     {% assign words = parent_collection.title | split: ' ' %}
     {% assign title_case = '' %}
@@ -97,7 +97,7 @@
     </li>
   {% endif %}
 
-  {% comment %} 3. Current collection (e.g. "Acura RSX Transmissions") {% endcomment %}
+  {% comment %} 3. Current collection {% endcomment %}
   {% if current_collection != blank %}
     <li class="breadcrumbs__item">
       <a href="{{ current_collection.url }}" class="breadcrumbs__link">
@@ -107,7 +107,7 @@
     </li>
   {% endif %}
 
-  {% comment %} 4. Product (current page) {% endcomment %}
+  {% comment %} 4. Product {% endcomment %}
   <li class="breadcrumbs__item current_page">
     <span class="breadcrumbs__link current_page">
       {{ product.title }}
