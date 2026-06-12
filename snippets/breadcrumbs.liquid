@@ -59,7 +59,7 @@
 
     {% if sub_collections %}
       {% for child in sub_collections %}
-        {% if child.handle contains engine_series_handle and child.handle contains brand_handle %}
+        {% if child.handle contains engine_series_handle %}
           {% assign current_collection = child %}
           {% assign parent_collection = parent %}
           {% break %}
