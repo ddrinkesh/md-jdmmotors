@@ -84,8 +84,7 @@
 {% assign parent_collection = blank %}
 
 {% for parent in collections %}
-  {% assign parent_collections = collections['{{ parent }}']  %}
-  {% assign sub_collections = parent_collections.metafields.custom.sub_collections.value %}
+  {% assign sub_collections = parent.metafields.custom.sub_collections.value %}
 
   {% if sub_collections %}
     {% for child in sub_collections %}
@@ -96,7 +95,7 @@
     {% endfor %}
   {% endif %}
 
-  {% if parent_collection %}
+  {% if parent_collection != blank %}
     {% break %}
   {% endif %}
 {% endfor %}
@@ -116,15 +115,14 @@
   /
 </li>
 
-{% if parent_collection %}
-  ==>{{ parent_collection }}
+{% if parent_collection != blank %}
+  <!-- debug: {{ parent_collection.handle }} | {{ parent_collection.title }} -->
   <li class="breadcrumbs__item">
     <a href="{{ parent_collection.url }}" class="breadcrumbs__link">
       {{ parent_collection.title }}
     </a>
     /
   </li>
-
 {% endif %}
 
 <li class="breadcrumbs__item current_page">
