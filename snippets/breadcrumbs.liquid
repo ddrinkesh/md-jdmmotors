@@ -44,9 +44,9 @@
             </li> {% endcomment %}
             {%- when 'product' -%}
 
-  {% assign brand_page = product.metafields.custom.brand_page %}
-  {% assign engine_type = product.metafields.custom.engine_type %}
-  {% assign engine_series = product.metafields.custom.engine_series %}
+  {% assign brand_page = product.metafields.custom.brands %}
+  {% assign engine_type = product.type %}
+  {% assign engine_series = product.metafields.custom.collection_tag %}
 
   {% if brand_page != blank %}
     <li class="breadcrumbs__item">
@@ -60,7 +60,7 @@
   {% if engine_type != blank %}
     <li class="breadcrumbs__item">
       <a href="/collections/{{ engine_type | handleize }}" class="breadcrumbs__link">
-        {{ engine_type }}
+        {{ brand_page | capitalize }} {{ engine_type }}
       </a>
       /
     </li>
@@ -68,9 +68,9 @@
 
   {% if engine_series != blank %}
     <li class="breadcrumbs__item">
-      <span class="breadcrumbs__link">
+      <a href="/collections/{{ engine_series }}" class="breadcrumbs__link">
         {{ engine_series }}
-      </span>
+      </a>
       /
     </li>
   {% endif %}
