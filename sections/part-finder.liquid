@@ -32,35 +32,56 @@
   (function () {
     'use strict';
 
-    var partFinderVehicles_{{ section.id | handleize | replace: '-', '_' }} = [
+    var _sectionId_{{ section.id | handleize | replace: '-', '_' }}     = {{ section.id | json }};
+    var _collectionUrl_{{ section.id | handleize | replace: '-', '_' }} = {% if section.settings.destination_collection != blank %}{{ section.settings.destination_collection.url | json }}{% else %}'/collections/all'{% endif %};
+
+    /* ── Metaobject fallback data (inlined at render time) ── */
+    var _fallbackData_{{ section.id | handleize | replace: '-', '_' }} = [
       {%- for vehicle in vehicles -%}
+        {%- unless forloop.first -%},{%- endunless -%}
         {
           "brand": {{ vehicle.brand.value | default: '' | json }},
           "model": {{ vehicle.model.value | default: '' | json }},
           "year":  {{ vehicle.year.value  | default: '' | json }}
-        }{% unless forloop.last %},{% endunless %}
+        }
       {%- endfor -%}
     ];
 
-    var partFinderConfig_{{ section.id | handleize | replace: '-', '_' }} = {
-      sectionId:     {{ section.id | json }},
-      collectionUrl: {% if section.settings.destination_collection != blank %}{{ section.settings.destination_collection.url | json }}{% else %}'/collections/all'{% endif %},
-      data: partFinderVehicles_{{ section.id | handleize | replace: '-', '_' }}
-    };
+    function initInstance(data) {
+      new window.PartFinder({
+        sectionId:     _sectionId_{{ section.id | handleize | replace: '-', '_' }},
+        collectionUrl: _collectionUrl_{{ section.id | handleize | replace: '-', '_' }},
+        data:          data
+      });
+    }
 
-    function initInstance(cfg) { new window.PartFinder(cfg); }
+    function loadData() {
+      var jsonUrl = {{ 'part-finder-data.json' | asset_url | json }};
+
+      fetch(jsonUrl)
+        .then(function (res) {
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          return res.json();
+        })
+        .then(function (data) {
+          if (!Array.isArray(data) || data.length === 0) throw new Error('Empty JSON asset');
+          initInstance(data);
+        })
+        .catch(function (err) {
+          console.warn('[PartFinder] JSON asset failed (' + err.message + '), using metaobject fallback.');
+          initInstance(_fallbackData_{{ section.id | handleize | replace: '-', '_' }});
+        });
+    }
 
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', function () {
-        initInstance(partFinderConfig_{{ section.id | handleize | replace: '-', '_' }});
-      });
+      document.addEventListener('DOMContentLoaded', loadData);
     } else {
-      initInstance(partFinderConfig_{{ section.id | handleize | replace: '-', '_' }});
+      loadData();
     }
 
     document.addEventListener('shopify:section:load', function (e) {
-      if (e.detail.sectionId === {{ section.id | json }}) {
-        initInstance(partFinderConfig_{{ section.id | handleize | replace: '-', '_' }});
+      if (e.detail.sectionId === _sectionId_{{ section.id | handleize | replace: '-', '_' }}) {
+        loadData();
       }
     });
 
