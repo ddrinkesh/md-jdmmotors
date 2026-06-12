@@ -84,9 +84,8 @@
 {% assign parent_collection = blank %}
 
 {% for parent in collections %}
-  {% assign sub_collections = parent.metafields.custom.sub_collections.value %}
-{% endfor %}
-==>{{ sub_collections }}
+  {% assign parent_collection = collections['{{ parent }}']  %}
+  {% assign sub_collections = parent_collection.metafields.custom.sub_collections.value %}
 
   {% if sub_collections %}
     {% for child in sub_collections %}
@@ -100,6 +99,7 @@
   {% if parent_collection %}
     {% break %}
   {% endif %}
+{% endfor %}
 
 
 {% assign handle_parts = collection.handle | split: '-' %}
