@@ -81,15 +81,11 @@
     </span>
   </li>
           {%- when 'collection' and collection.handle -%}
-{% for collection in collections %}
-  {{- collection |json }}
-{% endfor %}
-
 {% assign parent_collection = blank %}
 
 {% for parent in collections %}
   {% assign sub_collections = parent.metafields.custom.sub_collections.value %}
-
+{% endfor %}
   {% if sub_collections %}
     {% for child in sub_collections %}
       {% if child.handle == collection.handle %}
@@ -102,7 +98,6 @@
   {% if parent_collection %}
     {% break %}
   {% endif %}
-{% endfor %}
 
 
 {% assign handle_parts = collection.handle | split: '-' %}
