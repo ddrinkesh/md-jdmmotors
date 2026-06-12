@@ -92,7 +92,11 @@
             {%- else -%}
 
               {% assign handle_parts = collection.handle | split: '-' %}
-              {% assign brand = handle_parts.first %}
+              {% if handle_parts.first == 'jdm' %}
+                {% assign brand = handle_parts[1] %}
+              {% else %}
+                {% assign brand = handle_parts.first %}
+              {% endif %}
               <li class="breadcrumbs__item">
                 <a href="/pages/{{ brand }}" class="breadcrumbs__link">
                   {{ brand | capitalize }}
