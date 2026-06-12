@@ -82,10 +82,14 @@
   </li>
           {%- when 'collection' and collection.handle -%}
 
+{% for collection in collections %}
+  {{- collection.title | link_to: collection.url }}
+{% endfor %}
+
 {% assign parent_collection = blank %}
 {% for parent in collections %}
   {% assign collections_parent = parent.handle %}
-  ==>{{collections_parent | json }}
+  {% assign sub_collections = collections_parent.metafields.custom. %}
 
   {% if sub_collections %}
     {% for child in sub_collections %}
