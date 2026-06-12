@@ -44,44 +44,58 @@
               <span class="breadcrumbs__link current_page">{{ product.title }}</span>
               </li>
             {% endcomment %}
-          {%- when 'product' -%}
-            {% assign brand_page = product.metafields.custom.brands.value.first %}
-            {% assign engine_type = product.type %}
-            {% assign engine_series = product.metafields.custom.collection_tag %}
+{%- when 'product' -%}
 
-            {% if brand_page != blank %}
-              <li class="breadcrumbs__item">
-                <a href="/pages/{{ brand_page }}" class="breadcrumbs__link">
-                  {{ brand_page | capitalize }}
-                </a>
-                /
-              </li>
-            {% endif %}
+  {% assign brand_page = product.metafields.custom.brands.value.first %}
+  {% assign engine_type = product.type %}
 
-            {% if engine_type != blank %}
-              <li class="breadcrumbs__item">
-                <a href="/collections/{{ brand_page | handleize }}-{{ engine_type | handleize }}" class="breadcrumbs__link">
-                  {{ brand_page | capitalize }}
-                  {{ engine_type | capitalize }}
-                </a>
-                /
-              </li>
-            {% endif %}
+  {% assign engine_type_handle = engine_type | handleize %}
 
-            {% if engine_series != blank %}
-              <li class="breadcrumbs__item">
-                <a href="/collections/{{ engine_series | handleize }}" class="breadcrumbs__link">
-                  {{ engine_series }}
-                </a>
-                /
-              </li>
-            {% endif %}
+  {% case engine_type | downcase %}
+    {% when 'frontclip' %}
+      {% assign engine_type_handle = 'front-clips' %}
+    {% when 'engines' %}
+      {% assign engine_type_handle = 'engines' %}
+    {% when 'accessory' %}
+      {% assign engine_type_handle = 'accessories' %}
+    {% when 'transmission' %}
+      {% assign engine_type_handle = 'transmissions' %}
+  {% endcase %}
 
-            <li class="breadcrumbs__item current_page">
-              <span class="breadcrumbs__link current_page">
-                {{ product.title }}
-              </span>
-            </li>
+  {% assign engine_series = product.metafields.custom.collection_tag %}
+
+  {% if brand_page != blank %}
+    <li class="breadcrumbs__item">
+      <a href="/pages/{{ brand_page | handleize }}" class="breadcrumbs__link">
+        {{ brand_page }}
+      </a>
+      /
+    </li>
+  {% endif %}
+
+  {% if engine_type != blank %}
+    <li class="breadcrumbs__item">
+      <a href="/collections/{{ brand_page | handleize }}-{{ engine_type_handle }}" class="breadcrumbs__link">
+        {{ brand_page }} {{ engine_type }}
+      </a>
+      /
+    </li>
+  {% endif %}
+
+  {% if engine_series != blank %}
+    <li class="breadcrumbs__item">
+      <a href="/collections/{{ engine_series | handleize }}" class="breadcrumbs__link">
+        {{ engine_series }}
+      </a>
+      /
+    </li>
+  {% endif %}
+
+  <li class="breadcrumbs__item current_page">
+    <span class="breadcrumbs__link current_page">
+      {{ product.title }}
+    </span>
+  </li>
           {%- when 'collection' and collection.handle -%}
             {% assign parent_collection = blank %}
 
