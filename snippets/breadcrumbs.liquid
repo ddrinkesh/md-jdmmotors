@@ -15,7 +15,7 @@
             <li class="breadcrumbs__item">
               <a class="breadcrumbs__link" href="{{ page.url }}" aria-current="page">{{ page.title }}</a>
             </li>
-          {%- when 'product' -%}         
+          {% comment %} {%- when 'product' -%}         
             {%- liquid
               assign current_collection = null
 
@@ -41,7 +41,46 @@
 
             <li class="breadcrumbs__item current_page">
             <span class="breadcrumbs__link current_page">{{ product.title }}</span>
-            </li>
+            </li> {% endcomment %}
+            {%- when 'product' -%}
+
+  {% assign brand_page = product.metafields.custom.brand_page %}
+  {% assign engine_type = product.metafields.custom.engine_type %}
+  {% assign engine_series = product.metafields.custom.engine_series %}
+
+  {% if brand_page != blank %}
+    <li class="breadcrumbs__item">
+      <a href="/pages/{{ brand_page }}" class="breadcrumbs__link">
+        {{ brand_page | capitalize }}
+      </a>
+      /
+    </li>
+  {% endif %}
+
+  {% if engine_type != blank %}
+    <li class="breadcrumbs__item">
+      <a href="/collections/{{ engine_type | handleize }}" class="breadcrumbs__link">
+        {{ engine_type }}
+      </a>
+      /
+    </li>
+  {% endif %}
+
+  {% if engine_series != blank %}
+    <li class="breadcrumbs__item">
+      <span class="breadcrumbs__link">
+        {{ engine_series }}
+      </span>
+      /
+    </li>
+  {% endif %}
+
+  <li class="breadcrumbs__item current_page">
+    <span class="breadcrumbs__link current_page">
+      {{ product.title }}
+    </span>
+  </li>
+  
           {%- when 'collection' and collection.handle -%}
             {%- if current_tags -%}
               <li class="breadcrumbs__item">
