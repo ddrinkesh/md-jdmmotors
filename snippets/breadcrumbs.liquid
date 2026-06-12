@@ -57,7 +57,7 @@
 
     {% if sub_collections %}
       {% for child in sub_collections %}
-        {% if child.handle == engine_series_handle %}
+        {% if child.handle contain engine_series_handle %}
           {% assign current_collection = child %}
           {% assign parent_collection = parent %}
           {% break %}
