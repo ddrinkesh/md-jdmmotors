@@ -562,6 +562,16 @@
         <!-- CTAs -->
 
         <div class="cart__ctas" {{ block.shopify_attributes }}>
+          <a
+            href="{{ routes.cart_url }}"
+            class="cart__checkout-button button"
+            {% if cart == empty %}
+              disabled
+            {% endif %}
+          >
+            {{ 'sections.cart.title' | t }}
+          </a>
+          
           <button
             type="submit"
             id="CartDrawer-Checkout"
