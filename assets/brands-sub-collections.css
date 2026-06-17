@@ -98,3 +98,7 @@
   .brands-sub-collections-main .brands-sub-collections-card__title { font-size: 1.6rem; }
   .brands-sub-collections-main .brands-sub-collections-card__count { font-size: 1.2rem; }
 }
+
+@media screen and (max-width: 480px) {
+  .brands-sub-collections-main .brands-sub-collections-grid { grid-template-columns: repeat(1, 1fr); }
+}
