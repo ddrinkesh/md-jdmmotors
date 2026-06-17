@@ -261,15 +261,15 @@
     "contact": {
       "form": {
         "title": "Contact form",
-        "name": "Name",
-        "name_placeholder": "Name",
-        "email": "Email",
-        "email_placeholder": "Email",
-        "phone": "Phone number",
-        "phone_placeholder": "Phone number",
-        "comment": "Comment",
-        "comment_placeholder": "Comment",
-        "send": "Send",
+        "name": "Full Name",
+        "name_placeholder": "Enter Full Name",
+        "email": "Email Address",
+        "email_placeholder": "Enter Email Address ",
+        "phone": "Phone Number",
+        "phone_placeholder": "Enter Phone Number",
+        "comment": "Message",
+        "comment_placeholder": "Enter message",
+        "send": "Submit",
         "post_success": "Thanks for contacting us. We'll get back to you as soon as possible.",
         "error_heading": "Please adjust the following:"
       }
