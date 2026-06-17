@@ -58,7 +58,7 @@ input[type="search"]::-webkit-search-results-decoration { -webkit-appearance:non
 .field__input, .field__select,
 .select__select, 
 .customer .field input, 
-.customer select { height: 40px; padding: 8px 10px; border: 1px solid  #1E362F; border-radius: 4px; font-size: 16px; font-style: normal; font-weight: 400; line-height: 1;margin: 0; background: transparent; color: #1E362F; letter-spacing: 0; font-family: var(--font-body-family); }
+.customer select { height: 40px; padding: 8px 10px; border: 1px solid  #1E362F; border-radius: 8px; font-size: 16px; font-style: normal; font-weight: 400; line-height: 1;margin: 0; background: transparent; color: #1E362F; letter-spacing: 0; font-family: var(--font-body-family); }
 
 .field .text-area { min-height: 120px; }
 
@@ -110,7 +110,7 @@ button.shopify-payment-button__button--unbranded:hover { background:rgba(var(--c
 .field__select:-webkit-autofill, 
 .customer .field input:focus, 
 .customer .field input:not(:placeholder-shown), 
-.customer .field input:-webkit-autofill { padding: 8px 10px; border-radius: 4px; }
+.customer .field input:-webkit-autofill { padding: 8px 10px; border-radius: 8px; }
 
 .field .text-area:focus, 
 .field .text-area:not(:placeholder-shown), 
