@@ -1,7 +1,7 @@
 
 .breadcrumbs__list { margin: 0; padding: 0; display: flex; list-style-type: none; align-items: center; gap: 10px 5px; flex-wrap: wrap;}
 .breadcrumbs__list .breadcrumbs__item { display: flex; gap: 7px; align-items: center; font-size: 16px; line-height: 1.3; letter-spacing: 0; color: rgba(var(--color-foreground),1); font-weight: 400; }
-.breadcrumbs__list .breadcrumbs__item a { text-decoration: none; color: currentColor; overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 1; }
+.breadcrumbs__list .breadcrumbs__item a { text-decoration: none; color: currentColor; overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 1; text-transform: capitalize; }
 .breadcrumbs__list .breadcrumbs__item .arrow-icon { display: flex; align-items: center; }
 .breadcrumbs__list .breadcrumbs__item .arrow-icon svg { width: 5px; height: 9px;}
 .breadcrumbs__list .breadcrumbs__item a:hover { opacity: .7; }
