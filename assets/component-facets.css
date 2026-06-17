@@ -1343,7 +1343,7 @@ input.mobile-facets__checkbox {
 
 @media(max-width:749px){
   .facets-wrapper .active-facets .active-facets__button-wrapper .active-facets__button-remove,
-  .facets-wrapper .active-facets .active-facets__button-wrapper .active-facets__button-remove * { font-size:12px; line-height:20px; }
+  .facets-wrapper .active-facets .active-facets__button-wrapper .active-facets__button-remove * { font-size:14px; line-height:20px; }
   .facets-wrapper .active-facets .active-facets__button-wrapper { margin: 0; }
 
   .facets-vertical .facets-wrapper,
