@@ -72,7 +72,7 @@ font-style: normal; font-weight: 700; line-height: normal; text-transform: upper
   .featured-collection-wrapper .page-width,
   .featured-collection-wrapper .page-width.full-width { padding: 0 20px; }
 
-  .featured-collection-wrapper .sec-head { margin-bottom: 25px;flex-wrap: wrap; align-items: flex-start;}
+  .featured-collection-wrapper .sec-head { margin-bottom: 25px;flex-wrap: wrap; justify-content: flex-start !important;}
   .featured-collection-wrapper .sec-head .review-box { margin-bottom:0; }
 
   .featured-collection-wrapper .sec-head .sec-title.h1 { font-size: 24px; line-height: 1; }
