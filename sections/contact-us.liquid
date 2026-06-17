@@ -158,7 +158,7 @@
             </button>
           </div>
         {% endform %} {% endcomment %}
-{%- form 'contact', id: 'ContactForm', class: contact_form_class -%}
+{%- form 'contact', id: 'ContactForm', class: 'contact-us-form__form' -%}
       {%- if form.posted_successfully? -%}
         <h2 class="form-status form-status-list form__message contact-us-form__success" tabindex="-1" autofocus>
           {{- 'icon-success.svg' | inline_asset_content -}}
