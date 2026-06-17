@@ -28,8 +28,6 @@ text-transform: uppercase; margin:0; }
 
 .product-card-wrapper .card-information .pro-view-more { width: 100%; display: flex; justify-content: center; align-items: center; text-decoration: none; color: #FFF; font-size: 14px;  font-style: normal; font-weight: 700; line-height: normal; text-transform: uppercase; gap: 10px; border-radius: 100px; background: #CD1719; cursor: pointer; margin-top: 20px !important; padding: 10px 15px; }
 .product-card-wrapper:hover .card-information .pro-view-more { background: #000000; color: #FFF; }
-.product-card-wrapper .card-information .pro-view-more { width: 100%; display: flex; justify-content: center; align-items: center; text-decoration: none; color: #FFF; font-size: 14px;  font-style: normal; font-weight: 700; line-height: normal; text-transform: uppercase; gap: 2px; border-radius: 100px; background: #CD1719; cursor: pointer; margin-top: 20px !important; padding: 10px 15px; }
-.product-card-wrapper:hover .card-information .pro-view-more { background: #000000; color: #FFF; }
 
 .product-card-wrapper .card__badge { margin: 8px; display: flex; flex-wrap: wrap;  gap: 5px;}
 .product-card-wrapper .card__badge .badge { padding: 5px 10px; background: #fff; color: #CD1719; font-family: var(--font-body-family); font-size: 10px; font-style: normal; font-weight: 500; line-height: normal; }
