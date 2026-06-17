@@ -29,8 +29,8 @@
 .contact-us-main .contact-us-form__input:focus { outline: none; background: #fff; box-shadow: 0 0 0 1px #CD1719; }
 .contact-us-main .contact-us-form__textarea { height: 138px; min-height: 138px; padding: 13px 20px; resize: vertical; line-height: 1.5; resize: none; }
 .contact-us-main .contact-us-form__submit { min-width: 109px; min-height: 48px; padding: 0 23px; align-self: flex-start; border-radius: 100px; text-transform: uppercase; font-size: 16px; }
-.contact-us-main .contact-us-form__success { background: #E8F5E9; color: #1B5E20; padding: 12px 18px; border-radius: 12px; font-size: 14px; }
-.contact-us-main .contact-us-form__errors { background: #FDECEC; color: #B71C1C; padding: 12px 18px; border-radius: 12px; font-size: 14px; }
+.contact-us-main .contact-us-form__success { background: #E8F5E9; color: #1B5E20; padding: 12px 18px; border-radius: 12px; font-size: 14px; margin: 0; }
+.contact-us-main .contact-us-form__errors { background: #FDECEC; color: #B71C1C; padding: 12px 18px; border-radius: 12px; font-size: 14px; margin: 0; }
 .contact-us-main .contact-us-form__errors ul { margin: 6px 0 0; padding-left: 20px; }
 
 @media screen and (max-width: 989px) {
