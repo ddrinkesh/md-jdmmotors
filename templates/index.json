@@ -401,7 +401,7 @@
       "settings": {
         "full_width": false,
         "show_image_mobile": false,
-        "title": "Our <strong>Products</strong>",
+        "title": "Featured <strong>Products</strong>",
         "heading_size": "h2",
         "description": "",
         "text_align": "left",
