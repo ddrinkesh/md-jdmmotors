@@ -38,7 +38,7 @@
     .shop-by-category-main .sec-head { margin-bottom: 20px; } 
 
     .shop-by-category-grid {  grid-template-columns: 1fr 1fr; grid-auto-rows: auto; gap: 15px; }
-    .shop-cat-card { border-radius: 20px; }
+    .shop-cat-card { border-radius: 20px; aspect-ratio:1 ;}
     .shop-cat-card__media { border-radius: 20px; }
     .shop-cat-card--featured { grid-column: span 1; grid-row: span 1; min-height: 260px; }
     .shop-cat-card__content { left: 16px; right: 16px; bottom: 16px; align-items: flex-end; }
