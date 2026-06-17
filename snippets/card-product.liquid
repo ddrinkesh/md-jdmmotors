@@ -352,7 +352,7 @@
               {% if card_product.metafields.custom.mileage != blank %}
                 <div class="info-box miles-info">
                   {{ 'miles.svg' | inline_asset_content }}
-                  {{ card_product.metafields.custom.mileage }}
+                  {{ card_product.metafields.custom.mileage | capitalize }}
                 </div>
               {% endif %}
             </div>
