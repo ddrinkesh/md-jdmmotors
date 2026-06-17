@@ -10,11 +10,13 @@
   Usage:
   {% render 'product-media-gallery', is_duplicate: true %}
 {% endcomment %}
+{% assign count = 0 %}
 {%- liquid
   assign initial_media_id = product.selected_or_first_available_variant.featured_media.id
-   assign initialSlide = 0
+  assign initialSlide = blank
     assign initialSlide_alt_base = false
   for media in product.media
+   assign count = count | plus: 1 
     if media.id == initial_media_id
       assign initialSlide = forloop.index0
     endif
@@ -25,6 +27,7 @@
     break
    endif
   endfor
+    assign initialSlide_alt_base = false
 -%}
 {% assign direction = "" %}
 {% if section.settings.thumb_slider_placement == 'left' or  section.settings.thumb_slider_placement == 'right' %}
