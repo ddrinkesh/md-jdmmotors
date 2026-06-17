@@ -196,7 +196,7 @@
         <div class="field field--with-error contact-us-form__field">
         <label class="field__label contact-us-form__label" for="ContactForm-email">
             {{- 'templates.contact.form.email' | t }}
-            </label
+        </label>
           <input
             autocomplete="email"
             type="email"
@@ -212,7 +212,6 @@
               aria-describedby="ContactForm-email-error"
             {% endif %}
             placeholder="{{ 'templates.contact.form.email' | t }}"
-          >
           >
           {%- if form.errors contains 'email' -%}
             <small class="contact__field-error" id="ContactForm-email-error">
