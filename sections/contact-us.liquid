@@ -190,7 +190,7 @@
             id="ContactForm-name"
             name="contact[{{ 'templates.contact.form.name' | t }}]"
             value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
-            placeholder="{{ 'templates.contact.form.name' | t }}"
+            placeholder="{{ 'templates.contact.form.name_placeholder' | t }}"
           >
         </div>
         <div class="field field--with-error contact-us-form__field">
@@ -211,7 +211,7 @@
               aria-invalid="true"
               aria-describedby="ContactForm-email-error"
             {% endif %}
-            placeholder="{{ 'templates.contact.form.email' | t }}"
+            placeholder="{{ 'templates.contact.form.email_placeholder' | t }}"
           >
           {% comment %} {%- if form.errors contains 'email' -%}
             <small class="contact__field-error" id="ContactForm-email-error">
@@ -228,7 +228,7 @@
         </div>
       </div>
       <div class="field contact-us-form__field">
-      <label class="field__label contact-us-form__label" for="ContactForm-phone">{{ 'templates.contact.form.phone' | t }}</label>
+      <label class="field__label contact-us-form__label" for="ContactForm-phone">{{ 'templates.contact.form.phone_placeholder' | t }}</label>
         <input
           type="tel"
           id="ContactForm-phone"
@@ -249,7 +249,7 @@
           id="ContactForm-body"
           class="text-area field__input contact-us-form__input contact-us-form__textarea"
           name="contact[{{ 'templates.contact.form.comment' | t }}]"
-          placeholder="{{ 'templates.contact.form.comment' | t }}"
+          placeholder="{{ 'templates.contact.form.comment_placeholder' | t }}"
         >
           {{- form.body -}}
         </textarea>
