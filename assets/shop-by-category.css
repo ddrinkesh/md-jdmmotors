@@ -26,7 +26,7 @@
 .shop-cat-card:hover .shop-cat-card__btn svg { transform: rotate(45deg); }
 
 @media screen and (max-width: 1280px) {
-.shop-cat-card__title { font-size: 20; letter-spacing:0; }
+.shop-cat-card__title { font-size: 20px; letter-spacing:0; }
 }
 @media screen and (max-width: 989px) {
 .shop-by-category-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
