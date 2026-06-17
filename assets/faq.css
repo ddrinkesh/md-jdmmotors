@@ -12,7 +12,7 @@
 .faq-main .faq-item:first-child { padding-top: 0; }
 /* .faq-main .faq-item:last-child { border-bottom: 0; } */
 
-.faq-main .faq-item__summary { display: flex; align-items: center; justify-content: space-between; gap: 20px; list-style: none; cursor: pointer; padding: 0; }
+.faq-main .faq-item__summary { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; list-style: none; cursor: pointer; padding: 0; }
 .faq-main .faq-item__summary::-webkit-details-marker { display: none; }
 .faq-main .faq-item__summary::marker { display: none; content: ''; }
 
