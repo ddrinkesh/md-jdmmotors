@@ -134,6 +134,7 @@
               placeholder="{{ section.settings.placeholder_phone }}"
               autocomplete="tel"
               pattern="[0-9\-\+\s\(\)]*"
+              required
             >
           </div>
 
@@ -147,6 +148,7 @@
               name="contact[{{ 'templates.contact.form.comment' | t }}]"
               class="contact-us-form__input contact-us-form__textarea"
               placeholder="{{ section.settings.placeholder_message }}"
+              required
             >{% if form.body %}{{ form.body }}{% endif %}</textarea>
           </div>
 
