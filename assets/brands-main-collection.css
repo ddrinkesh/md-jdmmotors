@@ -38,6 +38,7 @@
 @media screen and (max-width: 1199px) {
 .brands-main-collection-main .brands-main-collection-layout { grid-template-columns: 320px 1fr; }
 .brands-main-collection-main .brands-main-collection-content { /*grid-auto-rows: 240px; min-height: 480px; */ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.brands-main-collection-main .brands-main-collection-tile--featured { grid-column: span 1; grid-row: span 1; }
 .brands-main-collection-main .brands-main-collection-tile__title { font-size: 21px; }
 }
 @media screen and (max-width: 989px) {
