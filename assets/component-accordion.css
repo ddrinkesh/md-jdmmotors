@@ -11,7 +11,7 @@
 }
 
 .accordion .summary__title + .icon-caret {
-  height: calc(var(--font-heading-scale) * 0.6rem);
+  height: calc(var(--font-heading-scale) * 1rem);
 }
 
 .accordion + .accordion {
