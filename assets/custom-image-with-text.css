@@ -28,7 +28,7 @@
 
 .custom-image-with-text-wrapper .img-with-text-container .btns-wrapper { margin-top: 30px;display: flex ; gap: 20px 10px; flex-wrap: wrap; }
 
-.custom-image-with-text-wrapper .img-with-text-container .info-text { position: relative; }
+.custom-image-with-text-wrapper .img-with-text-container .info-text { position: relative; padding-left: 10px; }
 .custom-image-with-text-wrapper .img-with-text-container .info-text,
 .custom-image-with-text-wrapper .img-with-text-container .info-text *{ line-height: normal; margin-top: 20px; font-weight: 600; color: #CD1719; }
 .custom-image-with-text-wrapper .img-with-text-container .info-text a { text-decoration: none; }
