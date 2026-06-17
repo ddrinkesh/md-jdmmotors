@@ -1605,6 +1605,8 @@ a.product__text {
 .product .product__media-wrapper .product__badge .badge.label--custom-Automatic {  color: #fff; background: #CD1719;} 
 
 
+.product-media-modal .product-media-modal__toggle { color: #212121; border-color: #212121; }
+
 @media screen and (min-width: 990px) { 
   .product.grid { flex-wrap: nowrap; }
   .product.product--medium:not(.product--no-media) .product__info-wrapper { padding-left: 40px; max-width: 542px; width: 45%; } 
