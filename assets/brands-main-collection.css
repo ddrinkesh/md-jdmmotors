@@ -10,7 +10,8 @@
 .brands-main-collection-main .brands-main-collection-menu { display: flex; flex-direction: column; gap: 2px; }
 .brands-main-collection-main .brands-main-collection-menu__item { overflow: hidden; border: 1px solid #dfdfdf; border-radius: 6px; background: #ffffff; }
 .brands-main-collection-main .brands-main-collection-menu__link { display: flex; align-items: center; justify-content: space-between; gap: 14px; min-height: 42px; padding: 8px 14px; color: #1f1f1f; text-decoration: none; transition: color 0.2s ease; }
-.brands-main-collection-main .brands-main-collection-menu__link.is-active { color: #cd1719; }
+.brands-main-collection-main .brands-main-collection-menu__link.is-active,
+.brands-main-collection-main .brands-main-collection-menu__link.is-active.is-active-main { color: #cd1719; }
 .brands-main-collection-main .brands-main-collection-menu__brand { display: flex; align-items: center; gap: 14px; min-width: 0; }
 .brands-main-collection-main .brands-main-collection-menu__logo { display: flex; align-items: center; justify-content: center; width: 42px; height: 24px; overflow: hidden; font-size: 8px; line-height: 1; font-weight: 700; color: #111111; text-transform: uppercase; flex-shrink: 0; }
 .brands-main-collection-main .brands-main-collection-menu__logo-img { display: block; width: 100%; height: 100%; object-fit: contain; }
