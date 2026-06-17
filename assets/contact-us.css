@@ -41,6 +41,7 @@
 .contact-us-main .contact-us-info__item { gap: 16px; border-radius: 16px; }
 .contact-us-main .contact-us-info__icon { width: 54px; height: 54px; }
 .contact-us-main .contact-us-info__label { font-size: 18px; }
+.contact-us-main .contact-us-form__row { grid-template-columns: 1fr; gap: 20px; }
 }
 
 @media screen and (max-width: 749px) {
@@ -49,7 +50,7 @@
  
 .contact-us-main .contact-us-info__item { align-items: flex-start; padding: 18px; border-radius: 14px; }
 .contact-us-main .contact-us-form { margin: 0 -25px; padding:40px 25px; }
-.contact-us-main .contact-us-form__row { grid-template-columns: 1fr; gap: 20px; }
+
 .contact-us-main .contact-us-form__submit { width: 100%; }
 
 }
