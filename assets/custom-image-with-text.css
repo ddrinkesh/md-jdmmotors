@@ -30,6 +30,7 @@
 
 .custom-image-with-text-wrapper .img-with-text-container .info-text,
 .custom-image-with-text-wrapper .img-with-text-container .info-text *{ line-height: normal; margin-top: 20px; font-weight: 600; color: #CD1719; }
+.custom-image-with-text-wrapper .img-with-text-container .info-text a { text-decoration: none; }
 .custom-image-with-text-wrapper .img-with-text-container .info-text a:hover { opacity: .7; }
 
 .custom-image-with-text-wrapper .content-icon-with-text { margin-top: 50px; }
