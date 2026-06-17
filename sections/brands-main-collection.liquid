@@ -105,10 +105,10 @@
                 endif
               -%}
 
-              <div class="brands-main-collection-menu__item{% if is_active_parent %} is-active-main{% endif %}">
+              <div class="brands-main-collection-menu__item{% if is_active_parent %} is-active is-active-main{% endif %}">
                 <a
                   href="{{ parent_link.url }}"
-                  class="brands-main-collection-menu__link{% if is_active_parent %} is-active-main{% endif %}"
+                  class="brands-main-collection-menu__link{% if is_active_parent %} is-active is-active-main{% endif %}"
                   {% if parent_link.links != blank %}
                     data-brands-sidebar-toggle
                     aria-expanded="{% if is_active_parent %}true{% else %}false{% endif %}"
