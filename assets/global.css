@@ -282,7 +282,7 @@ input:focus{background:transparent !important;}
 .main-page-wrapper .shopify-policy__container { padding: 0; }
 
 predictive-search .search .reset__button,
-predictive-search .search .search__button { top: -7px; }
+predictive-search .search .search__button { top: -3px; }
 
 .disclosure .disclosure__list-wrapper .disclosure__list { width: 100%; }
 
