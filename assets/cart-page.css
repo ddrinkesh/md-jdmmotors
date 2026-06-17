@@ -228,13 +228,13 @@
    ============================================================ */
 
 /* Remove default footer padding resets */
-/* .template-cart #main-cart-footer .cart__footer {
+.template-cart #main-cart-footer .cart__footer {
   max-width: none;
   padding-left: 0 !important;
   padding-right: 0 !important;
   border: none;
   display: block;
-} */
+}
 
 /* The summary card */
 .template-cart #main-cart-footer .cart__blocks {
@@ -360,6 +360,6 @@
   .template-cart #main-cart-footer .cart__footer {
     max-width: 480px !important;
     margin-left: auto !important;
-    margin-right: auto !important;
+    margin-right: 0 !important;
   }
 }
