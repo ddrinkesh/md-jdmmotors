@@ -11,7 +11,7 @@
 .hero-slide-heading { font-size: 64px; text-transform: uppercase; line-height: 1.1; margin: 0 0 20px; color: #ffffff; }
 .hero-slide-heading strong { color: #e31e24; font-weight: 400; }
 
-.hero-slide-description { color: rgba(255, 255, 255, 0.85); font-size: 18px; line-height: 1.7; margin: 0 0 32px; max-width: 520px; }
+.hero-slide-description { color: rgba(255, 255, 255, 0.85); font-size: 18px; line-height: 1.55; margin: 0 0 30px; max-width: 520px; }
 .hero-slide-description p { margin: 0; color: inherit; font-size: inherit; line-height: inherit; }
 .hero-banner-slider-main .btns-wrapper { display: inline-flex; }
  
