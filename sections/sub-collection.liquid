@@ -203,10 +203,10 @@
                     {% endif %}
                   </span>
                   <span class="sub-collection-card__content">
+                    {% if section.settings.show_description and sub_collection.description != blank %}
+                      <span class="sub-collection-card__description">{{ sub_collection.description | strip_html | truncatewords: 18 }}</span>
+                    {% endif %}
                     <span>
-                      {% if section.settings.show_description and sub_collection.description != blank %}
-                        <span class="sub-collection-card__description">{{ sub_collection.description | strip_html | truncatewords: 18 }}</span>
-                      {% endif %}
                       <span class="sub-collection-card__title">{{ sub_collection.title }}</span>
                       {% if section.settings.show_product_count %}
                         {%- liquid
