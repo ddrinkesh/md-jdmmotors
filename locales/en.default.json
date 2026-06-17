@@ -208,7 +208,7 @@
       },
       "filter_selected_accessibility": "{{ type }} ({{ count }} filters selected)",
       "show_more": "more",
-      "show_less": "Show less",
+      "show_less": "less",
       "max_price": "The highest price is {{ price }}",
       "product_count": {
         "one": "{{ product_count }} of {{ count }} product",
