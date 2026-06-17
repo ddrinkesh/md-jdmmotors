@@ -209,7 +209,7 @@
                       <span class="sub-collection-card__description">{{ sub_collection.description | strip_html | truncatewords: 18 }}</span>
                     {% endif %}
                   </span>
-                    <span>
+                    <span class="sub-collection-card__footer">
                       {% if section.settings.show_product_count %}
                         {%- liquid
                           assign available_products_count = 0
