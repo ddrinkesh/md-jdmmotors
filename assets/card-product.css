@@ -31,7 +31,7 @@ text-transform: uppercase; margin:0; }
 .product-card-wrapper:hover .card-information .pro-view-more { background: #000000; color: #FFF; }
 
 .product-card-wrapper .card__badge { margin: 8px; display: flex; flex-wrap: wrap;  gap: 5px;}
-.product-card-wrapper .card__badge .badge { padding: 5.5px 11.5px; background: #fff; color: #CD1719; font-family: var(--font-body-family); font-size: 14px; font-style: normal; font-weight: 500; line-height: normal; }
+.product-card-wrapper .card__badge .badge { padding: 5.5px 11.5px; background: #fff; color: #CD1719; font-family: var(--font-body-family); font-size: 10px; font-style: normal; font-weight: 500; line-height: normal; }
 .product-card-wrapper .card__badge .badge.label--custom-Automatic {  color: #fff; background: #CD1719;} 
 
 @media(max-width:749px){
