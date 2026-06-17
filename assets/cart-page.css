@@ -254,7 +254,7 @@
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(var(--color-foreground), 0.45);
+  color: rgba(var(--color-foreground), 1);
   font-family: var(--font-body-family);
 }
 
@@ -276,7 +276,7 @@
   font-weight: 400 !important;
   letter-spacing: 0 !important;
   text-transform: none !important;
-  color: rgba(var(--color-foreground), 0.6) !important;
+  color: rgba(var(--color-foreground), 1) !important;
   font-family: var(--font-body-family);
   margin: 0 !important;
 }
