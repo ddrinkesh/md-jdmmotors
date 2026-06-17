@@ -100,7 +100,7 @@ font-style: normal; font-weight: 700; line-height: normal; text-transform: upper
 
   .featured-collection-wrapper .collection__view-all .view-all-btn.link { font-size: 12px; }
 
-  .featured-collection-wrapper .collection-box .swiper-main-wrapper { margin-right: -20px;  width: auto;}
+  /* .featured-collection-wrapper .collection-box .swiper-main-wrapper { margin-right: -20px;  width: auto;} */
 
 
 }
