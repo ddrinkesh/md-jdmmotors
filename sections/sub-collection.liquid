@@ -221,8 +221,8 @@
                         -%}
                         <span class="sub-collection-card__count">{{ sub_collection.all_products_count }} products | {{ available_products_count }} available</span>
                       {% endif %}
+                      <span class="sub-collection-card__arrow" aria-hidden="true">{{ 'icon-caret.svg' | inline_asset_content }}</span>
                     </span>
-                    <span class="sub-collection-card__arrow" aria-hidden="true">{{ 'icon-caret.svg' | inline_asset_content }}</span>
                   </span>
                 </a>
               </li>
