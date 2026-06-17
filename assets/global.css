@@ -85,7 +85,7 @@ button.shopify-payment-button__button--unbranded:before { display: none; }
 button.shopify-payment-button__button--unbranded { background: rgba(var(--color-button)); color: rgba(var(--color-button-text)); }
 .button--primary:hover,
 .cart__checkout-button:hover,
-button.shopify-payment-button__button--unbranded:hover { background:transparent !important; color: rgba(var(--color-button-color-hover)) !important; border-color:rgba(var(--color-button-color-hover)) !important; }
+button.shopify-payment-button__button--unbranded:hover { background:transparent !important; color: rgba(var(--color-button-color-hover)) !important; border-color:1px solid rgba(var(--color-button-color-hover)) !important; }
 
 .button--secondary { background: transparent; outline: 1px solid; outline-offset: 0; outline-color: rgb(var(--color-secondary-button-text)); color: rgb(var(--color-secondary-button-text)); }
 .button--secondary:hover{ background:rgba(var(--color-button-hover)) !important; color: rgba(var(--color-button-color-hover));  outline-color: rgba(var(--color-button-hover)) !important;}
