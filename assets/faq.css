@@ -10,7 +10,7 @@
 .faq-main .faq-list { display: flex; flex-direction: column; }
 .faq-main .faq-item { border-bottom: 1px solid #d9d9d9; padding: 22px 0; }
 .faq-main .faq-item:first-child { padding-top: 0; }
-.faq-main .faq-item:last-child { border-bottom: 0; }
+/* .faq-main .faq-item:last-child { border-bottom: 0; } */
 
 .faq-main .faq-item__summary { display: flex; align-items: center; justify-content: space-between; gap: 20px; list-style: none; cursor: pointer; padding: 0; }
 .faq-main .faq-item__summary::-webkit-details-marker { display: none; }
