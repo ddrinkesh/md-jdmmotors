@@ -1543,7 +1543,8 @@ a.product__text {
 .product .product__info-wrapper .quantity .quantity__input:focus{background:transparent;}
 
 .product .product__info-wrapper .buy_buttons_sec { flex-grow: 1; }
-.product .product__info-wrapper .buy_buttons_sec .product-form__submit{margin:0; }
+.product .product__info-wrapper .buy_buttons_sec .product-form__submit{margin:0; background: rgba(var(--color-button-hover)) !important; color: rgba(var(--color-button-color-hover)) !important;}
+.product .product__info-wrapper .buy_buttons_sec .product-form__submit:hover {color: rgb(var(--color-button-text)) !important; background-color: rgba(var(--color-button), var(--alpha-button-background)) !important;}
 .product .product__info-wrapper .product-form__buttons { max-width: 100%; }
 .product .product__info-wrapper .product-form__buttons .svg-wrapper:has(.icon-cart){width:20px;height:20px; fill: currentColor;margin-top: -2px;}
 .product .product__info-container .product-form{margin:0;}
