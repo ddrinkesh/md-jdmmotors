@@ -4,7 +4,7 @@
 .shop-by-category-main .sec-title span { color: #cd1719; }
 .shop-by-category-main .sec-text { margin-top: 10px; }
 
-.shop-by-category-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.shop-by-category-grid { display: grid; grid-template-columns: repeat(2,.97fr) repeat(2, 1fr); gap: 20px; }
 
 .shop-cat-card { position: relative; display: block; overflow: hidden; border-radius: 30px; text-decoration: none; color: #fff; transition: transform 0.3s ease; aspect-ratio: 1; }
 .shop-cat-card:hover {  }
