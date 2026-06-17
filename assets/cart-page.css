@@ -7,8 +7,8 @@
    ============================================================ */
 @media screen and (min-width: 990px) {
   .template-cart #MainContent {
-    display: grid;
-    grid-template-columns: 1fr 400px;
+    /* display: grid;
+    grid-template-columns: 1fr 400px; */
     gap: 0 50px;
     align-items: start;
     max-width: var(--page-width);
@@ -22,12 +22,12 @@
     grid-row: 1;
   }
 
-  .template-cart .cart__footer-wrapper {
+  /* .template-cart .cart__footer-wrapper {
     grid-column: 2;
     grid-row: 1;
     position: sticky;
     top: 24px;
-  }
+  } */
 
   /* Remove inner page-width constraints — grid handles it */
   .template-cart #shopify-section-cart-items .page-width,
