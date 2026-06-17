@@ -210,7 +210,7 @@
 
 /* ---- Remove button ---- */
 .template-cart cart-items form cart-remove-button .button {
-  color: rgba(var(--color-foreground), 0.28) !important;
+  color: rgba(var(--color-foreground), 1) !important;
   background: transparent !important;
   border-color: transparent !important;
   transition: color 0.2s ease !important;
