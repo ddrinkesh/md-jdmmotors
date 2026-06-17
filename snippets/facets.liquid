@@ -285,7 +285,7 @@
                             type="button"
                           >
                             <span class="label-show-more label-text"
-                              ><span aria-hidden="true">+ </span>{{ 'products.facets.show_more' | t -}}
+                              ><span aria-hidden="true">+ </span>{{ filter.values.size | minus: show_more_number }}{{ 'products.facets.show_more' | t -}}
                             </span>
                             <span class="label-show-less label-text hidden"
                               ><span aria-hidden="true">- </span>{{ 'products.facets.show_less' | t -}}
