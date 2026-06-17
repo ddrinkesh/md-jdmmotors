@@ -1335,6 +1335,8 @@ input.mobile-facets__checkbox {
 
 .mobile-facets__wrapper .mobile-facets__arrow { display: none; }
 
+.mobile-facets__wrapper .mobile-facets__heading { font-weight: 700; font-family: var(--font-body-family); }
+ 
 .facets-vertical #ProductCount { color: #414754; font-size: 16px; font-style: normal; font-weight: 500; line-height: 1.3; }
 
 .facets-wrapper .label-show-more.label-text { font-size: 18px; font-style: normal; font-weight: 500; line-height: normal; }
