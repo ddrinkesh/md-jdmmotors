@@ -64,6 +64,7 @@
       ],
       "settings": {
         "color_scheme": "scheme-4",
+        "brand_tags_menu": "brands-sidebar",
         "copyright_text": "© 2026 Powered by Drive Marketing. All Rights Reserved.",
         "payment_enable": true,
         "margin_top": 0,
