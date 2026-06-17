@@ -21,7 +21,7 @@
             "heading": "Premium Japanese Engines & <strong>Transmissions</strong>",
             "description": "<p>High-quality, low-mileage units imported directly from Japan for unmatched performance and reliability.</p>",
             "button_label": "EXPLORE NOW",
-            "button_link": "#",
+            "button_link": "shopify://collections/all",
             "button_style_secondary": false
           }
         }
