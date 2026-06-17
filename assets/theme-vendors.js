@@ -153,6 +153,16 @@ function initSlideshow(section) {
 
         swiperItem.sliderOptions = sliderOptions;
         var swiperObj = new Swiper(swiperItem, sliderOptions);
+        swiperObj.on('slideChange', function () {
+    if (
+        swiperObj.thumbs &&
+        swiperObj.thumbs.swiper
+    ) {
+        swiperObj.thumbs.swiper.slideTo(
+            swiperObj.activeIndex
+        );
+    }
+});
         swiperItem.setAttribute('data-swiper-initialized', 'true');
         window.SlideshowObjs.push(swiperItem);
     });
