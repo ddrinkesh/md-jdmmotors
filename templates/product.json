@@ -33,7 +33,9 @@
         },
         "price": {
           "type": "price",
-          "settings": {}
+          "settings": {
+            "show_tax_note": false
+          }
         },
         "text_qFpUVA": {
           "type": "text",
@@ -138,6 +140,7 @@
         },
         "dibs_lb_ordereasy_product_block_EYekXT": {
           "type": "shopify://apps/dibs/blocks/lb-ordereasy-product-block/7cc74442-1b61-4b87-afed-944e0def999c",
+          "disabled": true,
           "settings": {}
         }
       },
