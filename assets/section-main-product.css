@@ -1521,7 +1521,8 @@ a.product__text {
 .product .product__info-wrapper .product__accordion summary .icon-caret { right: 4px; } 
 .product .product__info-wrapper .product__accordion .accordion__content { padding: 0; }
 .product .product__info-wrapper .product__accordion .accordion__content::after { content: ''; display: block; height: 24px; }
-.product .product__info-wrapper .product__accordion:nth-last-of-type { border: none !important; }
+.product .product__info-wrapper .product__accordion:nth-last-of-type,
+.product .product__info-wrapper .product__accordion:nth-last-child(2) { border: none !important; }
 
 .product .product__info-wrapper .product__text { line-height: 1.625; }
 
