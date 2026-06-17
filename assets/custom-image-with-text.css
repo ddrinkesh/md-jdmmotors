@@ -33,7 +33,7 @@
 .custom-image-with-text-wrapper .img-with-text-container .info-text *{ line-height: normal; margin-top: 20px; font-weight: 600; color: #CD1719; }
 .custom-image-with-text-wrapper .img-with-text-container .info-text a { text-decoration: none; }
 .custom-image-with-text-wrapper .img-with-text-container .info-text a:hover { opacity: .7; }
-.custom-image-with-text-wrapper .img-with-text-container .info-text::before{ position: absolute; top: 5px; left: 0; content:"-"; color: #CD1719; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal;}
+.custom-image-with-text-wrapper .img-with-text-container .info-text::before{ position: absolute; top: -1px; left: 0; content:"-"; color: #CD1719; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal;}
 
 .custom-image-with-text-wrapper .content-icon-with-text { margin-top: 50px; }
 .custom-image-with-text-wrapper .content-icon-with-text-item { display: flex; align-items: center; gap: 20px; } 
