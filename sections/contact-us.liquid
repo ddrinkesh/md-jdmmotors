@@ -213,7 +213,7 @@
             {% endif %}
             placeholder="{{ 'templates.contact.form.email' | t }}"
           >
-          {%- if form.errors contains 'email' -%}
+          {% comment %} {%- if form.errors contains 'email' -%}
             <small class="contact__field-error" id="ContactForm-email-error">
               <span class="visually-hidden">{{ 'accessibility.error' | t }}</span>
               <span class="form__message">
@@ -224,7 +224,7 @@
                 {{ form.errors.messages.email -}}
               </span>
             </small>
-          {%- endif -%}
+          {%- endif -%} {% endcomment %}
         </div>
       </div>
       <div class="field contact-us-form__field">
