@@ -39,7 +39,7 @@
 
   /* Footer top padding aligns with items header */
   .template-cart .cart__footer-wrapper .cart__footer {
-    padding-top: 90px !important;
+    /* padding-top: 90px !important; */
     max-width: none;
     margin: 0;
   }
