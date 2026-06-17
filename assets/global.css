@@ -68,7 +68,7 @@ input[type="search"]::-webkit-search-results-decoration { -webkit-appearance:non
 .button, 
 .button-label, 
 .shopify-challenge__button, 
-.customer button { letter-spacing: 0; font-size: 16px; font-style: normal; font-weight: 400; line-height: 1; border-radius:4px; gap: 6px; align-items: center;  text-transform: uppercase; }
+.customer button { letter-spacing: 0; font-size: 16px; font-style: normal; font-weight: 400; line-height: 1; border-radius:4px; gap: 6px; align-items: center;  text-transform: uppercase; border:1px solid transparent !important;}
 
 .button:before,
 .button:after,
