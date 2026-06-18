@@ -46,7 +46,7 @@
 .brands-sub-collections-main .brands-sub-collections-grid--cards .brands-sub-collections-card__image-wrapper .brands-sub-collections-card__image { width: 100%; height: 100%; max-width: 100%; max-height: 100%; object-fit: cover; }
 
 /* ── Card base ── */
-.brands-sub-collections-main .brands-sub-collections-card { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #ffffff; text-decoration: none; padding: 32px 20px 24px; transition: background-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease; min-height: 220px; text-align: center; }
+.brands-sub-collections-main .brands-sub-collections-card { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #ffffff; text-decoration: none; padding: 0 0 24px; transition: background-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease; min-height: 220px; text-align: center; }
 .brands-sub-collections-main .brands-sub-collections-card::before { content: ''; position: absolute; inset: 0; border: 2px solid transparent; transition: border-color 0.25s ease; pointer-events: none; border-radius: inherit; z-index: 1; }
 .brands-sub-collections-main .brands-sub-collections-grid--grid .brands-sub-collections-card:hover { background-color: #fafafa; }
 .brands-sub-collections-main .brands-sub-collections-grid--grid .brands-sub-collections-card:hover::before { border-color: rgba(205,23,25,0.18); }
