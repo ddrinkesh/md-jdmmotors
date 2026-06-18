@@ -148,17 +148,25 @@
     _resetAll() {
       this._populateBrands();
       this.selBrand.selectedIndex = 0;
+      this.selBrand.value = '';
+
       this._resetSelect(this.selModel, this.placeholderModel);
-      this._resetSelect(this.selYear,  this.placeholderYear);
+      this.selModel.value = '';
+
+      this._resetSelect(this.selYear, this.placeholderYear);
+      this.selYear.value = '';
+
       this._updateButton();
     }
 
     _bindPageShow() {
       window.addEventListener('pageshow', (e) => {
-        // e.persisted = true → page restored from bfcache (back/forward navigation).
-        // setTimeout ensures our reset runs after the browser repaints the
-        // bfcache-restored DOM, so our changes aren't overwritten.
-        if (e.persisted) setTimeout(() => this._resetAll(), 0);
+        if (!e.persisted) return;
+        // Double rAF: first frame lets the browser finish painting the bfcache
+        // snapshot; second frame is when our DOM writes reliably stick.
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => this._resetAll());
+        });
       });
     }
 
