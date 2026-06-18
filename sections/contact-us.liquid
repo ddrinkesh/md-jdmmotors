@@ -240,7 +240,7 @@
           name="contact[{{ 'templates.contact.form.phone' | t }}]"
           pattern="[0-9\-]*"
           value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}"
-          placeholder="{{ 'templates.contact.form.phone' | t }}"
+          placeholder="{{ 'templates.contact.form.phone_placeholder' | t }}"
           inputmode="numeric"
           oninput="this.value=this.value.replace(/[^0-9]/g,'')"
           required
