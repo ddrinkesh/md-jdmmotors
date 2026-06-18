@@ -147,6 +147,7 @@
 
     _resetAll() {
       this._populateBrands();
+      this.selBrand.selectedIndex = 0;
       this._resetSelect(this.selModel, this.placeholderModel);
       this._resetSelect(this.selYear,  this.placeholderYear);
       this._updateButton();
@@ -154,8 +155,10 @@
 
     _bindPageShow() {
       window.addEventListener('pageshow', (e) => {
-        // e.persisted = true means the page was restored from bfcache (back/forward)
-        if (e.persisted) this._resetAll();
+        // e.persisted = true → page restored from bfcache (back/forward navigation).
+        // setTimeout ensures our reset runs after the browser repaints the
+        // bfcache-restored DOM, so our changes aren't overwritten.
+        if (e.persisted) setTimeout(() => this._resetAll(), 0);
       });
     }
 
@@ -168,7 +171,6 @@
   };
 
 })();
-
 // (function () {
 //   'use strict';
 
