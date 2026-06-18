@@ -146,6 +146,7 @@ predictive-search[loading] .predictive-search__results-groups-wrapper ~ .predict
   text-align: left;
   text-decoration: none;
   width: 100%;
+  gap:10px;
 }
 
 .predictive-search__item--link-with-thumbnail {
