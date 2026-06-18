@@ -48,6 +48,7 @@
       this._setDisabled(this.selYear,  true);
       this._updateButton();
       this._bindEvents();
+      this._bindPageShow();
     }
 
     _setDisabled(sel, state) {
@@ -144,6 +145,20 @@
       window.location.href = baseUrl + '?' + params.toString();
     }
 
+    _resetAll() {
+      this._populateBrands();
+      this._resetSelect(this.selModel, this.placeholderModel);
+      this._resetSelect(this.selYear,  this.placeholderYear);
+      this._updateButton();
+    }
+
+    _bindPageShow() {
+      window.addEventListener('pageshow', (e) => {
+        // e.persisted = true means the page was restored from bfcache (back/forward)
+        if (e.persisted) this._resetAll();
+      });
+    }
+
     _bindEvents() {
       this.selBrand.addEventListener('change', () => this._onBrandChange());
       this.selModel.addEventListener('change', () => this._onModelChange());
@@ -153,7 +168,6 @@
   };
 
 })();
-
 
 // (function () {
 //   'use strict';
