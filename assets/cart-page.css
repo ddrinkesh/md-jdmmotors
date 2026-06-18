@@ -369,3 +369,5 @@
 .upsell-wrapper .loading__spinner {width: 100%; display: inline-block; height: 100%; background: rgba(0, 0, 0, .5); color: #fff; align-items: center; justify-content: center; display: flex;}
 .upsell-wrapper .spinner { width: 50px; color: #fff; } 
 .upsell-wrapper .spinner circle.path { stroke: #fff; }
+
+.cart__footer-wrapper:has(.is-empty) { display: none; }
