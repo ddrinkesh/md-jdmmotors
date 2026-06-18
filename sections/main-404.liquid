@@ -8,16 +8,26 @@
       margin-top: 2rem;
     }
   }
+
+
+  .main-404-box { margin-bottom: 40px; }
+  .main-404-box .main-404 { font-size: 120px; line-height:0.8; font-weight: 800; }
+  .main-404-box p { margin: 0; }
+  
+  @media screen and (max-width: 749px) {
+    .main-404-box .main-404 { font-size: 80px; }
+  }
+  
 </style>
 
 <div class="template-404 page-width page-margin center">
-  <p>
-    {{ 'templates.404.subtext' | t }}
-  </p>
-  <h1 class="title">
-    {{ 'templates.404.title' | t }}
-  </h1>
-  <a href="{{ routes.all_products_collection_url }}" class="button">
-    {{ 'general.continue_shopping' | t }}
+
+  <div class="main-404-box">     
+    <div class="main-404">{{ 'templates.404.subtext' | t }}</div>
+    <p>{{ 'templates.404.title' | t }}</p>
+  </div>
+  
+  <a href="{{ routes.all_products_collection_url }}" class="button button--primary">
+    {{ 'general.continue_shopping' | t }}     
   </a>
 </div>
