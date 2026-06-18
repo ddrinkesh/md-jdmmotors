@@ -39,7 +39,7 @@
 
 /* Cards view — floating cards with gap */
 .brands-sub-collections-main .brands-sub-collections-grid--cards { gap: var(--card-gap, 16px); background-color: transparent; border: none; border-radius: 0; overflow: visible; }
-.brands-sub-collections-main .brands-sub-collections-grid--cards .brands-sub-collections-card { border-radius: 12px; border: 1px solid #e8e8e8; box-shadow: 0 2px 12px rgba(0,0,0,0.06); overflow: hidden; }
+.brands-sub-collections-main .brands-sub-collections-grid--cards .brands-sub-collections-card { border-radius: 12px; border: 1px solid #e8e8e8; box-shadow: 0 2px 12px rgba(0,0,0,0.06); overflow: hidden; padding: 0 0 24px; }
 .brands-sub-collections-main .brands-sub-collections-grid--cards .brands-sub-collections-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.13); transform: translateY(-3px); border-color: #d4d4d4; background-color: #fff; }
 .brands-sub-collections-main .brands-sub-collections-grid--cards .brands-sub-collections-card::before { display: none; }
 .brands-sub-collections-main .brands-sub-collections-grid--cards .brands-sub-collections-card__image-wrapper { height: auto; aspect-ratio: 1 / 1; }
