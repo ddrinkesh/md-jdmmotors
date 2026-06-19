@@ -125,7 +125,7 @@
                   <span class="brands-main-collection-menu__brand">
                     <span class="brands-main-collection-menu__logo">
                       {% if parent_image != blank %}
-                        {{ parent_image | image_url: width: 120 | image_tag: loading: 'lazy', class: 'brands-main-collection-menu__logo-img', widths: '60, 90, 120', alt: parent_link.title }}
+                        {{ parent_image | image_url: width: 120 | image_tag: loading: 'lazy', class: 'brands-main-collection-menu__logo-img', widths: '60, 90, 120', alt: parent_link.title | default:"Hey" }}
                       {% else %}
                         {{ parent_link.title }}
                       {% endif %}
@@ -197,7 +197,7 @@
                 <a href="{{ sub_collection.url }}" class="sub-collection-card__link color-{{ section.settings.card_color_scheme }} gradient">
                   <span class="sub-collection-card__media">
                     {% if sub_collection.featured_image != blank %}
-                      {{ sub_collection.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', class: 'sub-collection-card__image', widths: '300, 450, 600, 750, 900', sizes: '(min-width: 990px) calc((100vw - 10rem) / 3), (min-width: 750px) calc((100vw - 8rem) / 2), calc(100vw - 3rem)', alt: sub_collection.featured_image.alt | default: "Hello" }}
+                      {{ sub_collection.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', class: 'sub-collection-card__image', widths: '300, 450, 600, 750, 900', sizes: '(min-width: 990px) calc((100vw - 10rem) / 3), (min-width: 750px) calc((100vw - 8rem) / 2), calc(100vw - 3rem)', alt: sub_collection.featured_image.alt | default: sub_collection.title }}
                     {% else %}
                       {{ 'collection-apparel-1' | placeholder_svg_tag: 'placeholder-svg sub-collection-card__placeholder' }}
                     {% endif %}
