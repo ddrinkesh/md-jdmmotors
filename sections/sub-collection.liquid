@@ -175,7 +175,7 @@
                       <a href="{{ child_link.url }}" class="brands-main-collection-submenu__link{% if child_link.active %} is-active{% endif %}">
                         <span class="brands-main-collection-submenu__image">
                           {% if child_image != blank %}
-                            {{ child_image | image_url: width: 90 | image_tag: loading: 'lazy', class: 'brands-main-collection-submenu__img', widths: '45, 60, 90', alt: child_link.title }}
+                            {{ child_image | image_url: width: 90 | image_tag: loading: 'lazy', class: 'brands-main-collection-submenu__img', widths: '45, 60, 90', alt: child_link.title | default:"Hello 2"}}
                           {% endif %}
                         </span>
                         <span>{{ child_link.title }}</span>
