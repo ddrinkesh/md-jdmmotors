@@ -1341,7 +1341,7 @@ input.mobile-facets__checkbox {
 
 .facets-wrapper .label-show-more.label-text { font-size: 18px; font-style: normal; font-weight: 500; line-height: normal; }
 
-.facets__and-helptext { display: none; }
+.facets .facets__and-helptext { display: none !important; }
 
 @media(max-width:749px){
   .facets-wrapper .active-facets .active-facets__button-wrapper .active-facets__button-remove,
