@@ -78,7 +78,7 @@
     </span>
     {%- render 'loading-spinner' -%}
     <div class="product__media media media--transparent">
-      {{
+      {% comment %} {{
         media.preview_image
         | image_url: width: 1946
         | image_tag:
@@ -87,7 +87,22 @@
           sizes: sizes,
           widths: '246, 493, 600, 713, 823, 990, 1100, 1206, 1346, 1426, 1646, 1946', alt: media.preview_image.alt
 
-      }}
+      }} {% endcomment %}
+        <img
+      srcset="
+        {% if media.preview_image.width >= 288 %}{{ media.preview_image | image_url: width: 288 }} 288w,{% endif %}
+        {% if media.preview_image.width >= 576 %}{{ media.preview_image | image_url: width: 576 }} 576w,{% endif %}
+        {% if media.preview_image.width >= 550 %}{{ media.preview_image | image_url: width: 550 }} 550w,{% endif %}
+        {% if media.preview_image.width >= 1100 %}{{ media.preview_image | image_url: width: 1100 }} 1100w,{% endif %}
+        {{ media.preview_image | image_url }} {{ media.preview_image.width }}w
+      "
+      src="{{ media | image_url: width: 550, height: 550 }}"
+      sizes="(min-width: 1200px) calc((1200px - 10rem) / 2), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)"
+      loading="lazy"
+      width="576"
+      height="{{ 576 | divided_by: media.preview_image.aspect_ratio }}"
+      alt="{{ media.preview_image.alt | escape }}"
+    >
     </div>
     <button
       class="product__media-toggle quick-add-hidden product__media-zoom-{{ section.settings.image_zoom }}"
