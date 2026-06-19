@@ -2,7 +2,7 @@
   padding-right: 9.8rem;
 }
 
-.search__input.field__input:placeholder { display: block; }
+.search__input.field__input:placeholder { display: block !important; }
 
 .search__button {
   right: var(--inputs-border-width);
