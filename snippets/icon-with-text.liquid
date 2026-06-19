@@ -75,6 +75,7 @@
             {% if block.settings.image_1.alt != blank %}
               alt="{{ block.settings.image_1.alt | escape }}"
             {% else %}
+              alt="{{ block.settings.heading_1 }}"
               role="presentation"
             {% endif %}
             height="auto"
@@ -103,6 +104,7 @@
           {% if block.settings.image_2.alt != blank %}
             alt="{{ block.settings.image_2.alt | escape }}"
           {% else %}
+            alt="{{ block.settings.heading_2 }}"
             role="presentation"
           {% endif %}
           height="auto"
@@ -139,6 +141,7 @@
           {% if block.settings.image_3.alt != blank %}
             alt="{{ block.settings.image_3.alt | escape }}"
           {% else %}
+            alt="{{ block.settings.heading_3 }}"
             role="presentation"
           {% endif %}
           height="auto"
@@ -167,6 +170,7 @@
           {% if block.settings.image_4.alt != blank %}
             alt="{{ block.settings.image_4.alt | escape }}"
           {% else %}
+            alt="{{ block.settings.heading_4 }}"
             role="presentation"
           {% endif %}
           height="auto"
@@ -195,6 +199,7 @@
           {% if block.settings.image_5.alt != blank %}
             alt="{{ block.settings.image_5.alt | escape }}"
           {% else %}
+            alt="{{ block.settings.heading_5 }}"
             role="presentation"
           {% endif %}
           height="auto"
@@ -223,6 +228,7 @@
             {% if block.settings.image_6.alt != blank %}
               alt="{{ block.settings.image_6.alt | escape }}"
             {% else %}
+              alt="{{ block.settings.heading_6 }}"
               role="presentation"
             {% endif %}
             height="auto"
