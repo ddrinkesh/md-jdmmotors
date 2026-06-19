@@ -1351,5 +1351,6 @@ input.mobile-facets__checkbox {
 
   .facets-wrapper .label-show-more.label-text { font-size: 16px;}
   .facets-vertical .facets-container { gap:5px; }
+  .facets-vertical #ProductCount { font-size: 15px; }
   /* .facets-wrapper .product-count { grid-column-start: 1; grid-column-end: 3; } */
 }
