@@ -150,6 +150,7 @@
       <div class="swiper slider-mobile-gutter" data-main-pdp-swiper data-slider-options='{ {{ sliderOptions }} }'>
          <ul class="swiper-wrapper"role="list">
             {%- for media in product.media -%}
+              {%  assign media_alt_text = media.alt | default: product.title %}
             <li class="swiper-slide " 
               data-media-id="{{- media.id -}}" data-swiper-slide-id="{{- forloop.index0 -}}"
               data-swiper-pdp-slide
@@ -173,7 +174,7 @@
                    media_width: media_width,
                    media_fit: section.settings.media_fit,
                    constrain_to_viewport: section.settings.constrain_to_viewport,
-                   lazy_load: lazy_load
+                   lazy_load: lazy_load, alt: media_alt_text
                %}
             </li>
             {%- endfor -%}
@@ -219,6 +220,7 @@
          calc((100vw - 8rem) / 3)
          {%- endcapture -%}
          {%- for media in product.media -%}
+          {%  assign media_alt_text = media.alt | default: product.title %}
          {%- liquid
          capture media_index
          if media.media_type == 'model'
@@ -250,8 +252,7 @@
                loading: 'lazy',
                sizes: sizes,
                widths: '54, 74, 104, 162, 208, 324, 416',
-               alt: media.alt
-               | escape
+               alt: media_alt_text
                }}
             </div>
          </li>
