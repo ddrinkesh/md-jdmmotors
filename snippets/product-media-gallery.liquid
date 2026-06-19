@@ -243,7 +243,6 @@
               aria-controls="GalleryViewer-{{ section.id }}"
               aria-describedby="{{ thumbnail_id }}"
             >
-              {% assign alt_text =  featured_media.alt | default: product.title %}
               {{
                 featured_media.preview_image
                 | image_url: width: 416
@@ -252,13 +251,13 @@
                   sizes: sizes,
                   widths: '54, 74, 104, 162, 208, 324, 416',
                   id: thumbnail_id,
-                  alt: alt_text
+                  alt: featured_media.alt
+                | escape
               }}
             </button>
           </li>
         {%- endif -%}
         {%- for media in product.media -%}
-          {% assign media_alt_text =  media.alt | default: product.title %}
           {%- unless media.id == product.selected_or_first_available_variant.featured_media.id -%}
             {%- liquid
               capture media_index
@@ -314,7 +313,8 @@
                     sizes: sizes,
                     widths: '54, 74, 104, 162, 208, 324, 416',
                     id: thumbnail_id,
-                    alt: media_alt_text
+                    alt: media.alt
+                  | escape
                 }}
               </button>
             </li>
