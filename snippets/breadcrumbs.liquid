@@ -106,6 +106,7 @@
     </span>
   </li>
 
+
             {%- when 'collection' and collection.handle -%}
 
   {% if collection.handle == 'all' %}
@@ -152,28 +153,21 @@
     </li>
 
     {% if parent_collection != blank %}
-      {% assign parent_title_handle = parent_collection.title | handleize %}
-      {% assign brand_handle = brand | handleize %}
+      {% assign words = parent_collection.title | split: ' ' %}
+      {% assign title_case = '' %}
 
-      {% if parent_title_handle != brand_handle %}
+      {% for word in words %}
+        {% assign title_case = title_case | append: word | capitalize | append: ' ' %}
+      {% endfor %}
 
-        {% assign words = parent_collection.title | split: ' ' %}
-        {% assign title_case = '' %}
+      {% assign title_case = title_case | strip %}
 
-        {% for word in words %}
-          {% assign title_case = title_case | append: word | capitalize | append: ' ' %}
-        {% endfor %}
-
-        {% assign title_case = title_case | strip %}
-
-        <li class="breadcrumbs__item">
-          <a href="{{ parent_collection.url }}" class="breadcrumbs__link">
-            {{ title_case }}
-          </a>
-          /
-        </li>
-
-      {% endif %}
+      <li class="breadcrumbs__item">
+        <a href="{{ parent_collection.url }}" class="breadcrumbs__link">
+          {{ title_case }}
+        </a>
+        /
+      </li>
     {% endif %}
 
     <li class="breadcrumbs__item current_page">
