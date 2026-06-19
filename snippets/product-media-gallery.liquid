@@ -64,7 +64,7 @@
       {%- if product.selected_or_first_available_variant.featured_media != null -%}
         {%- assign featured_media = product.selected_or_first_available_variant.featured_media -%}
 
-        {% assign featured_alt_text = featured_media | default: product.title %}
+        {% assign featured_alt_text = featured_media.alt | default: product.title %}
 
         <li
           id="Slide-{{ section.id }}-{{ featured_media.id }}"
