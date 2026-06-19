@@ -45,59 +45,67 @@
               </li>
             {% endcomment %}
           {%- when 'product' -%}
-            {% assign brand_page = product.metafields.custom.brands.value.first %}
-            {% assign engine_series = product.metafields.custom.collection_tag %}
+{% assign brand_page = product.metafields.custom.brands.value.first %}
+{% assign engine_series = product.metafields.custom.collection_tag %}
 
-            {% if brand_page != blank %}
-              <li class="breadcrumbs__item">
-                <a href="/pages/{{ brand_page | handleize }}" class="breadcrumbs__link">
-                  {{ brand_page | capitalize }}
-                </a>
-                /
-              </li>
-            {% endif %}
+{% if brand_page != blank %} <li class="breadcrumbs__item"> <a href="/pages/{{ brand_page | handleize }}" class="breadcrumbs__link">
+{{ brand_page | capitalize }} </a>
+/ </li>
+{% endif %}
 
-            {%- liquid
-              assign current_collection = null
+{% assign current_collection = blank %}
 
-              if collection
-                assign current_collection = collection
-              elsif request.params.collection_handle and collections[request.params.collection_handle]
-                assign current_collection = collections[request.params.collection_handle]
-              elsif product and product.collections.size > 0
-                assign current_collection = product.collections.first
-              endif
-            -%}
+{% if engine_series != blank %}
+{% assign engine_handle = engine_series | handleize %}
 
-            {%- if current_collection and current_collection.handle -%}
-              {%- capture collection_url -%}/collections/{{ current_collection.handle }}{%- endcapture -%}
-              <li class="breadcrumbs__item">
-                <a
-                  href="{{ collection_url }}"
-                  class="breadcrumbs__link"
-                  title="{{ current_collection.title }}"
-                  aria-label="collection"
-                >
-                  {{ current_collection.title }}
-                </a>
-                /
-              </li>
-            {%- endif -%}
 
-            {% if engine_series != blank %}
-              <li class="breadcrumbs__item">
-                <a href="/collections/{{ engine_series | handleize }}" class="breadcrumbs__link">
-                  {{ engine_series }}
-                </a>
-                /
-              </li>
-            {% endif %}
+{% for c in collections %}
+  {% if c.handle == engine_handle %}
+    {% assign current_collection = c %}
+    {% break %}
+  {% endif %}
+{% endfor %}
 
-            <li class="breadcrumbs__item current_page">
-              <span class="breadcrumbs__link current_page">
-                {{ product.title }}
-              </span>
-            </li>
+{% endif %}
+
+{% assign parent_collection = blank %}
+
+{% if current_collection != blank %}
+{% for parent in collections %}
+{% assign sub_collections = parent.metafields.custom.sub_collections.value %}
+
+  {% if sub_collections %}
+    {% for child in sub_collections %}
+      {% if child.handle == current_collection.handle %}
+        {% assign parent_collection = parent %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+
+  {% if parent_collection != blank %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% endif %}
+
+{% if parent_collection != blank %} <li class="breadcrumbs__item"> <a href="{{ parent_collection.url }}" class="breadcrumbs__link">
+{{ parent_collection.title }} </a>
+/ </li>
+{% endif %}
+
+{% if current_collection != blank %} <li class="breadcrumbs__item"> <a href="{{ current_collection.url }}" class="breadcrumbs__link">
+{{ current_collection.title }} </a>
+/ </li>
+{% endif %}
+
+  <li class="breadcrumbs__item current_page">
+    <span class="breadcrumbs__link current_page">
+      {{ product.title }}
+    </span>
+  </li>
+
           {%- when 'collection' and collection.handle -%}
             {% assign parent_collection = blank %}
             {% for parent in collections %}
