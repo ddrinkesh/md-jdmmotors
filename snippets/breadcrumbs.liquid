@@ -152,7 +152,8 @@
       Show brand breadcrumb only when current collection
       is NOT the brand collection itself.
     {%- endcomment -%}
-    {% unless collection_title_handle == brand_handle or collection_title_handle == 'interior' or collection_title_handle == 'exterior' %}
+    {% unless collection_title_handle == brand_handle or collection_title_handle contains 'interior'
+  or collection_title_handle contains 'exterior'  %}
       <li class="breadcrumbs__item">
         <a href="/pages/{{ brand_handle }}" class="breadcrumbs__link">
           {{ brand | capitalize }}
