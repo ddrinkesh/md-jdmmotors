@@ -134,6 +134,60 @@
     </div>
   </div>
 </div>
+  <!-- Liftgate Popup -->
+  <div id="liftgate-popup" class="upsell-popup">
+    <div class="upsell-popup__content">
+      {% if settings.liftgate_popup_image != blank %}
+        <img
+          src="{{ settings.liftgate_popup_image | image_url }}"
+          alt=""
+          width=""
+          height=""
+        >
+      {% endif %}
+    {% if settings.liftgate_popup_text != blank %}
+      <div class="upsell-popup__text rte">
+        {{ settings.liftgate_popup_text }}
+      </div>
+    {% endif %}
+      <div class="upsell-popup__buttons">
+        <button class="underlined-link" type="button" id="liftgate-remove">
+           {{ settings.liftgate_remove_btn }}
+        </button>
+        <button  class="button"  type="button" id="liftgate-keep">
+         {{ settings.liftgate_keep_btn }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Residential Popup -->
+  <div id="residential-popup" class="upsell-popup">
+    <div class="upsell-popup__content">
+      {% if settings.residential_popup_image != blank %}
+        <img
+          src="{{ settings.residential_popup_image | image_url }}"
+          alt=""
+          width=""
+          height=""
+        >
+      {% endif %}
+      {% if settings.residential_popup_text != blank %}
+        <div class="upsell-popup__text rte">
+          {{ settings.residential_popup_text }}
+        </div>
+      {% endif %}
+
+      <div class="upsell-popup__buttons">
+        <button class="underlined-link" type="button" id="residential-remove">
+         {{ settings.residential_remove_btn }}
+        </button>
+        <button class="button" type="button" id="residential-keep">
+         {{ settings.residential_keep_btn }}
+        </button>
+      </div>
+    </div>
+  </div>
 
 {% schema %}
 {
