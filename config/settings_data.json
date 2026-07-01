@@ -134,6 +134,10 @@
       "liftgate-50-usd",
       "residential-50-usd"
     ],
+    "liftgate_popup_image": "shopify://shop_images/liftgate.png",
+    "liftgate_popup_text": "<p>Liftgate service is required if the delivery location <strong>does not have a loading dock or forklift </strong>to unload the engine from the truck. Selecting this option ensures safe and efficient unloading. If liftgate service is not selected when required, the carrier may refuse delivery or charge <strong>extra handling fees</strong>.</p>",
+    "residential_popup_image": "shopify://shop_images/residential.png",
+    "residential_popup_text": "<p>Residential delivery applies to all shipments going to non-commercial addresses. Any location that is not a warehouse or situated in an industrial zone is considered <strong>limited access </strong>and must select this option. Failure to select residential delivery may result in <strong>delivery delays </strong>or <strong>additional fees </strong>charged by the carrier.</p>",
     "sections": {
       "main-password-header": {
         "type": "main-password-header",
@@ -282,8 +286,8 @@
           "button": "#cd1719",
           "button_label": "#ffffff",
           "secondary_button_label": "#cd1719",
-          "button_hover_color": "#FFFFFF",
-          "button_hover": "#CD1719",
+          "button_hover_color": "#ffffff",
+          "button_hover": "#cd1719",
           "card_bg": "#121212",
           "card_title": "#121212",
           "card_text": "#121212",
