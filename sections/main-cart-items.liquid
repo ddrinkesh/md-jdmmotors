@@ -529,6 +529,7 @@
                             id="Upsell-{{ section.id }}-{{ variant.id }}"
                             class="upsell-checkbox"
                             data-variant-id="{{ variant.id }}"
+                            data-product-title="{{ product.title }}"
                             aria-label="{% if in_cart %}Remove{% else %}Add{% endif %} {{ product.title | escape }}"
                             {% if in_cart %}checked{% endif %}
                           >
