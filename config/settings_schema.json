@@ -1619,6 +1619,58 @@
         "limit": 2
       },
       {
+        "type": "header",
+        "content": "Liftgate Popup"
+      },
+      {
+        "type": "image_picker",
+        "id": "liftgate_popup_image",
+        "label": "Liftgate Popup Image"
+      },
+      {
+        "type": "richtext",
+        "id": "liftgate_popup_text",
+        "label": "Liftgate Popup Text"
+      },
+      {
+        "type": "text",
+        "id": "liftgate_keep_btn",
+        "label": "Liftgate Keep Button Label",
+        "default": "I need a liftgate"
+      },
+      {
+        "type": "text",
+        "id": "liftgate_remove_btn",
+        "label": "Liftgate Remove Button Label",
+        "default": "I have a loading dock or forklift"
+      },
+      {
+        "type": "header",
+        "content": "Residential Popup"
+      },
+      {
+        "type": "image_picker",
+        "id": "residential_popup_image",
+        "label": "Residential Popup Image"
+      },
+      {
+        "type": "richtext",
+        "id": "residential_popup_text",
+        "label": "Residential Popup Text"
+      },
+      {
+        "type": "text",
+        "id": "residential_keep_btn",
+        "label": "Residential Keep Button Label",
+        "default": "I am shipping to a residential address"
+      },
+      {
+        "type": "text",
+        "id": "residential_remove_btn",
+        "label": "Residential Remove Button Label",
+        "default": "I am shipping to a commercial address"
+      },
+      {
         "type": "range",
         "id": "space_slide",
         "min": 1,
