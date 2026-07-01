@@ -1396,3 +1396,154 @@ class CartPerformance {
 //   }
 
 // });
+/*   CHECKBOX CHANGE  */
+let activeCheckbox = null;
+let skipAddToCart = false;
+
+document.addEventListener('change', function (e) {
+  if (!e.target.classList.contains('upsell-checkbox')) return;
+  const checkbox = e.target;
+  /*  CHECKED -> ADD PRODUCT */
+  if (checkbox.checked) {
+    // KEEP BUTTON CASE
+    if (skipAddToCart) {
+      skipAddToCart = false;
+      return;
+    }
+    const form = checkbox.closest('form');
+
+    if (!form) return;
+    form.dispatchEvent(
+      new Event('submit', {
+        bubbles: true,
+        cancelable: true
+      })
+    );
+    return;
+  }
+
+  /* UNCHECKED -> OPEN POPUP */
+  activeCheckbox = checkbox;
+  const productTitle =
+    checkbox.dataset.productTitle.toLowerCase();
+
+  // LIFTGATE
+  if (productTitle.includes('liftgate')) {
+
+    document
+      .getElementById('liftgate-popup')
+      .classList.add('active');
+
+  }
+
+  // RESIDENTIAL
+  else if (productTitle.includes('residential')) {
+
+    document
+      .getElementById('residential-popup')
+      .classList.add('active');
+  }
+});
+
+document.addEventListener('click', function (e) {
+  /* KEEP LIFTGATE */
+if (e.target.id === 'liftgate-keep') {
+  if (activeCheckbox) {
+
+    const alreadyInCart =
+      document.querySelector(
+        `.cart-item[data-cart-variant-id="${activeCheckbox.dataset.variantId}"]`
+      );
+
+    // IF ALREADY IN CART -> DON'T ADD AGAIN
+    if (alreadyInCart) {
+      skipAddToCart = true;
+    }
+
+    activeCheckbox.checked = true;
+
+    // TRIGGER CHANGE FOR ADD
+    activeCheckbox.dispatchEvent(
+      new Event('change', { bubbles: true })
+    );
+  }
+
+  document
+    .getElementById('liftgate-popup')
+    .classList.remove('active');
+}
+//  KEEP RESIDENTIAL
+if (e.target.id === 'residential-keep') {
+
+
+  if (activeCheckbox) {
+
+    const alreadyInCart =
+      document.querySelector(
+        `.cart-item[data-cart-variant-id="${activeCheckbox.dataset.variantId}"]`
+      );
+
+    // IF ALREADY IN CART -> DON'T ADD AGAIN
+    if (alreadyInCart) {
+      skipAddToCart = true;
+    }
+
+    activeCheckbox.checked = true;
+
+    // TRIGGER CHANGE FOR ADD
+    activeCheckbox.dispatchEvent(
+      new Event('change', { bubbles: true })
+    );
+  }
+
+  document
+    .getElementById('residential-popup')
+    .classList.remove('active');
+}
+  /* REMOVE LIFTGATE */
+  if (e.target.id === 'liftgate-remove') {
+    console.log('liftgate remove');
+    removeUpsellProduct(activeCheckbox);
+    document
+      .getElementById('liftgate-popup')
+      .classList.remove('active');
+  }
+
+  /* REMOVE RESIDENTIAL */
+  if (e.target.id === 'residential-remove') {
+    removeUpsellProduct(activeCheckbox);
+    document
+      .getElementById('residential-popup')
+      .classList.remove('active');
+  }
+
+});
+
+
+/*   REMOVE FUNCTION  */
+function removeUpsellProduct(checkbox) {
+  if (!checkbox) return;
+  const variantId = Number(
+    checkbox.dataset.variantId
+  );
+  const cartRows =
+    document.querySelectorAll('.cart-item');
+  for (const row of cartRows) {
+
+    const rowVariantId = Number(
+      row.dataset.cartVariantId
+    );
+
+    if (rowVariantId !== variantId) continue;
+
+    const removeBtn =
+      row.querySelector('cart-remove-button') ||
+      row.querySelector('cart-remove-button a');
+
+    if (removeBtn) {
+      removeBtn.click();
+    }
+
+    break;
+  }
+}
